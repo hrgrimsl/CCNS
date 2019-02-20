@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\title{Homework 6}
+\author{Harper Grimsley}
+\begin{document}
+\maketitle
+\section*{4.5}
+\subsection*{2}
+We note that
+$$(1,1)=\int_{-1}^1 1dt = 2$$
+so 
+$$u^{(0)} = \frac{1}{\sqrt{2}}$$ 
+We now find $v^{(1)}$.
+$$\alpha_0 = (t, \frac{1}{\sqrt{2}}) = \int_{-1}^1 \frac{t}{\sqrt{2}}dt = 0$$
+so 
+$$v^{(1)}=t$$
+and 
+$$(t,t) = \int_{-1}^{1}{t^2}dt= \frac{2}{3}$$
+so 
+$$u^{(1)} = \sqrt{\frac{3}{2}}t$$
+We now find $v^{(2)}$.
+$$\alpha_0 = (t^2, \frac{1}{\sqrt{2}}) = \frac{1}{\sqrt{2}}\int_{-1}^1 t^2dt=\frac{\sqrt{2}}{3}$$
+and
+$$\alpha_1 = (t^2, \sqrt{\frac{3}{2}}t) = 0$$
+since any multiple of $t^4$ is symmetric about $x=0$.  Finally,
+$$(t^2,t^2) = \int_{-1}^1 t^4 dt = \frac{2}{5}$$
+so 
+$$u^{(2)}=\sqrt{\frac{5}{2}}({t^2}-\frac{1}{3})$$
+\subsection*{4}
+If $x$ is an eigenvector of $(\alpha_{ij})$ with eigenvalue 0, then for every row i of (a), we have 
+$$\sum_j \alpha_{ij}x_j=0$$
+It follows that
+$$||\sum_j\alpha_{ij}x_j||^2=0$$
+or
+$$\sum_{ij}\alpha_{ij}^*\alpha_{ij}x^{j*}x^j=0$$
+or
+$$\sum_{ij}a^{j*}a^ia^{i*}a^jx^{j*}x^j=0$$
+or
+$$\sum_i{||a_i||^2}\sum_j a^{j*}a^jx^{j*}x^j=0$$
+The sum of squared lengths of a the a's cannot be 0 if the a's are linearly independent and therefore non-zero, so it follows that
+$$\sum_j a^{j*}a^jx^{j*}x^j=0$$
+or
+$$\sum_j ||a^j||^2||x^j||^2=0$$
+This implies that $a^j$ or $x$ is 0, so it is a weaker corollary that 
+$$||\sum_j ||ax||^2 = 0$$.  This implies that the only time AX=0 is when X = 0, so A is non-singular.
+
+\end{document}
