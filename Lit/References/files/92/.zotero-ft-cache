@@ -1,0 +1,1314 @@
+An Introduction to Coupled Cluster Theory for Computational Chemists - Crawford - 2000 - Reviews in Computational Chemistry - Wiley Online Library
+
+    Skip to Article Content
+    Skip to Article Information
+
+Access by University Libraries | Virginia Tech
+Wiley Online Library
+Wiley Online Library
+University Libraries | Virginia Tech
+Access by University Libraries | Virginia Tech
+Search within
+
+    Search term
+    Advanced Search Citation Search
+    Search term
+    Advanced Search Citation Search
+
+Login / Register
+
+The full text of this article hosted at iucr.org is unavailable due to technical difficulties.
+Full Access
+An Introduction to Coupled Cluster Theory for Computational Chemists
+T. Daniel Crawford
+
+Center for Computational Quantum Chemistry, Department of Chemistry, The University of Georgia, Athens, Georgia 30602‐2525
+Search for more papers by this author
+Henry F. Schaefer III
+
+Center for Computational Quantum Chemistry, Department of Chemistry, The University of Georgia, Athens, Georgia 30602‐2525
+Search for more papers by this author
+T. Daniel Crawford
+
+Center for Computational Quantum Chemistry, Department of Chemistry, The University of Georgia, Athens, Georgia 30602‐2525
+Search for more papers by this author
+Henry F. Schaefer III
+
+Center for Computational Quantum Chemistry, Department of Chemistry, The University of Georgia, Athens, Georgia 30602‐2525
+Search for more papers by this author
+Book Editor(s):
+Kenny B. Lipkowitz
+Search for more papers by this author
+Donald B. Boyd
+Search for more papers by this author
+First published:  01 January 2000
+https://doi.org/10.1002/9780470125915.ch2
+Cited by: 342
+Book Series: Reviews in Computational Chemistry Go here for SFX
+About
+
+PDF
+PDF PDF
+CHAPTER PDF
+FULL BOOK PDF
+Tools
+
+    Request permission
+    Export citation
+    Add to favorites
+    Track citation
+
+Share
+
+Give access
+Share full text access
+
+Share full text access
+Please review our Terms and Conditions of Use and check box below to share full-text version of article.
+I have read and accept the Wiley Online Library Terms and Conditions of Use.
+Shareable Link
+
+Use the link below to share a full-text version of this article with your friends and colleagues. Learn more.
+Copy URL
+
+Share a link
+
+    Email
+    Facebook
+    Twitter
+    Linked In
+    Reddit
+
+Summary
+
+This chapter contains sections titled:
+
+    Introduction
+
+    Fundamental Concepts
+
+    Formal Coupled Cluster Theory
+
+    Derivation of the Coupled Cluster Equations
+
+    Connection to Many‐Body Perturbation Theory
+
+    Computer Implementation of Coupled Cluster Theory
+
+    Current Research and Future Directions
+
+    Acknowledgments
+
+Citing Literature
+Number of times cited according to CrossRef: 342
+
+    Suvonil Sinha Ray, Shovan Manna, Anirban Ghosh, Rajat K. Chaudhuri and Sudip Chattopadhyay , Multireference perturbation theory with improved virtual orbitals for radicals: More degeneracies, more problems , International Journal of Quantum Chemistry , 119 , 4 , (2018) .
+    Wiley Online Library
+    Elfi Kraka and Dieter Cremer , Dieter Cremer's contribution to the field of theoretical chemistry , International Journal of Quantum Chemistry , 119 , 6 , (2019) .
+    Wiley Online Library
+    Isaac M. Turan and David W. Ball , Structures and Energetics of NI3 and N2I4 , ChemPhysChem , 20 , 6 , (868-872) , (2019) .
+    Wiley Online Library
+    John A. Gomez, Thomas M. Henderson and Gustavo E. Scuseria , Polynomial-product states: A symmetry-projection-based factorization of the full coupled cluster wavefunction in terms of polynomials of double excitations , The Journal of Chemical Physics , 10.1063/1.5085314 , 150 , 14 , (144108) , (2019) .
+    Crossref
+    Donatus Agbaglo and Ryan C. Fortenberry , The performance of explicitly correlated methods for the computation of anharmonic vibrational frequencies , International Journal of Quantum Chemistry , 119 , 11 , (2019) .
+    Wiley Online Library
+    Fabijan Pavošević and Sharon Hammes-Schiffer , Multicomponent equation-of-motion coupled cluster singles and doubles: Theory and calculation of excitation energies for positronium hydride , The Journal of Chemical Physics , 10.1063/1.5094035 , 150 , 16 , (161102) , (2019) .
+    Crossref
+    Manuel Hodecker, Dirk R. Rehn, Patrick Norman and Andreas Dreuw , Algebraic-diagrammatic construction scheme for the polarization propagator including ground-state coupled-cluster amplitudes. II. Static polarizabilities , The Journal of Chemical Physics , 10.1063/1.5081665 , 150 , 17 , (174105) , (2019) .
+    Crossref
+    Manuel Hodecker, Adrian L. Dempwolff, Dirk R. Rehn and Andreas Dreuw , Algebraic-diagrammatic construction scheme for the polarization propagator including ground-state coupled-cluster amplitudes. I. Excitation energies , The Journal of Chemical Physics , 10.1063/1.5081663 , 150 , 17 , (174104) , (2019) .
+    Crossref
+    Christof Holzer, Andrew M. Teale, Florian Hampe, Stella Stopkowicz, Trygve Helgaker and Wim Klopper , GW quasiparticle energies of atoms in strong magnetic fields , The Journal of Chemical Physics , 10.1063/1.5093396 , 150 , 21 , (214112) , (2019) .
+    Crossref
+    Yasmeen A. Abdo, Justin W. Weeks, William Layfield, William M. Tremlett, Joshua W. Graham, Mikayla E. Tabor, Sarah E. Causey, Jeremy M. Carr and Gregory S. Tschumper , Intramolecular Hydrogen Bonding in α-Epoxy Alcohols: A Conformational Analysis of 1,2-Dialkyl-2,3-epoxycyclopentanol Diastereomers , Chemistry Letters , 47 , 2 , (156) , (2018) .
+    Crossref
+    Russell Thackston and Ryan C. Fortenberry , Quantum chemical spectral characterization of CH 2 NH 2 for remote sensing of Titan’s atmosphere , Icarus , 10.1016/j.icarus.2017.07.029 , 299 , (187-193) , (2018) .
+    Crossref
+    T. Daniel Crawford , Frontiers of Coupled Cluster Chiroptical Response Theory , Frontiers of Quantum Chemistry , 10.1007/978-981-10-5651-2_3 , (49-68) , (2017) .
+    Crossref
+    Russell Thackston and Ryan C. Fortenberry , An efficient algorithm for the determination of force constants and displacements in numerical definitions of a large, general order Taylor series expansion , Journal of Mathematical Chemistry , 56 , 1 , (103) , (2018) .
+    Crossref
+    Zhihong Luo, Yih-Chung Chang, Chow-Shing Lam, Kai-Chung Lau and Cheuk-Yiu Ng , Frontiers and Advances in Molecular Spectroscopy , (195) , (2018) .
+    Crossref
+    K. R. Shamasundar , Diagonal Born–Oppenheimer correction for coupled-cluster wave-functions , Molecular Physics , 10.1080/00268976.2018.1448946 , 116 , 11 , (1483-1495) , (2018) .
+    Crossref
+    Stefan Grimme and Peter R. Schreiner , , Angewandte Chemie , 130 , 16 , (4241-4248) , (2017) .
+    Wiley Online Library
+    Paul Springer and Paolo Bientinesi , Design of a High-Performance GEMM-like Tensor–Tensor Multiplication , ACM Transactions on Mathematical Software , 44 , 3 , (1) , (2018) .
+    Crossref
+    Gloria Bazargan and Karl Sohlberg , Advances in modelling switchable mechanically interlocked molecular architectures , International Reviews in Physical Chemistry , 37 , 1 , (1) , (2018) .
+    Crossref
+    Gaurav Harsha, Toru Shiozaki and Gustavo E. Scuseria , On the difference between variational and unitary coupled cluster theories , The Journal of Chemical Physics , 148 , 4 , (044107) , (2018) .
+    Crossref
+    Stefan Grimme and Peter R. Schreiner , Computational Chemistry: The Fate of Current Methods and Future Challenges , Angewandte Chemie International Edition , 57 , 16 , (4170-4176) , (2017) .
+    Wiley Online Library
+    Josef Paldus , Externally and internally corrected coupled cluster approaches: an overview , Journal of Mathematical Chemistry , 55 , 2 , (477) , (2017) .
+    Crossref
+    Charles J. C. Scott and Alex J. W. Thom , Stochastic coupled cluster theory: Efficient sampling of the coupled cluster expansion , The Journal of Chemical Physics , 147 , 12 , (124105) , (2017) .
+    Crossref
+    Uğur Bozkaya and C. David Sherrill , Analytic energy gradients for the coupled-cluster singles and doubles with perturbative triples method with the density-fitting approximation , The Journal of Chemical Physics , 10.1063/1.4994918 , 147 , 4 , (044104) , (2017) .
+    Crossref
+    Riley A. Theis and Ryan C. Fortenberry , On the spectroscopic constants, first electronic state, vibrational frequencies, and isomerization of hydroxymethylene (HCOH + ) , Molecular Astrophysics , 8 , (27) , (2017) .
+    Crossref
+    Chenyang Li and Francesco A. Evangelista , Driven similarity renormalization group: Third-order multireference perturbation theory , The Journal of Chemical Physics , 146 , 12 , (124132) , (2017) .
+    Crossref
+    Ryan C. Fortenberry , Rovibrational Characterization and Interstellar Implications of the Proton-Bound, Noble Gas Complexes: ArHAr+, NeHNe+, and ArHNe+ , ACS Earth and Space Chemistry , 1 , 1 , (60) , (2017) .
+    Crossref
+    Suvonil Sinha Ray, Shovan Manna, Rajat K. Chaudhuri and Sudip Chattopadhyay , Description of C2 dissociation using a naive treatment of dynamical correlation in the presence of quasidegeneracy of varying degree , Molecular Physics , 115 , 21-22 , (2789) , (2017) .
+    Crossref
+    Andrey A. Fokin, Tatyana S. Zhuk, Sebastian Blomeyer, Cristóbal Pérez, Lesya V. Chernish, Alexander E. Pashenko, Jens Antony, Yury V. Vishnevskiy, Raphael J. F. Berger, Stefan Grimme, Christian Logemann, Melanie Schnell, Norbert W. Mitzel and Peter R. Schreiner , Intramolecular London Dispersion Interaction Effects on Gas-Phase and Solid-State Structures of Diamondoid Dimers , Journal of the American Chemical Society , 10.1021/jacs.7b07884 , 139 , 46 , (16696-16707) , (2017) .
+    Crossref
+    Ryan C. Fortenberry and Joseph S. Francisco , On the Detectability of the ${\tilde{{\boldsymbol{X}}}}^{2}{\boldsymbol{A}}^{\prime\prime} $ HSS, HSO, and HOS Radicals in the Interstellar Medium , The Astrophysical Journal , 835 , 2 , (243) , (2017) .
+    Crossref
+    Ryan C. Fortenberry , Quantum astrochemical spectroscopy , International Journal of Quantum Chemistry , 117 , 2 , (81-91) , (2016) .
+    Wiley Online Library
+    D V Chubukov, L V Skripnikov, O Yu Andreev, L N Labzowsky and G Plunien , Effects of parity nonconservation in a molecule of oxygen , Journal of Physics B: Atomic, Molecular and Optical Physics , 50 , 10 , (105101) , (2017) .
+    Crossref
+    Linsen Zhou, Ryan Johnson, Terefe Habteyes and Hua Guo , Adsorption of methylene blue and its N-demethylated derivatives on the (111) face of coinage metals: The importance of dispersion interactions , The Journal of Chemical Physics , 10.1063/1.4980167 , 146 , 16 , (164701) , (2017) .
+    Crossref
+    Andreas W. Götz , Overview of Electronic Structure Methods , Electronic Structure Calculations on Graphics Processing Units , (39-66) , (2016) .
+    Wiley Online Library
+    József Csontos, Balázs Nagy, László Gyevi-Nagy, Mihály Kállay and Gyula Tasi , Enthalpy Differences of the n -Pentane Conformers , Journal of Chemical Theory and Computation , 10.1021/acs.jctc.6b00280 , 12 , 6 , (2679-2688) , (2016) .
+    Crossref
+    Uğur Bozkaya , Orbital-Optimized MP3 and MP2.5 with Density-Fitting and Cholesky Decomposition Approximations , Journal of Chemical Theory and Computation , 10.1021/acs.jctc.5b01128 , 12 , 3 , (1179-1188) , (2016) .
+    Crossref
+    Uğur Bozkaya , A noniterative asymmetric triple excitation correction for the density-fitted coupled-cluster singles and doubles method: Preliminary applications , The Journal of Chemical Physics , 144 , 14 , (144108) , (2016) .
+    Crossref
+    Uğur Bozkaya and C. David Sherrill , Analytic energy gradients for the coupled-cluster singles and doubles method with the density-fitting approximation , The Journal of Chemical Physics , 10.1063/1.4948318 , 144 , 17 , (174103) , (2016) .
+    Crossref
+    Ryan C. Fortenberry , Analysis of a bicyclic, triple disulphide molecular nanopropeller , RSC Adv. , 10.1039/C6RA08520B , 6 , 49 , (43509-43517) , (2016) .
+    Crossref
+    Sergio Manzetti and Marcel Patek , The accurate wavefunction of the active space of the rhenium dimer resolved using the ab initio Brueckner coupled-cluster method , Structural Chemistry , 27 , 4 , (1071) , (2016) .
+    Crossref
+    John A. Gomez, Thomas M. Henderson and Gustavo E. Scuseria , Recoupling the singlet- and triplet-pairing channels in single-reference coupled cluster theory , The Journal of Chemical Physics , 145 , 13 , (134103) , (2016) .
+    Crossref
+    John A. Gomez, Thomas M. Henderson and Gustavo E. Scuseria , Singlet-paired coupled cluster theory for open shells , The Journal of Chemical Physics , 144 , 24 , (244117) , (2016) .
+    Crossref
+    Brian Finney, Ryan C. Fortenberry, Joseph S. Francisco and Kirk A. Peterson , A spectroscopic case for SPSi detection: The third-row in a single molecule , The Journal of Chemical Physics , 10.1063/1.4963337 , 145 , 12 , (124311) , (2016) .
+    Crossref
+    Kedan He and Wesley D. Allen , Conformers of Gaseous Serine , Journal of Chemical Theory and Computation , 10.1021/acs.jctc.6b00314 , 12 , 8 , (3571-3582) , (2016) .
+    Crossref
+    Avijit Shee, Lucas Visscher and Trond Saue , Analytic one-electron properties at the 4-component relativistic coupled cluster level with inclusion of spin-orbit coupling , The Journal of Chemical Physics , 10.1063/1.4966643 , 145 , 18 , (184107) , (2016) .
+    Crossref
+    Xiao Wang, Alexander Yu. Sokolov, Justin M. Turney and Henry F. Schaefer , Spin-Adapted Formulation and Implementation of Density Cumulant Functional Theory with Density-Fitting Approximation: Application to Transition Metal Compounds , Journal of Chemical Theory and Computation , 12 , 10 , (4833) , (2016) .
+    Crossref
+    Deacon J. Nemchick, Michael K. Cohen and Patrick H. Vaccaro , Dual hydrogen-bonding motifs in complexes formed between tropolone and formic acid , The Journal of Chemical Physics , 10.1063/1.4967253 , 145 , 20 , (204303) , (2016) .
+    Crossref
+    John M. Herbert , The Quantum Chemistry of Loosely‐Bound Electrons , Reviews in Computational Chemistry Volume 28 , (391-517) , (2015) .
+    Wiley Online Library
+    Russell Thackston and Ryan C. Fortenberry , The performance of low-cost commercial cloud computing as an alternative in computational chemistry , Journal of Computational Chemistry , 36 , 12 , (926) , (2015) .
+    Crossref
+    Josef Paldus, Tokuei Sako and Geerd H. F. Diercksen , On the cluster structure of linear-chain fermionic wave functions , Journal of Mathematical Chemistry , 53 , 2 , (629) , (2015) .
+    Crossref
+    Ryan C. Fortenberry and Joseph A. Lukemire , Electronic and rovibrational quantum chemical analysis of C3P−: the next interstellar anion? , Monthly Notices of the Royal Astronomical Society , 453 , 3 , (2825) , (2015) .
+    Crossref
+    Bo Peng, Patrick J. Lestrange, Joshua J. Goings, Marco Caricato and Xiaosong Li , Energy-Specific Equation-of-Motion Coupled-Cluster Methods for High-Energy Excited States: Application to K -edge X-ray Absorption Spectroscopy , Journal of Chemical Theory and Computation , 10.1021/acs.jctc.5b00459 , 11 , 9 , (4146-4153) , (2015) .
+    Crossref
+    Ľuboš Horný and Martin Quack , Computation of molecular parity violation using the coupled-cluster linear response approach , Molecular Physics , 10.1080/00268976.2015.1012131 , 113 , 13-14 , (1768-1779) , (2015) .
+    Crossref
+    Hua‐Jie Zhu , Optical Rotation (Rotatory Dispersion, ORD) , Organic Stereochemistry , (57-85) , (2015) .
+    Wiley Online Library
+    Lan Cheng , Benchmark calculations on the nuclear quadrupole-coupling parameters for open-shell molecules using non-relativistic and scalar-relativistic coupled-cluster methods , The Journal of Chemical Physics , 143 , 6 , (064301) , (2015) .
+    Crossref
+    Devin A. Matthews and John F. Stanton , Non-orthogonal spin-adaptation of coupled cluster methods: A new implementation of methods including quadruple excitations , The Journal of Chemical Physics , 142 , 6 , (064108) , (2015) .
+    Crossref
+    W. James Morgan and Ryan C. Fortenberry , Additional diffuse functions in basis sets for dipole-bound excited states of anions , Theoretical Chemistry Accounts , 134 , 4 , (2015) .
+    Crossref
+    Harley R. McAlexander and T. Daniel Crawford , Simulation of circularly polarized luminescence spectra using coupled cluster theory , The Journal of Chemical Physics , 10.1063/1.4917521 , 142 , 15 , (154101) , (2015) .
+    Crossref
+    Alexander Yu. Sokolov and Garnet Kin-Lic Chan , A transformed framework for dynamic correlation in multireference problems , The Journal of Chemical Physics , 142 , 12 , (124107) , (2015) .
+    Crossref
+    Thorsten Rohwedder and Reinhold Schneider , Coupled-Cluster Methods , Encyclopedia of Applied and Computational Mathematics , 10.1007/978-3-540-70529-1_246 , (315-319) , (2015) .
+    Crossref
+    Sophia S. Chabysheva and John R. Hiller , Zero modes in the light-front coupled-cluster method , Annals of Physics , 340 , 1 , (188) , (2014) .
+    Crossref
+    Priyanka Lahiri, Kenneth B. Wiberg, Patrick H. Vaccaro, Marco Caricato and T. Daniel Crawford , Large Solvation Effect in the Optical Rotatory Dispersion of Norbornenone , Angewandte Chemie , 126 , 5 , (1410-1413) , (2013) .
+    Wiley Online Library
+    Katharina Boguslawski, Paweł Tecmer, Patrick Bultinck, Stijn De Baerdemacker, Dimitri Van Neck and Paul W. Ayers , Nonvariational Orbital Optimization Techniques for the AP1roG Wave Function , Journal of Chemical Theory and Computation , 10 , 11 , (4873) , (2014) .
+    Crossref
+    2014 43nd International Conference on Parallel Processing (ICPP) MN, USA 2014 43rd International Conference on Parallel Processing IEEE , (2014) . 978-1-4799-5618-0 Samyam Rajbhandari, Akshay Nikam, Pai-Wei Lai, Kevin Stock, Sriram Krishnamoorthy and P. Sadayappan CAST: Contraction Algorithm for Symmetric Tensors , (2014) . 261 272 6957235 , 10.1109/ICPP.2014.35 http://ieeexplore.ieee.org/document/6957235/
+    Aleksandra M. Tucholska, Marcin Modrzejewski and Robert Moszynski , Transition properties from the Hermitian formulation of the coupled cluster polarization propagator , The Journal of Chemical Physics , 141 , 12 , (124109) , (2014) .
+    Crossref
+    Francesco A. Evangelista , Adaptive multiconfigurational wave functions , The Journal of Chemical Physics , 140 , 12 , (124114) , (2014) .
+    Crossref
+    Francesco A. Evangelista , A driven similarity renormalization group approach to quantum many-body problems , The Journal of Chemical Physics , 141 , 5 , (054109) , (2014) .
+    Crossref
+    Uğur Bozkaya and C. David Sherrill , Orbital-optimized MP2.5 and its analytic gradients: Approaching CCSD(T) quality for noncovalent interactions , The Journal of Chemical Physics , 10.1063/1.4902226 , 141 , 20 , (204105) , (2014) .
+    Crossref
+    Joshua J. Goings, Marco Caricato, Michael J. Frisch and Xiaosong Li , Assessment of low-scaling approximations to the equation of motion coupled-cluster singles and doubles equations , The Journal of Chemical Physics , 141 , 16 , (164116) , (2014) .
+    Crossref
+    Alexander Yu. Sokolov, Henry F. Schaefer and Werner Kutzelnigg , Density cumulant functional theory from a unitary transformation: N-representability, three-particle correlation effects, and application to O4+ , The Journal of Chemical Physics , 141 , 7 , (074111) , (2014) .
+    Crossref
+    Stella Stopkowicz and Jürgen Gauss , Revised values for the nuclear quadrupole moments ofS33andS35 , Physical Review A , 90 , 2 , (2014) .
+    Crossref
+    Nathan J. DeYonker, DeWayne T. Halfen, Wesley D. Allen and Lucy M. Ziurys , The electronic structure of vanadium monochloride cation (VCl+): Tackling the complexities of transition metal species , The Journal of Chemical Physics , 141 , 20 , (204302) , (2014) .
+    Crossref
+    G Hagen, T Papenbrock, M Hjorth-Jensen and D J Dean , Coupled-cluster computations of atomic nuclei , Reports on Progress in Physics , 77 , 9 , (096302) , (2014) .
+    Crossref
+    Tamar Stein, Thomas M. Henderson and Gustavo E. Scuseria , Seniority zero pair coupled cluster doubles theory , The Journal of Chemical Physics , 140 , 21 , (214113) , (2014) .
+    Crossref
+    Katharina Boguslawski and Markus Reiher , Chemical Bonding in Open‐Shell Transition‐Metal Complexes , The Chemical Bond , (219-252) , (2014) .
+    Wiley Online Library
+    Priyanka Lahiri, Kenneth B. Wiberg, Patrick H. Vaccaro, Marco Caricato and T. Daniel Crawford , Large Solvation Effect in the Optical Rotatory Dispersion of Norbornenone , Angewandte Chemie International Edition , 53 , 5 , (1386-1389) , (2013) .
+    Wiley Online Library
+    Uğur Bozkaya , Derivation of general analytic gradient expressions for density-fitted post-Hartree-Fock methods: An efficient implementation for the density-fitted second-order Møller–Plesset perturbation theory , The Journal of Chemical Physics , 10.1063/1.4896235 , 141 , 12 , (124108) , (2014) .
+    Crossref
+    SC14: International Conference for High Performance Computing, Networking, Storage and Analysis New Orleans, LA, USA SC14: International Conference for High Performance Computing, Networking, Storage and Analysis IEEE , (2014) . 978-1-4799-5500-8 978-1-4799-5499-5 Samyam Rajbhandari, Akshay Nikam, Pai-Wei Lai, Kevin Stock, Sriram Krishnamoorthy and P. Sadayappan A Communication-Optimal Framework for Contracting Distributed Tensors , (2014) . 375 386 7013018 , 10.1109/SC.2014.36 http://ieeexplore.ieee.org/document/7013018/
+    Emine Soydaş and Uğur Bozkaya , Assessment of the orbital‐optimized coupled‐electron pair theory for thermochemistry and kinetics: Improving on CCSD and CEPA(1) , Journal of Computational Chemistry , 35 , 14 , (1073-1081) , (2014) .
+    Wiley Online Library
+    J. R. Hiller , Light-Front Holography and the Light-Front Coupled-Cluster Method , Few-Body Systems , 55 , 5-7 , (471) , (2014) .
+    Crossref
+    Taylor J. Mach and T. Daniel Crawford , Computing optical rotation via an N-body approach , Theoretical Chemistry Accounts , 10.1007/s00214-014-1449-x , 133 , 3 , (2014) .
+    Crossref
+    Örs Legeza, Thorsten Rohwedder, Reinhold Schneider and Szilárd Szalay , Tensor Product Approximation (DMRG) and Coupled Cluster Method in Quantum Chemistry , Many-Electron Approaches in Physics, Chemistry and Mathematics , 10.1007/978-3-319-06379-9_3 , (53-76) , (2014) .
+    Crossref
+    Rajat K. Chaudhuri, Sudip Chattopadhyay and Uttam Sinha Mahapatra , Reappraisal of Nuclear Quadrupole Moments of Atomic Halogens via Relativistic Coupled Cluster Linear Response Theory for the Ionization Process , The Journal of Physical Chemistry A , 117 , 47 , (12616) , (2013) .
+    Crossref
+    Michael Schindler , Quantum Chemical Methods in the Design of Agrochemicals , Modern Methods in Crop Protection Research , (43-71) , (2013) .
+    Wiley Online Library
+    2013 IEEE International Symposium on Parallel & Distributed Processing (IPDPS) Cambridge, MA, USA 2013 IEEE 27th International Symposium on Parallel and Distributed Processing IEEE , (2013) . 978-1-4673-6066-1 978-0-7695-4971-2 Edgar Solomonik, Devin Matthews, Jeff Hammond and James Demmel Cyclops Tensor Framework: Reducing Communication and Eliminating Load Imbalance in Massively Parallel Contractions , (2013) . 813 824 6569864 , 10.1109/IPDPS.2013.112 http://ieeexplore.ieee.org/document/6569864/
+    Uğur Bozkaya , The extended Koopmans' theorem for orbital-optimized methods: Accurate computation of ionization potentials , The Journal of Chemical Physics , 10.1063/1.4825041 , 139 , 15 , (154105) , (2013) .
+    Crossref
+    Alexander K. H. Weiss and Thomas S. Hofer , Exploiting the capabilities of quantum chemical simulations to characterise the hydration of molecular compounds , RSC Adv. , 10.1039/C2RA21873A , 3 , 6 , (1606-1635) , (2013) .
+    Crossref
+    G. Baardsen, A. Ekström, G. Hagen and M. Hjorth-Jensen , Coupled-cluster studies of infinite nuclear matter , Physical Review C , 88 , 5 , (2013) .
+    Crossref
+    Uğur Bozkaya and C. David Sherrill , Orbital-optimized coupled-electron pair theory and its analytic gradients: Accurate equilibrium geometries, harmonic vibrational frequencies, and hydrogen transfer reactions , The Journal of Chemical Physics , 139 , 5 , (054104) , (2013) .
+    Crossref
+    Alexander Yu. Sokolov and Henry F. Schaefer , Orbital-optimized density cumulant functional theory , The Journal of Chemical Physics , 139 , 20 , (204110) , (2013) .
+    Crossref
+    Hao Feng, Weiguo Sun, Yaoming Xie and Henry F. Schaefer , Moving on from F+H2: The More Challenging Reaction between Atomic Fluorine and Methylamine , ChemPhysChem , 14 , 5 , (896-899) , (2013) .
+    Wiley Online Library
+    Paul A. Johnson, Paul W. Ayers, Peter A. Limacher, Stijn De Baerdemacker, Dimitri Van Neck and Patrick Bultinck , A size-consistent approach to strongly correlated systems using a generalized antisymmetrized product of nonorthogonal geminals , Computational and Theoretical Chemistry , 1003 , (101) , (2013) .
+    Crossref
+    Uğur Bozkaya and C. David Sherrill , Analytic energy gradients for the orbital-optimized second-order Møller–Plesset perturbation theory , The Journal of Chemical Physics , 138 , 18 , (184103) , (2013) .
+    Crossref
+    Shiblee R. Barua, Wesley D. Allen, Elfi Kraka, Paul Jerabek, Rebecca Sure and Gernot Frenking , Nearly Degenerate Isomers of C(BH)2: Cumulene, Carbene, or Carbone? , Chemistry – A European Journal , 19 , 47 , (15941-15954) , (2013) .
+    Wiley Online Library
+    Uğur Bozkaya , Analytic energy gradients for the orbital-optimized third-order Møller–Plesset perturbation theory , The Journal of Chemical Physics , 139 , 10 , (104116) , (2013) .
+    Crossref
+    2013 42nd International Conference on Parallel Processing (ICPP) Lyon, France 2013 42nd International Conference on Parallel Processing IEEE , (2013) . 978-0-7695-5117-3 David Ozog, Jeff R. Hammond, James Dinan, Pavan Balaji, Sameer Shende and Allen Malony Inspector-Executor Load Balancing Algorithms for Block-Sparse Tensor Contractions , (2013) . 30 39 6687336 , 10.1109/ICPP.2013.12 http://ieeexplore.ieee.org/document/6687336/
+    Elfi Kraka, Marek Freindorf and Dieter Cremer , Chiral Discrimination by Vibrational Spectroscopy Utilizing Local Modes , Chirality , 25 , 3 , (185-196) , (2013) .
+    Wiley Online Library
+    Alexander Yu. Sokolov, Andrew C. Simmonett and Henry F. Schaefer , Density cumulant functional theory: The DC-12 method, an improved description of the one-particle density matrix , The Journal of Chemical Physics , 138 , 2 , (024107) , (2013) .
+    Crossref
+    2013 42nd International Conference on Parallel Processing (ICPP) Lyon, France 2013 42nd International Conference on Parallel Processing IEEE , (2013) . 978-0-7695-5117-3 Thomas Muller, Josef Weidendorfer and Andreas Blaszczyk Expression Tree Evaluation by Dynamic Code Generation - Are Accelerators Up for the Task? , (2013) . 230 239 6687356 , 10.1109/ICPP.2013.32 http://ieeexplore.ieee.org/document/6687356/
+    Donald W. Rogers, Andreas A. Zavitsas and Nikita Matsunaga , Determination of enthalpies (‘Heats’) of formation , Wiley Interdisciplinary Reviews: Computational Molecular Science , 3 , 1 , (21-36) , (2012) .
+    Wiley Online Library
+    Andreas Köhn, Matthias Hanauer, Leonie Anna Mück, Thomas‐Christian Jagau and Jürgen Gauss , State‐specific multireference coupled‐cluster theory , Wiley Interdisciplinary Reviews: Computational Molecular Science , 3 , 2 , (176-197) , (2012) .
+    Wiley Online Library
+    Dieter Cremer , From configuration interaction to coupled cluster theory: The quadratic configuration interaction approach , Wiley Interdisciplinary Reviews: Computational Molecular Science , 3 , 5 , (482-503) , (2013) .
+    Wiley Online Library
+    Karol Kowalski, Kiran Bhaskaran-Nair, Jiří Brabec and Jiří Pittner , Coupled Cluster Theories for Strongly Correlated Molecular Systems , Strongly Correlated Systems , 10.1007/978-3-642-35106-8_9 , (237-271) , (2013) .
+    Crossref
+    T. Daniel Crawford , High‐Accuracy Quantum Chemistry and Chiroptical Properties , Comprehensive Chiroptical Spectroscopy , (675-697) , (2012) .
+    Wiley Online Library
+    Gustavo E. Massaccesi, Diego R. Alcoba and Ofelia B. Oña , Symmetry-adapted formulation of the G-particle-hole hypervirial equation method , Journal of Mathematical Chemistry , 10.1007/s10910-012-0023-9 , 50 , 8 , (2155-2167) , (2012) .
+    Crossref
+    David W. Small and Martin Head-Gordon , A fusion of the closed-shell coupled cluster singles and doubles method and valence-bond theory for bond breaking , The Journal of Chemical Physics , 137 , 11 , (114103) , (2012) .
+    Crossref
+    Uğur Bozkaya and İlker Özkan , Thermal denitrogenation of 7-isopropylidene-2,3-diaza-norbornene: formation of substituted 3-methylene-(1,4)-pentadienes , Physical Chemistry Chemical Physics , 14 , 41 , (14282) , (2012) .
+    Crossref
+    Nathan J. DeYonker and Wesley D. Allen , Taming the low-lying electronic states of FeH , The Journal of Chemical Physics , 137 , 23 , (234303) , (2012) .
+    Crossref
+    Uttam Sinha Mahapatra and Sudip Chattopadhyay , Diagnosis of the performance of the state‐specific multireference coupled‐cluster method with different truncation schemes , Journal of Computational Chemistry , 33 , 14 , (1285-1303) , (2012) .
+    Wiley Online Library
+    Jason Lambert, R. N. Compton and T. Daniel Crawford , The optical activity of carvone: A theoretical and experimental investigation , The Journal of Chemical Physics , 10.1063/1.3693270 , 136 , 11 , (114512) , (2012) .
+    Crossref
+    Jonathan Engel , Renormalizing the double-beta operator for the shell model , Journal of Physics G: Nuclear and Particle Physics , 39 , 12 , (124001) , (2012) .
+    Crossref
+    Bo Thomsen, Mikkel Bo Hansen, Peter Seidler and Ove Christiansen , Vibrational absorption spectra from vibrational coupled cluster damped linear response functions calculated using an asymmetric Lanczos algorithm , The Journal of Chemical Physics , 136 , 12 , (124101) , (2012) .
+    Crossref
+    John N Murrell , The origins and later developments of molecular orbital theory , International Journal of Quantum Chemistry , 112 , 17 , (2875-2879) , (2012) .
+    Wiley Online Library
+    Jeremy P. Coe, Daniel J. Taylor and Martin J. Paterson , Calculations of potential energy surfaces using Monte Carlo configuration interaction , The Journal of Chemical Physics , 137 , 19 , (194111) , (2012) .
+    Crossref
+    Dage Sundholm and Tommy Vänskä , Computational methods for studies of semiconductor quantum dots and rings , Annual Reports Section "C" (Physical Chemistry) , 108 , (96) , (2012) .
+    Crossref
+    D. A. Pigg, G. Hagen, H. Nam and T. Papenbrock , Time-dependent coupled-cluster method for atomic nuclei , Physical Review C , 86 , 1 , (2012) .
+    Crossref
+    Sebastian Holtz, Thorsten Rohwedder and Reinhold Schneider , On manifolds of tensors of fixed TT-rank , Numerische Mathematik , 120 , 4 , (701) , (2012) .
+    Crossref
+    Sophia S. Chabysheva and John R. Hiller , A light-front coupled-cluster method for the nonperturbative solution of quantum field theories , Physics Letters B , 711 , 5 , (417) , (2012) .
+    Crossref
+    2012 IEEE/IFIP 42nd International Conference on Dependable Systems and Networks Workshops (DSN-W) Boston, MA, USA IEEE/IFIP International Conference on Dependable Systems and Networks Workshops (DSN 2012) IEEE , (2012) . 978-1-4673-2266-9 978-1-4673-2264-5 978-1-4673-2265-2 Sean Hogan, Jeff R. Hammond and Andrew A. Chien An evaluation of difference and threshold techniques for efficient checkpoints , (2012) . 1 6 6264674 , 10.1109/DSNW.2012.6264674 http://ieeexplore.ieee.org/document/6264674/
+    Róbert Izsák, Andreas Hansen and Frank Neese , The resolution of identity and chain of spheres approximations for the LPNO-CCSD singles Fock term , Molecular Physics , 110 , 19-20 , (2413) , (2012) .
+    Crossref
+    Wenli Zou, Michael Filatov and Dieter Cremer , Analytic calculation of second-order electric response properties with the normalized elimination of the small component (NESC) method , The Journal of Chemical Physics , 10.1063/1.4747335 , 137 , 8 , (084108) , (2012) .
+    Crossref
+    Edward G. Hohenstein, Robert M. Parrish, C. David Sherrill and Todd J. Martínez , Communication: Tensor hypercontraction. III. Least-squares tensor hypercontraction for the determination of correlated wavefunctions , The Journal of Chemical Physics , 137 , 22 , (221101) , (2012) .
+    Crossref
+    J. R. Hiller and S. S. Chabysheva , A Light-Front Coupled Cluster Method , Few-Body Systems , 52 , 3-4 , (315) , (2012) .
+    Crossref
+    Justin M. Turney, Andrew C. Simmonett, Robert M. Parrish, Edward G. Hohenstein, Francesco A. Evangelista, Justin T. Fermann, Benjamin J. Mintz, Lori A. Burns, Jeremiah J. Wilke, Micah L. Abrams, Nicholas J. Russ, Matthew L. Leininger, Curtis L. Janssen, Edward T. Seidl, Wesley D. Allen, Henry F. Schaefer, Rollin A. King, Edward F. Valeev, C. David Sherrill and T. Daniel Crawford , Psi4: an open‐source ab initio electronic structure program , Wiley Interdisciplinary Reviews: Computational Molecular Science , 2 , 4 , (556-565) , (2011) .
+    Wiley Online Library
+    Steven E. Wheeler , Homodesmotic reactions for thermochemistry , Wiley Interdisciplinary Reviews: Computational Molecular Science , 2 , 2 , (204-220) , (2011) .
+    Wiley Online Library
+    Attila G. Császár , Anharmonic molecular force fields , Wiley Interdisciplinary Reviews: Computational Molecular Science , 2 , 2 , (273-289) , (2011) .
+    Wiley Online Library
+    Vladimir V. Ivanov, Dmitry I. Lyakh, Tatyana A. Klimenko and Ludwik Adamowicz , Multireference State–Specific Coupled Cluster Theory with a Complete Active Space Reference , Practical Aspects of Computational Chemistry I , 10.1007/978-94-007-0919-5_3 , (69-101) , (2011) .
+    Crossref
+    T. Daniel Crawford and Kenneth Ruud , Coupled‐Cluster Calculations of Vibrational Raman Optical Activity Spectra , ChemPhysChem , 12 , 17 , (3442-3448) , (2011) .
+    Wiley Online Library
+    Karol Kowalski, Jeff R. Hammond, Wibe A. de Jong, Peng‐Dong Fan, Marat Valiev, Dunyou Wang and Niranjan Govind , Coupled‐Cluster Calculations for Large Molecular and Extended Systems , Computational Methods for Large Systems , (167-200) , (2011) .
+    Wiley Online Library
+    Sudip Chattopadhyay, Rajat K. Chaudhuri and Karl F. Freed , Geometry Optimization of Radicaloid Systems Using Improved Virtual Orbital-Complete Active Space Configuration Interaction (IVO-CASCI) Analytical Gradient Method , The Journal of Physical Chemistry A , 10.1021/jp103536w , 115 , 16 , (3665-3678) , (2011) .
+    Crossref
+    Uttam Sinha Mahapatra and Sudip Chattopadhyay , Evaluation of the performance of single root multireference coupled cluster method for ground and excited states, and its application to geometry optimization , The Journal of Chemical Physics , 134 , 4 , (044113) , (2011) .
+    Crossref
+    Xiangzhu Li and Josef Paldus , Multi-reference state-universal coupled-cluster approaches to electronically excited states , The Journal of Chemical Physics , 134 , 21 , (214118) , (2011) .
+    Crossref
+    János Sarka, Attila G. Császár and Peter R. Schreiner , Do the mercaptocarbene (H–C–S–H) and selenocarbene (H–C–Se–H) congeners of hydroxycarbene (H–C–O–H) undergo 1,2-H-tunneling? , Collection of Czechoslovak Chemical Communications , 76 , 6 , (645) , (2011) .
+    Crossref
+    Wenjing Ma, Sriram Krishnamoorthy, Oreste Villa and Karol Kowalski , GPU-Based Implementations of the Noniterative Regularized-CCSD(T) Corrections: Applications to Strongly Correlated Systems , Journal of Chemical Theory and Computation , 10.1021/ct1007247 , 7 , 5 , (1316-1327) , (2011) .
+    Crossref
+    Xiangzhu Li and Josef Paldus , Multireference coupled-cluster study of the symmetry breaking in the C2B radical , The Journal of Chemical Physics , 134 , 7 , (074301) , (2011) .
+    Crossref
+    Lasse K. Sørensen, Jeppe Olsen and Timo Fleig , Two- and four-component relativistic generalized-active-space coupled cluster method: Implementation and application to BiH , The Journal of Chemical Physics , 134 , 21 , (214102) , (2011) .
+    Crossref
+    Yukio Yamaguchi and Henry F. Schaefer , Analytic Derivative Methods in Molecular Electronic Structure Theory: A New Dimension to Quantum Chemistry and its Applications to Spectroscopy , Handbook of High‐resolution Spectroscopy , (2011) .
+    Wiley Online Library
+    David W. Small and Martin Head-Gordon , Post-modern valence bond theory for strongly correlated electron spins , Physical Chemistry Chemical Physics , 13 , 43 , (19285) , (2011) .
+    Crossref
+    Ryan C. Fortenberry, Xinchuan Huang, Joseph S. Francisco, T. Daniel Crawford and Timothy J. Lee , Vibrational frequencies and spectroscopic constants from quartic force fields for cis -HOCO: The radical and the anion , The Journal of Chemical Physics , 10.1063/1.3663615 , 135 , 21 , (214303) , (2011) .
+    Crossref
+    E. Fabiano, Lucian A. Constantin and F. Della Sala , Exchange-correlation generalized gradient approximation for gold nanostructures , The Journal of Chemical Physics , 10.1063/1.3587054 , 134 , 19 , (194112) , (2011) .
+    Crossref
+    A. Eugene DePrince and Jeff R. Hammond , Coupled Cluster Theory on Graphics Processing Units I. The Coupled Cluster Doubles Method , Journal of Chemical Theory and Computation , 10.1021/ct100584w , 7 , 5 , (1287-1295) , (2011) .
+    Crossref
+    Katherine R. Compaan, Jeremiah J. Wilke and Henry F. Schaefer , Aluminum Foils: The Contrasting Characters of Hyperconjugation and Steric Repulsion in Aluminum Dimetallocenes , Journal of the American Chemical Society , 10.1021/ja2020845 , 133 , 34 , (13387-13396) , (2011) .
+    Crossref
+    Christian Huber and Tillmann Klamroth , Explicitly time-dependent coupled cluster singles doubles calculations of laser-driven many-electron dynamics , The Journal of Chemical Physics , 134 , 5 , (054113) , (2011) .
+    Crossref
+    Eric Prochnow and Alexander A. Auer , Quantitative prediction of gas-phase N15 and P31 nuclear magnetic shielding constants , The Journal of Chemical Physics , 132 , 6 , (064109) , (2010) .
+    Crossref
+    Piotr Piecuch , Active-space coupled-cluster methods , Molecular Physics , 108 , 21-23 , (2987) , (2010) .
+    Crossref
+    Rollin A. King, Ali Siddiqi, Wesley D. Allen and Henry F. Schaefer , Chemistry as a function of the fine-structure constant and the electron-proton mass ratio , Physical Review A , 10.1103/PhysRevA.81.042523 , 81 , 4 , (2010) .
+    Crossref
+    Jeffrey R. Gour, Piotr Piecuch and Marta Włoch , Comparison of the completely renormalized equation-of-motion coupled-cluster and Quantum Monte Carlo results for the low-lying electronic states of methylene , Molecular Physics , 108 , 19-20 , (2633) , (2010) .
+    Crossref
+    Tomasz Janowski, Alan R. Ford and Peter Pulay , Accurate correlated calculation of the intermolecular potential surface in the coronene dimer , Molecular Physics , 10.1080/00268970903397249 , 108 , 3-4 , (249-257) , (2010) .
+    Crossref
+    Uttam Sinha Mahapatra, Sudip Chattopadhyay and Rajat K Chaudhuri , Second-Order State-Specific Multireference Møller−Plesset Perturbation Theory (SS-MRMPPT) Applied to Geometry Optimization , The Journal of Physical Chemistry A , 10.1021/jp911581f , 114 , 10 , (3668-3682) , (2010) .
+    Crossref
+    Ø. Jensen, G. Hagen, T. Papenbrock, D. J. Dean and J. S. Vaagen , Computation of spectroscopic factors with the coupled-cluster method , Physical Review C , 82 , 1 , (2010) .
+    Crossref
+    Michael Hippler, Susanne Hesse and Martin A. Suhm , Quantum-chemical study and FTIR jet spectroscopy of CHCl3–NH3 association in the gas phase , Physical Chemistry Chemical Physics , 10.1039/c0cp00530d , 12 , 41 , (13555) , (2010) .
+    Crossref
+    Joshua P. Layfield and Diego Troya , Theoretical study of the dynamics of F+alkanethiol self-assembled monolayer hydrogen-abstraction reactions , The Journal of Chemical Physics , 132 , 13 , (134307) , (2010) .
+    Crossref
+    Xiangzhu Li and Josef Paldus , Multireference general-model-space state-universal and state-specific coupled-cluster approaches to excited states , The Journal of Chemical Physics , 133 , 18 , (184106) , (2010) .
+    Crossref
+    Cristina Puzzarini, John F. Stanton and Jürgen Gauss , Quantum-chemical calculation of spectroscopic parameters for rotational spectroscopy , International Reviews in Physical Chemistry , 10.1080/01442351003643401 , 29 , 2 , (273-367) , (2010) .
+    Crossref
+    Uttam Sinha Mahapatra and Sudip Chattopadhyay , Potential energy surface studies via a single root multireference coupled cluster theory , The Journal of Chemical Physics , 133 , 7 , (074102) , (2010) .
+    Crossref
+    Jozef Noga and Miroslav Urban , Towards the full coupled-cluster model with triples: a retrospective after 25 years , Molecular Physics , 108 , 21-23 , (2933) , (2010) .
+    Crossref
+    Andrew C. Simmonett, Jeremiah J. Wilke, Henry F. Schaefer and Werner Kutzelnigg , Density cumulant functional theory: First implementation and benchmark results for the DCFT-06 model , The Journal of Chemical Physics , 10.1063/1.3503657 , 133 , 17 , (174122) , (2010) .
+    Crossref
+    Lee M. J. Huntington and Marcel Nooijen , pCCSD: Parameterized coupled-cluster theory with single and double excitations , The Journal of Chemical Physics , 133 , 18 , (184109) , (2010) .
+    Crossref
+    Laimutis Bytautas and Klaus Ruedenberg , Accurate ab initio potential energy curve of O2. I. Nonrelativistic full configuration interaction valence correlation by the correlation energy extrapolation by intrinsic scaling method , The Journal of Chemical Physics , 132 , 7 , (074109) , (2010) .
+    Crossref
+    John A. Parkhill and Martin Head-Gordon , A sparse framework for the derivation and implementation of fermion algebra , Molecular Physics , 108 , 3-4 , (513) , (2010) .
+    Crossref
+    Ryan C. Fortenberry, Rollin A. King, John F. Stanton and T. Daniel Crawford , A benchmark study of the vertical electronic spectra of the linear chain radicals C2H and C4H , The Journal of Chemical Physics , 10.1063/1.3376073 , 132 , 14 , (144303) , (2010) .
+    Crossref
+    Shusuke Yamanaka, Satomichi Nishihara, Kazuto Nakata, Yasushige Yonezawa, Yasutaka Kitagawa, Takashi Kawakami, Mitsutaka Okumura, Toshikazu Takada, Haruki Nakamura and Kizashi Yamaguchi , Instability In Chemical Bonds: Uno Cascc, Resonating Ucc And Approximately Projected Ucc Methods To Quasi-Degenerate Electronic Systems , Recent Progress in Coupled Cluster Methods , 10.1007/978-90-481-2885-3_22 , (621-648) , (2010) .
+    Crossref
+    John A. Parkhill and Martin Head-Gordon , A tractable and accurate electronic structure method for static correlations: The perfect hextuples model , The Journal of Chemical Physics , 10.1063/1.3456001 , 133 , 2 , (024103) , (2010) .
+    Crossref
+    Gregory S. Tschumper , Reliable Electronic Structure Computations for Weak Noncovalent Interactions in Clusters , Reviews in Computational Chemistry , (39-90) , (2009) .
+    Wiley Online Library
+    Thomas Vojta , Computing Quantum Phase Transitions , Reviews in Computational Chemistry , (167-221) , (2009) .
+    Wiley Online Library
+    Frank Neese, Andreas Hansen and Dimitrios G. Liakos , Efficient and accurate approximations to the local coupled cluster singles doubles method using a truncated pair natural orbital basis , The Journal of Chemical Physics , 131 , 6 , (064103) , (2009) .
+    Crossref
+    Alexander A. Auer and Jürgen Gauss , Orbital instabilities and spin-symmetry breaking in coupled-cluster calculations of indirect nuclear spin–spin coupling constants , Chemical Physics , 356 , 1-3 , (7) , (2009) .
+    Crossref
+    Dipayan Datta and Debashis Mukherjee , An explicitly spin-free compact open-shell coupled cluster theory using a multireference combinatoric exponential ansatz: Formal development and pilot applications , The Journal of Chemical Physics , 131 , 4 , (044124) , (2009) .
+    Crossref
+    Robert Roth, Jeffrey R. Gour and Piotr Piecuch , Ab initiocoupled-cluster and configuration interaction calculations forO16using theVUCOMinteraction , Physical Review C , 79 , 5 , (2009) .
+    Crossref
+    Masato Kobayashi and Hiromi Nakai , Divide-and-conquer-based linear-scaling approach for traditional and renormalized coupled cluster methods with single, double, and noniterative triple excitations , The Journal of Chemical Physics , 131 , 11 , (114108) , (2009) .
+    Crossref
+    Partha P. Bera, Timothy J. Lee and Henry F. Schaefer , Are isomers of the vinyl cyanide ion missing links for interstellar pyrimidine formation? , The Journal of Chemical Physics , 10.1063/1.3206298 , 131 , 7 , (074303) , (2009) .
+    Crossref
+    Laimutis Bytautas and Klaus Ruedenberg , A priori identification of configurational deadwood , Chemical Physics , 10.1016/j.chemphys.2008.11.021 , 356 , 1-3 , (64-75) , (2009) .
+    Crossref
+    Laimutis Bytautas and Klaus Ruedenberg , Ab initio potential energy curve of F2. IV. Transition from the covalent to the van der Waals region: Competition between multipolar and correlation forces , The Journal of Chemical Physics , 130 , 20 , (204101) , (2009) .
+    Crossref
+    Uttam Sinha Mahapatra, Sudip Chattopadhyay and Rajat K. Chaudhuri , Application of state-specific multireference Møller–Plesset perturbation theory to nonsinglet states , The Journal of Chemical Physics , 130 , 1 , (014101) , (2009) .
+    Crossref
+    Wei Li, Piotr Piecuch, Jeffrey R. Gour and Shuhua Li , Local correlation calculations using standard and renormalized coupled-cluster approaches , The Journal of Chemical Physics , 10.1063/1.3218842 , 131 , 11 , (114109) , (2009) .
+    Crossref
+    Gábor Czakó, Balázs Nagy, Gyula Tasi, Árpád Somogyi, Ján Šimunek, Jozef Noga, Bastiaan J. Braams, Joel M. Bowman and Attila G. Császár; , Proton affinity and enthalpy of formation of formaldehyde , International Journal of Quantum Chemistry , 109 , 11 , (2393-2409) , (2009) .
+    Wiley Online Library
+    Peter Seidler, Eduard Matito and Ove Christiansen , Vibrational coupled cluster theory with full two-mode and approximate three-mode couplings: The VCC[2pt3] model , The Journal of Chemical Physics , 131 , 3 , (034115) , (2009) .
+    Crossref
+    Jiří Pittner and Piotr Piecuch† , Method of moments for the continuous transition between the Brillouin–Wigner-type and Rayleigh–Schrödinger-type multireference coupled cluster theories , Molecular Physics , 107 , 8-12 , (1209) , (2009) .
+    Crossref
+    Xiangzhu Li and Josef Paldus , Accounting for the exact degeneracy and quasidegeneracy in the automerization of cyclobutadiene via multireference coupled-cluster methods , The Journal of Chemical Physics , 131 , 11 , (114103) , (2009) .
+    Crossref
+    Karol Kowalski and Marat Valiev , Extensive regularization of the coupled cluster methods based on the generating functional formalism: Application to gas-phase benchmarks and to the SN2 reaction of CHCl3 and OH− in water , The Journal of Chemical Physics , 131 , 23 , (234107) , (2009) .
+    Crossref
+    Monika Koerber, Oliver Baum, Ursula Hahn, Jürgen Gauss, Thomas F. Giesen and Stephan Schlemmer , The rotational gas-phase spectrum of trans- and cis-HSSOH at 100GHz , Journal of Molecular Spectroscopy , 10.1016/j.jms.2009.06.007 , 257 , 1 , (34-39) , (2009) .
+    Crossref
+    Francesco A. Evangelista, Andrew C. Simmonett, Henry F. Schaefer III, Debashis Mukherjee and Wesley D. Allen , A companion perturbation theory for state-specific multireference coupled cluster methods , Physical Chemistry Chemical Physics , 10.1039/b822910d , 11 , 23 , (4728) , (2009) .
+    Crossref
+    David W. Small and Martin Head-Gordon , Tractable spin-pure methods for bond breaking: Local many-electron spin-vector sets and an approximate valence bond model , The Journal of Chemical Physics , 130 , 8 , (084103) , (2009) .
+    Crossref
+    Xiangzhu Li and Josef Paldus , Analysis and classification of symmetry breaking in linear ABA-type triatomics , The Journal of Chemical Physics , 130 , 16 , (164116) , (2009) .
+    Crossref
+    Lori A. Burns, Daniel Murdock and Patrick H. Vaccaro , An exploration of electronic structure and nuclear dynamics in tropolone: II. The Ã B12 (π∗π) excited state , The Journal of Chemical Physics , 10.1063/1.3089722 , 130 , 14 , (144304) , (2009) .
+    Crossref
+    T. Daniel Crawford and Hideo Sekino , On the Performance of a Size-Extensive Variant of Equation-of-Motion Coupled Cluster Theory for Optical Rotation in Chiral Molecules , Advances in the Theory of Atomic and Molecular Systems , 10.1007/978-90-481-2596-8_10 , (225-239) , (2009) .
+    Crossref
+    Karol Kowalski and Peng-Dong Fan , Generating functionals based formulation of the method of moments of coupled cluster equations , The Journal of Chemical Physics , 130 , 8 , (084112) , (2009) .
+    Crossref
+    John A. Parkhill, Keith Lawler and Martin Head-Gordon , The perfect quadruples model for electron correlation in a valence active space , The Journal of Chemical Physics , 130 , 8 , (084101) , (2009) .
+    Crossref
+    Reinhold Schneider , Analysis of the projected coupled cluster method in electronic structure calculation , Numerische Mathematik , 10.1007/s00211-009-0237-3 , 113 , 3 , (433-471) , (2009) .
+    Crossref
+    Michael Hanrath , On the concepts of connectivity, separability, and consistency: An illustration by partitioned diagrams and numerical probing , Chemical Physics , 356 , 1-3 , (31) , (2009) .
+    Crossref
+    Eric Prochnow, Francesco A. Evangelista, Henry F. Schaefer, Wesley D. Allen and Jürgen Gauss , Analytic gradients for the state-specific multireference coupled cluster singles and doubles model , The Journal of Chemical Physics , 10.1063/1.3204017 , 131 , 6 , (064109) , (2009) .
+    Crossref
+    T. Daniel Crawford and Wesley D. Allen , Optical activity in conformationally flexible molecules: a theoretical study of large-amplitude vibrational averaging in ( R )-3-chloro-1-butene , Molecular Physics , 10.1080/00268970902729277 , 107 , 8-12 , (1041-1057) , (2010) .
+    Crossref
+    Wei Li, Piotr Piecuch and Jeffrey R. Gour , Linear Scaling Local Correlation Extensions of the Standard and Renormalized Coupled-Cluster Methods , Advances in the Theory of Atomic and Molecular Systems , 10.1007/978-90-481-2596-8_8 , (131-195) , (2009) .
+    Crossref
+    So Hirata and Kiyoshi Yagi , Predictive electronic and vibrational many-body methods for molecules and macromolecules , Chemical Physics Letters , 464 , 4-6 , (123) , (2008) .
+    Crossref
+    Kerstin Klein and Jürgen Gauss , Perturbative calculation of spin-orbit splittings using the equation-of-motion ionization-potential coupled-cluster ansatz , The Journal of Chemical Physics , 129 , 19 , (194106) , (2008) .
+    Crossref
+    Chiranjib Sur, Rajat K Chaudhuri, Bijaya K Sahoo, B P Das and D Mukherjee , Relativistic unitary coupled cluster theory and applications , Journal of Physics B: Atomic, Molecular and Optical Physics , 41 , 6 , (065001) , (2008) .
+    Crossref
+    Piotr Piecuch, Marta Włoch and António J. C. Varandas , Application of renormalized coupled-cluster methods to potential function of water , Theoretical Chemistry Accounts , 10.1007/s00214-007-0297-3 , 120 , 1-3 , (59-78) , (2007) .
+    Crossref
+    Frank Wennmohs and Frank Neese , A comparative study of single reference correlation methods of the coupled-pair type , Chemical Physics , 343 , 2-3 , (217) , (2008) .
+    Crossref
+    Edward F. Valeev , Coupled-cluster methods with perturbative inclusion of explicitly correlated terms: a preliminary investigation , Phys. Chem. Chem. Phys. , 10.1039/B713938A , 10 , 1 , (106-113) , (2008) .
+    Crossref
+    Edward F. Valeev and T. Daniel Crawford , Simple coupled-cluster singles and doubles method with perturbative inclusion of triples and explicitly correlated geminals: The CCSD(T)R12¯ model , The Journal of Chemical Physics , 10.1063/1.2939577 , 128 , 24 , (244113) , (2008) .
+    Crossref
+    Cristina Puzzarini, Miriam Heckert and Jürgen Gauss , The accuracy of rotational constants predicted by high-level quantum-chemical calculations. I. molecules containing first-row atoms , The Journal of Chemical Physics , 10.1063/1.2912941 , 128 , 19 , (194108) , (2008) .
+    Crossref
+    Michael Hanrath , An exponential multi-reference wavefunction ansatz: connectivity analysis and application to N2 , Theoretical Chemistry Accounts , 121 , 3-4 , (187) , (2008) .
+    Crossref
+    Sergey Bravyi, David DiVincenzo and Daniel Loss , Polynomial-Time Algorithm for Simulation of Weakly Interacting Quantum Spin Systems , Communications in Mathematical Physics , 284 , 2 , (481) , (2008) .
+    Crossref
+    Anatoliy V. Luzanov , Matrix‐covariant representation of high‐order configuration interaction and coupled cluster theories , International Journal of Quantum Chemistry , 108 , 4 , (671-695) , (2007) .
+    Wiley Online Library
+    Joseph E Subotnik and Martin Head-Gordon , Exploring the accuracy of relative molecular energies with local correlation theory , Journal of Physics: Condensed Matter , 10.1088/0953-8984/20/29/294211 , 20 , 29 , (294211) , (2008) .
+    Crossref
+    Uttam Sinha Mahapatra, Sudip Chattopadhyay and Rajat K. Chaudhuri , Molecular applications of state-specific multireference perturbation theory to HF, H2O, H2S, C2, and N2 molecules , The Journal of Chemical Physics , 129 , 2 , (024108) , (2008) .
+    Crossref
+    Ondřej Demel and Jiří Pittner , Multireference Brillouin–Wigner coupled cluster method with singles, doubles, and triples: Efficient implementation and comparison with approximate approaches , The Journal of Chemical Physics , 128 , 10 , (104108) , (2008) .
+    Crossref
+    Gábor Czakó, Edit Mátyus, Andrew C. Simmonett, Attila G. Császár, Henry F. Schaefer and Wesley D. Allen , Anchoring the Absolute Proton Affinity Scale , Journal of Chemical Theory and Computation , 10.1021/ct800082r , 4 , 8 , (1220-1229) , (2008) .
+    Crossref
+    Mihály Kállay and Jürgen Gauss , Approximate treatment of higher excitations in coupled-cluster theory. II. Extension to general single-determinant reference functions and improved approaches for the canonical Hartree–Fock case , The Journal of Chemical Physics , 129 , 14 , (144101) , (2008) .
+    Crossref
+    Sudip Chattopadhyay, Rajat K. Chaudhuri and Uttam Sinha Mahapatra , Application of improved virtual orbital based multireference methods to N2, LiF, and C4H6 systems , The Journal of Chemical Physics , 129 , 24 , (244108) , (2008) .
+    Crossref
+    Qadir K. Timerghazin, Gilles H. Peslherbe and Ann M. English , Structure and stability of HSNO, the simplest S-nitrosothiol , Physical Chemistry Chemical Physics , 10.1039/b715025c , 10 , 11 , (1532) , (2008) .
+    Crossref
+    Piotr Piecuch, Jeffrey R. Gour and Marta Włoch , Biorthogonal method of moments of coupled‐cluster equations: Alternative derivation, further considerations, and application to a model magnetic system , International Journal of Quantum Chemistry , 108 , 12 , (2128-2149) , (2008) .
+    Wiley Online Library
+    Xiangzhu Li and Josef Paldus , Partially linearized, fully size-extensive, and reduced multireference coupled-cluster methods. I. Formalism and mutual relationship , The Journal of Chemical Physics , 128 , 14 , (144118) , (2008) .
+    Crossref
+    Kalju Kahn and Iiris Kahn , Improved efficiency of focal point conformational analysis with truncated correlation consistent basis sets , Journal of Computational Chemistry , 29 , 6 , (900-911) , (2007) .
+    Wiley Online Library
+    Francesco A. Evangelista, Andrew C. Simmonett, Wesley D. Allen, Henry F. Schaefer and Jürgen Gauss , Triple excitations in state-specific multireference coupled cluster theory: Application of Mk-MRCCSDT and Mk-MRCCSDT-n methods to model systems , The Journal of Chemical Physics , 10.1063/1.2834927 , 128 , 12 , (124104) , (2008) .
+    Crossref
+    Yutaka Imamura, Takeshi Baba and Hiromi Nakai , Natural bond orbital‐based energy density analysis for correlated methods: Second‐order Møller–Plesset perturbation and coupled‐cluster singles and doubles , International Journal of Quantum Chemistry , 108 , 8 , (1316-1325) , (2008) .
+    Wiley Online Library
+    Jingjing Zheng, Jeffrey R. Gour, Jesse J. Lutz, Marta Włoch, Piotr Piecuch and Donald G. Truhlar , A comparative assessment of the perturbative and renormalized coupled cluster theories with a noniterative treatment of triple excitations for thermochemical kinetics, including a study of basis set and core correlation effects , The Journal of Chemical Physics , 128 , 4 , (044108) , (2008) .
+    Crossref
+    Tobias Schwabe and Stefan Grimme , Theoretical Description of Substituent Effects in Electrophilic Aromatic Substitution Reactions , European Journal of Organic Chemistry , 2008 , 35 , (5928-5935) , (2008) .
+    Wiley Online Library
+    David W. Small and Martin Head‐Gordon , Central moments in quantum chemistry , International Journal of Quantum Chemistry , 108 , 7 , (1220-1231) , (2008) .
+    Wiley Online Library
+    Joseph E. Subotnik, Alex Sodt and Martin Head-Gordon , The limits of local correlation theory: Electronic delocalization and chemically smooth potential energy surfaces , The Journal of Chemical Physics , 128 , 3 , (034103) , (2008) .
+    Crossref
+    John D. Watts , An Introduction to Equation-of-Motion and Linear-Response Coupled-Cluster Methods for Electronically Excited States of Molecules , Radiation Induced Molecular Phenomena in Nucleic Acids , 10.1007/978-1-4020-8184-2_3 , (65-92) , (2008) .
+    Crossref
+    So Hirata, Peng-Dong Fan, Toru Shiozaki and Yasuteru Shigeta , Single-Reference Methods for Excited States in Molecules and Polymers , Radiation Induced Molecular Phenomena in Nucleic Acids , 10.1007/978-1-4020-8184-2_2 , (15-64) , (2008) .
+    Crossref
+    I. I. Guseinov , Combined Open Shell Hartree–Fock Theory of Atomic–Molecular and Nuclear Systems , Journal of Mathematical Chemistry , 10.1007/s10910-006-9090-0 , 42 , 2 , (177-189) , (2006) .
+    Crossref
+    T. Daniel Crawford, C. David Sherrill, Edward F. Valeev, Justin T. Fermann, Rollin A. King, Matthew L. Leininger, Shawn T. Brown, Curtis L. Janssen, Edward T. Seidl, Joseph P. Kenny and Wesley D. Allen , PSI3: An open‐source Ab Initio electronic structure package , Journal of Computational Chemistry , 28 , 9 , (1610-1616) , (2007) .
+    Wiley Online Library
+    Jiří Pittner and Jan Šmydke , Analytic gradient for the multireference Brillouin-Wigner coupled cluster method and for the state-universal multireference coupled cluster method , The Journal of Chemical Physics , 127 , 11 , (114103) , (2007) .
+    Crossref
+    T.R. Cundari , The Application of Modern Computational Chemistry Methods to Organometallic Systems , Comprehensive Organometallic Chemistry III , 10.1016/B0-08-045047-4/00025-X , (639-669) , (2007) .
+    Crossref
+    Qin Wu, Chiao-Lun Cheng and Troy Van Voorhis , Configuration interaction based on constrained density functional theory: A multireference method , The Journal of Chemical Physics , 127 , 16 , (164119) , (2007) .
+    Crossref
+    Rupsi Pal, M. S. Safronova, W. R. Johnson, Andrei Derevianko and Sergey G. Porsev , Relativistic coupled-cluster single-double method applied to alkali-metal atoms , Physical Review A , 75 , 4 , (2007) .
+    Crossref
+    Michael Hippler , Quantum chemical study and infrared spectroscopy of hydrogen-bonded CHCl3–NH3 in the gas phase , The Journal of Chemical Physics , 127 , 8 , (084306) , (2007) .
+    Crossref
+    2007 IEEE International Conference on Cluster Computing , (2007) . Sriram Krishnamoorthy, Juan Piernas Canovas, Vinod Tipparaju, Jarek Nieplocha and P. Sadayappan Non-collective parallel I/O for global address space programming models 4110.1109/CLUSTR.2007.4629215
+    Chiranjib Sur and Rajat K. Chaudhuri , Effects of partial triple excitations in atomic coupled cluster calculations , Chemical Physics Letters , 442 , 1-3 , (150) , (2007) .
+    Crossref
+    G. N. Merrill , A computational study into the reactivity of epichlorohydrin and epibromohydrin under basic conditions in the gas phase and solution , Journal of Physical Organic Chemistry , 20 , 1 , (19-29) , (2007) .
+    Wiley Online Library
+    Ankan Paul, Yukio Yamaguchi and Henry F. Schaefer , Coupled cluster investigation on the low-lying electronic states of CuCN and CuNC and the ground state barrier to isomerization , The Journal of Chemical Physics , 127 , 15 , (154324) , (2007) .
+    Crossref
+    Yuri Alexeev, Michael W. Schmidt, Theresa L. Windus and Mark S. Gordon , A parallel distributed data CPHF algorithm for analytic Hessians , Journal of Computational Chemistry , 28 , 10 , (1685) , (2007) .
+    Crossref
+    W. A. Al-Saidi, Shiwei Zhang and Henry Krakauer , Bond breaking with auxiliary-field quantum Monte Carlo , The Journal of Chemical Physics , 127 , 14 , (144101) , (2007) .
+    Crossref
+    G. Hagen, T. Papenbrock, D. J. Dean, A. Schwenk, A. Nogga, M. Włoch and P. Piecuch , Coupled-cluster theory for three-body Hamiltonians , Physical Review C , 76 , 3 , (2007) .
+    Crossref
+    Jonathan L. Bentz, Ryan M. Olson, Mark S. Gordon, Michael W. Schmidt and Ricky A. Kendall , Coupled cluster algorithms for networks of shared memory parallel processors , Computer Physics Communications , 176 , 9-10 , (589) , (2007) .
+    Crossref
+    Karol Kowalski, Jeff R. Hammond and Wibe A. de Jong , Linear response coupled cluster singles and doubles approach with modified spectral resolution of the similarity transformed Hamiltonian , The Journal of Chemical Physics , 127 , 16 , (164105) , (2007) .
+    Crossref
+    Laimutis Bytautas, Takeshi Nagata, Mark S. Gordon and Klaus Ruedenberg , Accurate ab initio potential energy curve of F2. I. Nonrelativistic full valence configuration interaction energies using the correlation energy extrapolation by intrinsic scaling method , The Journal of Chemical Physics , 127 , 16 , (164317) , (2007) .
+    Crossref
+    A. V. Luzanov and O.V. Prezhdo , High-order entropy measures and spin-free quantum entanglement for molecular problems , Molecular Physics , 105 , 19-22 , (2879) , (2007) .
+    Crossref
+    Latévi M. Lawson Daku, Jorge Linares and Marie‐Laure Boillot , Ab Initio Static and Molecular Dynamics Study of 4‐Styrylpyridine , ChemPhysChem , 8 , 9 , (1402-1416) , (2007) .
+    Wiley Online Library
+    T. Daniel Crawford, Mary C. Tam and Micah L. Abrams , The problematic case of ( S )-methylthiirane: electronic circular dichroism spectra and optical rotatory dispersion , Molecular Physics , 10.1080/00268970701598097 , 105 , 19-22 , (2607-2617) , (2010) .
+    Crossref
+    Xiaoyang Gao, Sriram Krishnamoorthy, Swarup Kumar Sahoo, Chi‐Chung Lam, Gerald Baumgartner, J. Ramanujam and P. Sadayappan , Efficient search‐space pruning for integrated fusion and tiling transformations , Concurrency and Computation: Practice and Experience , 19 , 18 , (2425-2443) , (2007) .
+    Wiley Online Library
+    Xiangzhu Li and Josef Paldus , Binding in transition metal complexes: Reduced multireference coupled-cluster study of the MCH2+ (M=Sc to Cu) compounds , The Journal of Chemical Physics , 126 , 23 , (234303) , (2007) .
+    Crossref
+    G. Hagen, D. J. Dean, M. Hjorth-Jensen, T. Papenbrock and A. Schwenk , Benchmark calculations forH3,He4,O16, andCa40withab initiocoupled-cluster theory , Physical Review C , 76 , 4 , (2007) .
+    Crossref
+    Xiangzhu Li and Josef Paldus , A truncated version of reduced multireference coupled-cluster method with singles and doubles and noniterative triples: Application to F2 and Ni(CO)n (n=1, 2, and 4) , The Journal of Chemical Physics , 125 , 16 , (164107) , (2006) .
+    Crossref
+    Bastiaan Van De Graaf, Swie Lan Njo and Konstantin S. Smirnov , Introduction to Zeolite Modeling , Reviews in Computational Chemistry , (137-223) , (2007) .
+    Wiley Online Library
+    T. Vänskä, M. Lindberg, J. Olsen and D. Sundholm , Computational methods for studies of multiexciton complexes , physica status solidi (b) , 243 , 15 , (4035-4045) , (2006) .
+    Wiley Online Library
+    T. Daniel Crawford, Micah L. Abrams, Rollin A. King, Joseph R. Lane, Daniel P. Schofield and Henrik G. Kjaergaard , The lowest A′2 excited state of the water-hydroxyl complex , The Journal of Chemical Physics , 10.1063/1.2388260 , 125 , 20 , (204302) , (2006) .
+    Crossref
+    ACM/IEEE SC 2006 Conference (SC'06) , (2006) . Sriram Krishnamoorthy, Umit Catalyurek, Jarek Nieplocha, Atanas Rountev and P. Sadayappan Hypergraph Partitioning for Automatic Memory Hierarchy Management 3410.1109/SC.2006.36
+    Yihan Shao, Laszlo Fusti Molnar, Yousung Jung, Jörg Kussmann, Christian Ochsenfeld, Shawn T. Brown, Andrew T.B. Gilbert, Lyudmila V. Slipchenko, Sergey V. Levchenko, Darragh P. O’Neill, Robert A. DiStasio Jr, Rohini C. Lochan, Tao Wang, Gregory J.O. Beran, Nicholas A. Besley, John M. Herbert, Ching Yeh Lin, Troy Van Voorhis, Siu Hung Chien, Alex Sodt, Ryan P. Steele, Vitaly A. Rassolov, Paul E. Maslen, Prakashan P. Korambath, Ross D. Adamson, Brian Austin, Jon Baker, Edward F. C. Byrd, Holger Dachsel, Robert J. Doerksen, Andreas Dreuw, Barry D. Dunietz, Anthony D. Dutoi, Thomas R. Furlani, Steven R. Gwaltney, Andreas Heyden, So Hirata, Chao-Ping Hsu, Gary Kedziora, Rustam Z. Khalliulin, Phil Klunzinger, Aaron M. Lee, Michael S. Lee, WanZhen Liang, Itay Lotan, Nikhil Nair, Baron Peters, Emil I. Proynov, Piotr A. Pieniazek, Young Min Rhee, Jim Ritchie, Edina Rosta, C. David Sherrill, Andrew C. Simmonett, Joseph E. Subotnik, H. Lee Woodcock III, Weimin Zhang, Alexis T. Bell, Arup K. Chakraborty, Daniel M. Chipman, Frerich J. Keil, Arieh Warshel, Warren J. Hehre, Henry F. Schaefer III, Jing Kong, Anna I. Krylov, Peter M. W. Gill and Martin Head-Gordon , Advances in methods and algorithms in a modern quantum chemistry program package , Phys. Chem. Chem. Phys. , 10.1039/B517914A , 8 , 27 , (3172-3191) , (2006) .
+    Crossref
+    A. V. Luzanov and O. V. Prezhdo , Hole-particle characterization of coupled-cluster singles and doubles and related models , The Journal of Chemical Physics , 125 , 15 , (154106) , (2006) .
+    Crossref
+    Ankan Paul, Yukio Yamaguchi, Henry F. Schaefer and Kirk A. Peterson , The low-lying electronic states of nickel cyanide and isocyanide: A theoretical investigation , The Journal of Chemical Physics , 10.1063/1.2137324 , 124 , 3 , (034310) , (2006) .
+    Crossref
+    Xiangzhu Li and Josef Paldus , General-model-space state-universal coupled-cluster methods for excited states: Diagonal noniterative triple corrections , The Journal of Chemical Physics , 124 , 3 , (034112) , (2006) .
+    Crossref
+    Ian M. Konen, Eunice X. J. Li, Marsha I. Lester, Juana Vázquez and John F. Stanton , Infrared overtone spectroscopy and vibrational analysis of a Fermi resonance in nitric acid: Experiment and theory , The Journal of Chemical Physics , 10.1063/1.2234772 , 125 , 7 , (074310) , (2006) .
+    Crossref
+    Joseph E. Subotnik, Alex Sodt and Martin Head-Gordon , A near linear-scaling smooth local coupled cluster algorithm for electronic structure , The Journal of Chemical Physics , 125 , 7 , (074116) , (2006) .
+    Crossref
+    J. R. Gour, P. Piecuch, M. Hjorth-Jensen, M. Włoch and D. J. Dean , Coupled-cluster calculations for valence systems aroundO16 , Physical Review C , 74 , 2 , (2006) .
+    Crossref
+    Ove Christiansen , Coupled Cluster Theory with Emphasis on Selected New Developments , Theoretical Chemistry Accounts , 116 , 1-3 , (106) , (2006) .
+    Crossref
+    Ondřej Demel and Jiří Pittner , Multireference Brillouin-Wigner coupled clusters method with noniterative perturbative connected triples , The Journal of Chemical Physics , 124 , 14 , (144112) , (2006) .
+    Crossref
+    Michael A. Robb, Marco Garavelli, Massimo Olivucci and Fernando Bernardi , A Computational Strategy for Organic Photochemistry , Reviews in Computational Chemistry , (87-146) , (2007) .
+    Wiley Online Library
+    Larry A. Curtiss, Paul C. Redfern and David J. Frurip , Theoretical Methods for Computing Enthalpies of Formation of Gaseous Compounds , Reviews in Computational Chemistry , (147-211) , (2007) .
+    Wiley Online Library
+    Peng-Dong Fan and Piotr Piecuch , The Usefulness of Exponential Wave Function Expansions Employing One- and Two-Body Cluster Operators in Electronic Structure Theory: The Extended and Generalized Coupled-Cluster Methods , , 10.1016/S0065-3276(06)51001-9 , (1-57) , (2006) .
+    Crossref
+    Francesco A. Evangelista, Wesley D. Allen and Henry F. Schaefer , High-order excitations in state-universal and state-specific multireference coupled cluster theories: Model systems , The Journal of Chemical Physics , 125 , 15 , (154113) , (2006) .
+    Crossref
+    Uroš Tasić, Yuri Alexeev, Grigoriy Vayner, T. Daniel Crawford, Theresa L. Windus and William L. Hase , Ab initio and analytic intermolecular potentials for Ar–CH3OH , Phys. Chem. Chem. Phys. , 8 , 40 , (4678) , (2006) .
+    Crossref
+    Mattijs de Groot and Wybren Jan Buma , A time-dependent density functional study of vibrationally resolved excitation, emission, and ionization spectra of the S1 state of phenol , Chemical Physics Letters , 420 , 4-6 , (459) , (2006) .
+    Crossref
+    W. A. Al-Saidi, Shiwei Zhang and Henry Krakauer , Auxiliary-field quantum Monte Carlo calculations of molecular systems with a Gaussian basis , The Journal of Chemical Physics , 124 , 22 , (224101) , (2006) .
+    Crossref
+    Maricris D. Lodriguito, Karol Kowalski, Marta Włoch and Piotr Piecuch , Non-iterative coupled-cluster methods employing multi-reference perturbation theory wave functions , Journal of Molecular Structure: THEOCHEM , 771 , 1-3 , (89) , (2006) .
+    Crossref
+    Z. Rolik, Á. Szabados, D. Kőhalmi and P.R. Surján , Coupled-cluster theory and the method of moments , Journal of Molecular Structure: THEOCHEM , 768 , 1-3 , (17) , (2006) .
+    Crossref
+    William A. Lester and Romelia Salomon-Ferrer , Some recent developments in quantum Monte Carlo for electronic structure: Methods and application to a bio system , Journal of Molecular Structure: THEOCHEM , 10.1016/j.theochem.2006.04.001 , 771 , 1-3 , (51-54) , (2006) .
+    Crossref
+    A. V. Luzanov and O. V. Prezhdo , Analysis of multiconfigurational wave functions in terms of hole-particle distributions , The Journal of Chemical Physics , 124 , 22 , (224109) , (2006) .
+    Crossref
+    So Hirata , Symbolic Algebra in Quantum Chemistry , Theoretical Chemistry Accounts , 116 , 1-3 , (2) , (2006) .
+    Crossref
+    SUYUN WANG, YUKIO YAMAGUCHI and HENRY F. SCHAEFER , THE EXOTHERMIC PNC → PCN REACTION , Journal of Theoretical and Computational Chemistry , 05 , 02 , (281) , (2006) .
+    Crossref
+    Piotr Piecuch, So Hirata, Karol Kowalski, Peng‐Dong Fan and Theresa L. Windus , Automated derivation and parallel computer implementation of renormalized and active‐space coupled‐cluster methods , International Journal of Quantum Chemistry , 106 , 1 , (79-97) , (2005) .
+    Wiley Online Library
+    Xiaoyang Gao, Sriram Krishnamoorthy, Swarup Kumar Sahoo, Chi-Chung Lam, Gerald Baumgartner, J. Ramanujam and P. Sadayappan , Efficient Search-Space Pruning for Integrated Fusion and Tiling Transformations , Languages and Compilers for Parallel Computing , 10.1007/978-3-540-69330-7_15 , (215-229) , (2006) .
+    Crossref
+    Laimutis Bytautas and Klaus Ruedenberg , Correlation energy extrapolation by intrinsic scaling. V. Electronic energy, atomization energy, and enthalpy of formation of water , The Journal of Chemical Physics , 124 , 17 , (174304) , (2006) .
+    Crossref
+    T. PAPENBROCK, D. J. DEAN, J. R. GOUR, G. HAGEN, M. HJORTH-JENSEN, P. PIECUCH and M. WŁOCH , COUPLED-CLUSTER THEORY FOR NUCLEI , International Journal of Modern Physics B , 20 , 30n31 , (5338) , (2006) .
+    Crossref
+    A. I. Panin , Electronic Fock space as associative superalgebra , International Journal of Quantum Chemistry , 106 , 8 , (1786) , (2006) .
+    Crossref
+    Lori A. Burns, Daniel Murdock and Patrick H. Vaccaro , An exploration of electronic structure and nuclear dynamics in tropolone. I. The X̃A11 ground state , The Journal of Chemical Physics , 124 , 20 , (204307) , (2006) .
+    Crossref
+    Proceedings 20th IEEE International Parallel & Distributed Processing Symposium , (2006) . S. Krishnamoorthy, U. Catalyurek, J. Nieplocha and P. Sadayappan An approach to locality-conscious load balancing and transparent memory hierarchy management with a global-address-space parallel programming model 8 pp.10.1109/IPDPS.2006.1639719
+    Alexander A. Auer and Marcel Nooijen , Dynamically screened local correlation method using enveloping localized orbitals , The Journal of Chemical Physics , 125 , 2 , (024104) , (2006) .
+    Crossref
+    Xiangzhu Li and Josef Paldus , Reduced multireference coupled cluster method with singles and doubles: Perturbative corrections for triples , The Journal of Chemical Physics , 124 , 17 , (174101) , (2006) .
+    Crossref
+    Marta Włoch, Jeffrey R. Gour, Karol Kowalski and Piotr Piecuch , Extension of renormalized coupled-cluster methods including triple excitations to excited electronic states of open-shell molecules , The Journal of Chemical Physics , 122 , 21 , (214107) , (2005) .
+    Crossref
+    ACM/IEEE SC 2005 Conference (SC'05) , (2005) . S.K. Sahoo, S. Krishnamoorthy, R. Panuganti and P. Sadayappan Integrated Loop Optimizations for Data Locality Enhancement of Tensor Contraction Expressions 1310.1109/SC.2005.35
+    Karol Kowalski , Implementation of the locally renormalized CCSD(T) approaches for arbitrary reference function , The Journal of Chemical Physics , 123 , 1 , (014102) , (2005) .
+    Crossref
+    Peng-Dong Fan, Karol Kowalski and Piotr Piecuch * , Non-iterative corrections to extended coupled-cluster energies employing the generalized method of moments of coupled-cluster equations , Molecular Physics , 103 , 15-16 , (2191) , (2005) .
+    Crossref
+    Mark Wladyslawski and Marcel Nooijen , Analytical Energy Gradients for Excited-State Coupled-Cluster Methods: Automated Algebraic Derivation of First Derivatives for Equation-of-Motion Coupled-Cluster and Similarity Transformed Equation-of-Motion Coupled-Cluster Theories , Advances in Quantum Chemistry Volume 49 , 10.1016/S0065-3276(05)49001-2 , (1-101) , (2005) .
+    Crossref
+    Frank Jensen , Chapter 1 An Introduction to the State of the Art in Quantum Chemistry , , 10.1016/S1574-1400(05)01001-7 , (3-17) , (2005) .
+    Crossref
+    Nathan J. DeYonker, Se Li, Yukio Yamaguchi, Henry F. Schaefer, T. Daniel Crawford, Rollin A. King and Kirk A. Peterson , Application of equation-of-motion coupled-cluster methods to low-lying singlet and triplet electronic states of HBO and BOH , The Journal of Chemical Physics , 122 , 23 , (234316) , (2005) .
+    Crossref
+    Robert J. Gdanitz, Gary D. Black, Carina S. Lansing, Bruce J. Palmer and Karen L. Schuchardt , Registering the Amica electronic structure code in the Extensible Computational Chemistry Environment , Journal of Computational Chemistry , 26 , 3 , (214) , (2005) .
+    Crossref
+    Piotr Piecuch and Marta Włoch , Renormalized coupled-cluster methods exploiting left eigenstates of the similarity-transformed Hamiltonian , The Journal of Chemical Physics , 123 , 22 , (224105) , (2005) .
+    Crossref
+    F. Légaré, Kevin F. Lee, I. V. Litvinyuk, P. W. Dooley, S. S. Wesolowski, P. R. Bunker, P. Dombi, F. Krausz, A. D. Bandrauk, D. M. Villeneuve and P. B. Corkum , Laser Coulomb-explosion imaging of small molecules , Physical Review A , 71 , 1 , (2005) .
+    Crossref
+    Michael Hippler , Quantum-chemical study of CHCl3–SO2 association , The Journal of Chemical Physics , 123 , 20 , (204311) , (2005) .
+    Crossref
+    Christopher E. Smith, T. Daniel Crawford and Dieter Cremer , The structures of m-benzyne and tetrafluoro-m-benzyne , The Journal of Chemical Physics , 10.1063/1.1888570 , 122 , 17 , (174309) , (2005) .
+    Crossref
+    Marta Włoch, Jeffrey R Gour, Piotr Piecuch, David J Dean, Morten Hjorth-Jensen and Thomas Papenbrock , Coupled-cluster calculations for ground and excited states of closed- and open-shell nuclei using methods of quantum chemistry , Journal of Physics G: Nuclear and Particle Physics , 31 , 8 , (S1291) , (2005) .
+    Crossref
+    D.J. Dean, J.R. Gour, G. Hagen, M. Hjorth-Jensen, K. Kowalski, T. Papenbrock, P. Piecuch and M. Włoch , Nuclear Structure Calculations with Coupled Cluster Methods from Quantum Chemistry , Nuclear Physics A , 752 , (299) , (2005) .
+    Crossref
+    M. Włoch, D. J. Dean, J. R. Gour, M. Hjorth-Jensen, K. Kowalski, T. Papenbrock and P. Piecuch , Ab-InitioCoupled-Cluster Study ofO16 , Physical Review Letters , 94 , 21 , (2005) .
+    Crossref
+    Daniel Cociorva, Gerald Baumgartner, Chi-Chung Lam, P. Sadayappan and J. Ramanujam , Memory-Constrained Communication Minimization for a Class of Array Computations , Languages and Compilers for Parallel Computing , 10.1007/11596110_1 , (1-15) , (2005) .
+    Crossref
+    D.J. Dean , Initial results from coupled-cluster theory , Nuclear Physics A , 746 , (130) , (2004) .
+    Crossref
+    D. J. Dean and M. Hjorth-Jensen , Coupled-cluster approach to nuclear physics , Physical Review C , 69 , 5 , (2004) .
+    Crossref
+    Gregory J. O. Beran and Martin Head-Gordon , Extracting dominant pair correlations from many-body wave functions , The Journal of Chemical Physics , 10.1063/1.1756860 , 121 , 1 , (78) , (2004) .
+    Crossref
+    Michael Filatov and Dieter Cremer , Revision of the Dissociation Energies of Mercury Chalcogenides—Unusual Types of Mercury Bonding , ChemPhysChem , 5 , 10 , (1547-1557) , (2004) .
+    Wiley Online Library
+    Karol Kowalski and Piotr Piecuch * , New classes of non-iterative energy corrections to multi-reference coupled-cluster energies , Molecular Physics , 102 , 23-24 , (2425) , (2004) .
+    Crossref
+    K. Kowalski, D. J. Dean, M. Hjorth-Jensen, T. Papenbrock and P. Piecuch , Coupled Cluster Calculations of Ground and Excited States of Nuclei , Physical Review Letters , 92 , 13 , (2004) .
+    Crossref
+    K.W. Schmid , On the use of general symmetry-projected Hartree–Fock–Bogoliubov configurations in variational approaches to the nuclear many-body problem , Progress in Particle and Nuclear Physics , 52 , 2 , (565) , (2004) .
+    Crossref
+    So Hirata, Peng-Dong Fan, Alexander A. Auer, Marcel Nooijen and Piotr Piecuch , Combined coupled-cluster and many-body perturbation theories , The Journal of Chemical Physics , 10.1063/1.1814932 , 121 , 24 , (12197) , (2004) .
+    Crossref
+    Nathan J. DeYonker, Yukio Yamaguchi, Wesley D. Allen, Chaeho Pak, Henry F. Schaefer and Kirk A. Peterson , Low-lying electronic states of FeNC and FeCN: A theoretical journey into isomerization and quartet/sextet competition , The Journal of Chemical Physics , 10.1063/1.1636719 , 120 , 10 , (4726-4741) , (2004) .
+    Crossref
+    Karol Kowalski and Piotr Piecuch , New coupled-cluster methods with singles, doubles, and noniterative triples for high accuracy calculations of excited electronic states , The Journal of Chemical Physics , 120 , 4 , (1715) , (2004) .
+    Crossref
+    Garnet Kin-Lic Chan, Mihály Kállay and Jürgen Gauss , State-of-the-art density matrix renormalization group and coupled cluster theory studies of the nitrogen binding curve , The Journal of Chemical Physics , 121 , 13 , (6110) , (2004) .
+    Crossref
+    Ian S. O. Pimienta, Karol Kowalski and Piotr Piecuch , Method of moments of coupled-cluster equations: The quasivariational and quadratic approximations , The Journal of Chemical Physics , 119 , 6 , (2951) , (2003) .
+    Crossref
+    DANIJELA BARIĆ, ZVONIMIR B. MAKSIĆ and MANUEL YÁÑEZ , Atomic additivity of the correlation energy in molecules—anab initioMP4 and G3 study , Molecular Physics , 101 , 9 , (1377) , (2003) .
+    Crossref
+    Wim Klopper and Jozef Noga , Accurate Quantum‐Chemical Prediction of Enthalpies of Formation of Small Molecules in the Gas Phase , ChemPhysChem , 4 , 1 , (32-48) , (2002) .
+    Wiley Online Library
+    Proceedings International Parallel and Distributed Processing Symposium , (2003) . D. Cociorva, Xiaoyang Gao, S. Krishnan, G. Baumgartner, Chi-Chung Lam, P. Sadayappan and J. Ramanujam Global communication optimization for tensor contraction expressions under memory constraints 810.1109/IPDPS.2003.1213121
+    Marcel Nooijen, Mark Wladyslawski and Anirban Hazra , Cumulant approach to the direct calculation of reduced density matrices: A critical analysis , The Journal of Chemical Physics , 118 , 11 , (4832) , (2003) .
+    Crossref
+    Emily A. Carter and Derek Walter , Reduced Scaling Electron Correlation Methods , Encyclopedia of Computational Chemistry , (2004) .
+    Wiley Online Library
+    VICTOR POLO, ELFI KRAKA and DIETER CREMER , Electron correlation and the self-interaction error of density functional theory , Molecular Physics , 100 , 11 , (1771) , (2002) .
+    Crossref
+    Nicholas D. K. Petraco, Wesley D. Allen and Henry F. Schaefer , Fragmentation path for hydrogen atom dissociation from methoxy radical , The Journal of Chemical Physics , 10.1063/1.1477180 , 116 , 23 , (10229-10237) , (2002) .
+    Crossref
+    Jürgen Breidung and Walter Thiel , Ab Initio Study of the Charge-Transfer Complex of Xenon and Dicarbon , Journal of Molecular Spectroscopy , 216 , 2 , (424) , (2002) .
+    Crossref
+    Piotr Piecuch, Karol Kowalski, Ian S. O. Pimienta and Michael J. Mcguire , Recent advances in electronic structure theory: Method of moments of coupled-cluster equations and renormalized coupled-cluster approaches , International Reviews in Physical Chemistry , 21 , 4 , (527) , (2002) .
+    Crossref
+    Piotr Piecuch, Stanisław A. Kucharski, Karol Kowalski and Monika Musiał , Efficient computer implementation of the renormalized coupled-cluster methods: The R-CCSD[T], R-CCSD(T), CR-CCSD[T], and CR-CCSD(T) approaches , Computer Physics Communications , 149 , 2 , (71) , (2002) .
+    Crossref
+    Barbara M. Terhal and David P. DiVincenzo , Classical simulation of noninteracting-fermion quantum circuits , Physical Review A , 65 , 3 , (2002) .
+    Crossref
+    Nicholas D. K. Petraco, Ľuboš Horný, Henry F. Schaefer and Ivan Hubač , Brillouin–Wigner coupled cluster theory. Fock-space approach , The Journal of Chemical Physics , 117 , 21 , (9580) , (2002) .
+    Crossref
+    David A. Mazziotti , Variational method for solving the contracted Schrödinger equation through a projection of the N-particle power method onto the two-particle space , The Journal of Chemical Physics , 116 , 4 , (1239) , (2002) .
+    Crossref
+    György Tarczay, Attila G. Császár, Oleg L. Polyansky and Jonathan Tennyson , Ab initio rovibrational spectroscopy of hydrogen sulfide , The Journal of Chemical Physics , 115 , 3 , (1229) , (2001) .
+    Crossref
+    John F. Stanton, Jürgen Gauss and Ove Christiansen , Equilibrium geometries of cyclic SiC3 isomers , The Journal of Chemical Physics , 114 , 7 , (2993) , (2001) .
+    Crossref
+    Karol Kowalski and Piotr Piecuch , Extension of the method of moments of coupled-cluster equations to a multireference wave operator formalism , Journal of Molecular Structure: THEOCHEM , 547 , 1-3 , (191) , (2001) .
+    Crossref
+    DIETER CREMER , Density functional theory: coverage of dynamic and non-dynamic electron correlation effects , Molecular Physics , 99 , 23 , (1899) , (2001) .
+    Crossref
+    Robert J. Gdanitz , A new version of the multireference averaged coupled‐pair functional (MR‐ACPF‐2) , International Journal of Quantum Chemistry , 85 , 4‐5 , (281-300) , (2001) .
+    Wiley Online Library
+    John F. Stanton, Kurt W. Sattelmeyer, Jürgen Gauss, Michael Allan, Tomas Skalicky and Thomas Bally , On the photoelectron spectrum ofp-benzoquinone , The Journal of Chemical Physics , 115 , 1 , (1) , (2001) .
+    Crossref
+    Anna I. Krylov , Spin-flip configuration interaction: an electronic structure model that is both variational and size-consistent , Chemical Physics Letters , 350 , 5-6 , (522) , (2001) .
+    Crossref
+    John F. Stanton , Coupled-cluster theory, pseudo-Jahn–Teller effects and conical intersections , The Journal of Chemical Physics , 10.1063/1.1416176 , 115 , 22 , (10382) , (2001) .
+    Crossref
+    David Mazziotti and Dudley Herschbach , Boson correlation energies and density matrices from reduced Hamiltonian interpolation , Physical Review A , 10.1103/PhysRevA.62.043603 , 62 , 4 , (2000) .
+    Crossref
+    Matthew L. Leininger, Ida M.B. Nielsen, T.Daniel Crawford and Curtis L. Janssen , A new diagnostic for open-shell coupled-cluster theory , Chemical Physics Letters , 328 , 4-6 , (431) , (2000) .
+    Crossref
+    Troy Van Voorhis and Martin Head-Gordon , The quadratic coupled cluster doubles model , Chemical Physics Letters , 330 , 5-6 , (585) , (2000) .
+    Crossref
+    Ryan C. Fortenberry and Joseph S. Francisco , Bridged HPSi and Linear HSiP as Probes of the SiP Radical in Astrophysical/Interstellar Media , The Astrophysical Journal , 10.3847/1538-4357/aa7679 , 843 , 2 , (124) , (2017) .
+    Crossref
+    William K. Peters, David E. Couch, Benoit Mignolet, Xuetao Shi, Quynh L. Nguyen, Ryan C. Fortenberry, H. Bernhard Schlegel, Françoise Remacle, Henry C. Kapteyn, Margaret M. Murnane and Wen Li , Ultrafast 25-fs relaxation in highly excited states of methyl azide mediated by strong nonadiabatic coupling , Proceedings of the National Academy of Sciences , 10.1073/pnas.1712566114 , (201712566) , (2017) .
+    Crossref
+    J. Coleman Howard and T. Daniel Crawford , Calculating Optical Rotatory Dispersion Spectra in Solution Using a Smooth Dielectric Model , The Journal of Physical Chemistry A , 10.1021/acs.jpca.8b07803 , (2018) .
+    Crossref
+    Fabijan Pavošević, Tanner Culpitt and Sharon Hammes-Schiffer , Multicomponent Coupled Cluster Singles and Doubles Theory within the Nuclear-Electronic Orbital Framework , Journal of Chemical Theory and Computation , 10.1021/acs.jctc.8b01120 , (2018) .
+    Crossref
+    T. Daniel Crawford, Ashutosh Kumar, Alexandre P. Bazanté and Roberto Di Remigio , Reduced‐scaling coupled cluster response theory: Challenges and opportunities , Wiley Interdisciplinary Reviews: Computational Molecular Science , e1406 , (2019) .
+    Wiley Online Library
+    Daniela Trogolo, J. Samuel Arey and Peter R. Tentscher , Gas-Phase Ozone Reactions with a Structurally Diverse Set of Molecules: Barrier Heights and Reaction Energies Evaluated by Coupled Cluster and Density Functional Theory Calculations , The Journal of Physical Chemistry A , 10.1021/acs.jpca.8b10323 , (2019) .
+    Crossref
+    Charles J. C. Scott, Roberto Di Remigio, T. Daniel Crawford and Alex J. W. Thom , Diagrammatic Coupled Cluster Monte Carlo , The Journal of Physical Chemistry Letters , 10.1021/acs.jpclett.9b00067 , (925-935) , (2019) .
+    Crossref
+    Mauro Prencipe , Quantum mechanics in Earth sciences: a one-century-old story , Rendiconti Lincei. Scienze Fisiche e Naturali , 10.1007/s12210-018-0744-1 , (2018) .
+    Crossref
+    Jonathon Witte, Jeffrey B. Neaton and Martin Head-Gordon , Push it to the limit: comparing periodic and local approaches to density functional theory for intermolecular interactions , Molecular Physics , 10.1080/00268976.2018.1542164 , (1-8) , (2018) .
+    Crossref
+    Florian Hampe and Stella Stopkowicz , Transition-Dipole Moments for Electronic Excitations in Strong Magnetic Fields Using Equation-of-Motion and Linear Response Coupled-Cluster Theory , Journal of Chemical Theory and Computation , 10.1021/acs.jctc.9b00242 , (2019) .
+    Crossref
+
+References
+
+    Čížek, J. , J. Chem. Phys. , 45 , 4256 ( 1966 ). On the Correlation Problem in Atomic and Molecular Systems. Calculation of Wavefunction Components in Ursell‐Type Expansion Using Quantum‐Field Theoretical Methods.
+    Google Scholar Go here for SFX
+    Čížek, J. , Adv. Chem. Phys. , 14 , 35 ( 1969 ). On the Use of the Cluster Expansion and the Technique of Diagrams in Calculations of Correlation Effects in Atoms and Molecules.
+    Google Scholar Go here for SFX
+    Čížek, J. and Paldus, J. , Int. J. Quantum Chem. , 5 , 359 ( 1971 ). Correlation Problems in Atomic and Molecular Systems. III. Rederivation of the Coupled‐Pair Many‐Electron Theory Using the Traditional Quantum Chemical Methods.
+    Google Scholar Go here for SFX
+    Hurley, A. C. , Electron Correlation in Small Molecules , Academic Press, London , 1976 .
+    Google Scholar Go here for SFX
+    Monkhorst, H. J. , Int. J. Quantum Chem. Symp. , 11 , 421 ( 1977 ). Calculation of Properties with the Coupled‐Cluster Method.
+    Google Scholar Go here for SFX
+    Pople, J. A. , Krishnan, R. , Schlegel, H. B. , and Binkley, J. S. , Int. J. Quantum Chem. Symp. , 14 , 545 ( 1978 ). Electron Correlation Theories and Their Application to the Study of Simple Reaction Potential Surfaces.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. and Purvis, G. D. , Int. J. Quantum Chem. , 14 , 561 ( 1978 ). Many‐Body Perturbation Theory, Coupled‐Pair Many‐Electron Theory, and the Importance of Quadruple Excitations for the Correlation Problem.
+    Google Scholar Go here for SFX
+    Purvis, G. D. and Bartlett, R. J. , J. Chem. Phys. , 76 , 1910 ( 1982 ). A Full Coupled‐Cluster Singles and Doubles Model: The Inclusion of Disconnected Triples.
+    Google Scholar Go here for SFX
+    Purvis, G. D. and Bartlett, R. J. , J. Chem. Phys. , 75 , 1284 ( 1981 ). The Reduced Linear Equation Method in Coupled Cluster Theory.
+    Google Scholar Go here for SFX
+    Scuseria, G. E. , Lee, T. J. , and Schaefer, H. F. , Chem. Phys. Lett. , 130 , 236 ( 1986 ). Accelerating the Convergence of the Coupled‐Cluster Approach. The Use of the DIIS Method.
+    Google Scholar Go here for SFX
+    Scuseria, G. E. , Scheiner, A. C. , Lee, T. J. , Rice, J. E. , and Schaefer, H. F. , J. Chem. Phys. , 86 , 2881 ( 1987 ). The Closed‐Shell Coupled‐Cluster Single and Double Excitation (CCSD) Model for the Description of Electron Correlation. A Comparison with Configuration Interaction (CISD) Results.
+    Google Scholar Go here for SFX
+    Lee, T. J. and Rice, J. E. , Chem. Phys. Lett. , 150 , 406 ( 1988 ). An Efficient Closed‐Shell Singles and Doubles Coupled‐Cluster Method.
+    Google Scholar Go here for SFX
+    Scuseria, G. E. , Janssen, C. L. , and Schaefer, H. F. , J. Chem. Phys. , 89 , 7382 ( 1988 ). An Efficient Reformulation of the Closed‐Shell Coupled‐Cluster Single and Double Excitation (CCSD) Equations.
+    Google Scholar Go here for SFX
+    Stanton, J. F. , Gauss, J. , Watts, J. D. , and Bartlett, R. J. , J. Chem. Phys. , 94 , 4334 ( 1991 ). A Direct Product Decomposition Approach for Symmetry Exploitation in Many‐Body Methods. I. Energy Calculations.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. , Sekino, H. , and Purvis, G. D. , Chem. Phys. Lett. , 98 , 66 ( 1983 ). Comparison of MBPT and Coupled‐Cluster Methods with Full CI. Importance of Triplet Excitations and Infinite Summations.
+    Google Scholar Go here for SFX
+    Lee, Y. S. , Kucharski, S. A. , and Bartlett, R. J. , J. Chem. Phys. , 81 , 5906 ( 1984 ). A Coupled‐Cluster Approach with Triple Excitations.
+    Google Scholar Go here for SFX
+    Pople, J. A. , Head‐Gordon, M. , and Raghavachari, K. , J. Chem. Phys. , 87 , 5968 ( 1987 ). Quadratic Configuration Interaction. A General Technique for Determining Electron Correlation Energies.
+    Google Scholar Go here for SFX
+    Urban, M. , Noga, J. , Cole, S. J. , and Bartlett, R. J. , J. Chem. Phys. , 83 , 4041 ( 1985 ). Towards a Full CCSDT Model for Electron Correlation.
+    Google Scholar Go here for SFX
+    Hoffmann, M. R. and Schaefer, H. F. , Adv. Quantum Chem. , 18 , 207 ( 1986 ). A Full Coupled‐Cluster Singles, Doubles, and Triples Model for the Description of Electron Correlation.
+    Google Scholar Go here for SFX
+    Kucharski, S. A. and Bartlett, R. J. , Adv. Quantum Chem. , 18 , 281 ( 1986 ). Fifth‐Order Many‐Body Perturbation Theory and Its Relationship to Various Coupled‐Cluster Approaches.
+    Google Scholar Go here for SFX
+    Noga, J. , Bartlett, R. J. , and Urban, M. , Chem. Phys. Lett. , 134 , 126 ( 1987 ). Towards a Full CCSDT Model for Electron Correlation. CCSDT‐ n Models.
+    Google Scholar Go here for SFX
+    Noga, J. and Bartlett, R. J. , J. Chem. Phys. , 86 , 7041 ( 1987 );
+    Google Scholar Go here for SFX
+    Erratum: 89 , 3401 ( 1988 ). The Full CCSDT Model for Molecular Electronic Structure.
+    Google Scholar Go here for SFX
+    Scuseria, G. E. and Schaefer, H. F. , Chem. Phys. Lett. , 152 , 382 ( 1988 ). A New Implementation of the Full CCSDT Model for Molecular Electronic Structure.
+    Google Scholar Go here for SFX
+    Raghavachari, K. , Trucks, G. W. , Pople, J. A. , and Head‐Gordon, M. , Chem. Phys. Lett. , 157 , 479 ( 1989 ). A Fifth‐Order Perturbation Comparison of Electron Correlation.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. , Watts, J. D. , Kucharski, S. A. , and Noga, J. , Chem. Phys. Lett. , 165 , 513 ( 1990 );
+    Google Scholar Go here for SFX
+    Erratum: 167 , 609 ( 1990 ). Non‐iterative Fifth‐Order Triple and Quadruple Excitation Energy Corrections in Correlated Methods.
+    Google Scholar Go here for SFX
+    Watts, J. D. and Bartlett, R. J. , J. Chem. Phys. , 93 , 6104 ( 1990 ). The Coupled‐Cluster Single, Double, and Triple Excitation Model for Open‐Shell Single Reference Functions.
+    Google Scholar Go here for SFX
+    Scuseria, G. E. , Chem. Phys. Lett. , 176 , 27 ( 1991 ). The Open‐Shell Restricted Hartree‐Fock Singles and Doubles Coupled‐Cluster Method Including Triple Excitations CCSD(T): Application to C + 3 .
+    Google Scholar Go here for SFX
+    Kucharski, S. A. and Bartlett, R. J. , J. Chem. Phys. , 97 , 4282 ( 1992 ). The Coupled‐Cluster Single, Double, Triple, and Quadruple Excitation Method.
+    Google Scholar Go here for SFX
+    Watts, J. D. , Gauss, J. , and Bartlett, R. J. , J. Chem. Phys. , 98 , 8718 ( 1993 ). Coupled‐Cluster Methods with Noniterative Triple Excitations for Restricted Open‐Shell Hartree‐Fock and Other General Single Determinant Reference Functions. Energies and Analytical Gradients.
+    Google Scholar Go here for SFX
+    Deegan, M. J. O. and Knowles, P. J. , Chem. Phys. Lett. , 227 , 321 ( 1994 ). Perturbative Corrections to Account for Triple Excitations in Closed‐ and Open‐Shell Coupled‐Cluster Theories.
+    Google Scholar Go here for SFX
+    Crawford, T. D. and Schaefer, H. F. , J. Chem. Phys. , 104 , 6259 ( 1996 ). A Comparison of Two Approaches to Perturbational Triple Excitation Corrections to the Coupled‐Cluster Singles and Doubles Method for High‐Spin Open‐Shell Systems.
+    Google Scholar Go here for SFX
+    Stanton, J. F. , Chem. Phys. Lett. , 281 , 130 ( 1997 ). Why CCSD(T) Works: A Different Perspective.
+    Google Scholar Go here for SFX
+    Crawford, T. D. , Lee, T. J. , and Schaefer, H. F. , J. Chem. Phys. , 107 , 7943 ( 1997 ). A New Spin‐Restricted Triple Excitation Correction for Coupled Cluster Theory.
+    Google Scholar Go here for SFX
+    Crawford, T. D. and Stanton, J. F. , Int. J. Quantum Chem. Symp. , 70 , 601 ( 1998 ). Investigation of an Asymmetric Triple‐Excitation Correction for Coupled Cluster Energies.
+    Google Scholar Go here for SFX
+    Rittby, M. and Bartlett, R. J. , J. Phys. Chem. , 92 , 3033 ( 1988 ). An Open‐Shell Spin‐Restricted Coupled‐Cluster Method: Application to Ionization Potentials in N 2 .
+    Google Scholar Go here for SFX
+    Janssen, C. L. and Schaefer, H. F. , Theor. Chim. Acta , 79 , 1 ( 1991 ). The Automated Solution of Second Quantization Equations with Applications to the Coupled‐Cluster Approach.
+    Google Scholar Go here for SFX
+    Knowles, P. J. , Hampel, C. , and Werner, H.‐J. , J. Chem. Phys. , 99 , 5219 ( 1993 ). Coupled‐Cluster Theory for High‐Spin, Open‐Shell Reference Wave Functions.
+    Google Scholar Go here for SFX
+    Neogrády, P. , Urban, M. , and Hubač, I. , J. Chem. Phys. , 100 , 3706 ( 1994 ). Spin Adapted Restricted Hartree‐Fock Reference Coupled‐Cluster Theory for Open‐Shell Systems.
+    Google Scholar Go here for SFX
+    Li, X. and Paldus, J. , J. Chem. Phys. , 101 , 8812 ( 1994 ). Automation of the Implementation of Spin‐Adapted Open‐Shell Coupled‐Cluster. Theories Relying on the Unitary Group Formalism.
+    Google Scholar Go here for SFX
+    Li, X. and Paldus, J. , J. Chem. Phys. , 102 , 2013 ( 1995 ). Spin‐Adapted Open‐Shell State‐Selective Coupled‐Cluster Approach and Doublet Stability of Its Hartree‐Fock Reference.
+    Google Scholar Go here for SFX
+    Nooijen, M. and Bartlett, R. J. , J. Chem. Phys. , 104 , 2652 ( 1996 ). General Spin Adaptation of Open‐Shell Coupled Cluster Theory.
+    Google Scholar Go here for SFX
+    Szalay, P. G. and Gauss, J. , J. Chem. Phys. , 107 , 9028 ( 1997 ). Spin‐Restricted Open‐Shell Coupled‐Cluster Theory.
+    Google Scholar Go here for SFX
+    Jørgensen, P. and Simons, J. , J. Chem. Phys. , 79 , 334 ( 1983 ). Ab Initio Analytical Molecular Gradients and Hessians.
+    Google Scholar Go here for SFX
+    Adamowicz, L. , Laidig, W. D. , and Bartlett, R. J. , Int. J. Quantum Chem. Symp. , 18 , 245 ( 1984 ). Analytical Gradients for the Coupled‐Cluster Method.
+    Google Scholar Go here for SFX
+    Fitzgerald, G. , Harrison, R. , Laidig, W. D. , and Bartlett, R. J. , Chem. Phys. Lett. , 117 , 433 ( 1985 ). Analytical Gradient Evaluation in Coupled‐Cluster Theory.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. , in Geometrical Derivatives of Energy Surfaces and Molecular Properties , P. Jørgensen and J. Simons , Eds., D. Reidel, Dordrecht , 1986 , pp. 35 – 61 . Analytical Evaluation of Gradients in Coupled‐Cluster and Many‐Body Perturbation Theory.
+    Google Scholar Go here for SFX
+    Fitzgerald, G. , Harrison, R. J. , and Bartlett, R. J. , J. Chem. Phys. , 85 , 5143 ( 1986 ). Analytic Energy Gradients for General Coupled‐Cluster Methods and Fourth‐Order Many‐Body Perturbation Theory.
+    Google Scholar Go here for SFX
+    Scheiner, A. C. , Scuseria, G. E. , Rice, J. E. , Lee, T. J. , and Schaefer, H. F. , J. Chem. Phys. , 87 , 5361 ( 1987 ). Analytic Evaluation of Energy Gradients for the Single and Double Excitation Coupled Cluster (CCSD) Wave Function: Theory and Application.
+    Google Scholar Go here for SFX
+    Salter, E. A. , Trucks, G. W. , and Bartlett, R. J. , J. Chem. Phys. , 90 , 1752 ( 1989 ). Analytic Energy Derivatives in Many‐Body Methods. I. First Derivatives.
+    Google Scholar Go here for SFX
+    Gauss, J. , Stanton, J. F. , and Bartlett, R. J. , J. Chem. Phys. , 95 , 2623 ( 1991 ). Coupled‐Cluster Open‐Shell Analytic Gradients: Implementation of the Direct Product Decomposition Approach in Energy Gradient Calculations.
+    Google Scholar Go here for SFX
+    Gauss, J. , Lauderdale, W. J. , Stanton, J. F. , Watts, J. D. , and Bartlett, R. J. , Chem. Phys. Lett. , 182 , 207 ( 1991 ). Analytic Energy Gradients for Open‐Shell Coupled‐Cluster Singles and Doubles Calculations Using Restricted Open‐Shell Hartree‐Fock (ROHF) Reference Functions.
+    Google Scholar Go here for SFX
+    Gauss, J. , Stanton, J. F. , and Bartlett, R. J. , J. Chem. Phys. , 95 , 2639 ( 1991 ). Analytic Evaluation of Energy Gradients at the Coupled‐Cluster Singles and Doubles Level Using Quasi‐Restricted Hartree‐Fock Open‐Shell Reference Functions.
+    Google Scholar Go here for SFX
+    Scuseria, G. E. , J. Chem. Phys. , 94 , 442 ( 1991 ). Analytic Evaluation of Energy Gradients for the Singles and Doubles Coupled‐Cluster Method Including Perturbative Triple Excitations: Theory and Applications to FOOF and Cr 2 .
+    Google Scholar Go here for SFX
+    Lee, T. J. and Rendell, A. P. , J. Chem. Phys. , 94 , 6229 ( 1991 ). Analytic Gradients for Coupled‐Cluster Energies That Include Noniterative Connected Triple Excitations: Application to cis‐ and trans‐ HONO.
+    Google Scholar Go here for SFX
+    Salter, E. A. and Bartlett, R. J. , J. Chem. Phys. , 90 , 1767 ( 1989 ). Analytic Energy Derivatives in Many‐Body Theory. II. Second Derivatives.
+    Google Scholar Go here for SFX
+    Koch, H. , Jensen, H. J. Aa. , Jørgensen, P. , Helgaker, T. , Scuseria, G. E. , and Schaefer, H. F. , J. Chem. Phys. , 92 , 4924 ( 1990 ). Coupled‐Cluster Energy Derivatives. Analytic Hessian for the Closed‐Shell Coupled‐Cluster Singles and Doubles Wave Functions: Theory and Applications.
+    Google Scholar Go here for SFX
+    Stanton, J. F. and Gauss, J. , in Recent Advances in Coupled‐Cluster Methods , R. J. Bartlett , Ed., World Scientific Publishing, Singapore , 1997 , pp. 49 – 79 . Analytic Evaluation of Second Derivatives of the Energy: Computational Strategies for the CCSD and CCSD(T) Approximations.
+    Google Scholar Go here for SFX
+    Gauss, J. and Stanton, J. F. , Chem. Phys. Lett. , 276 , 70 ( 1997 ). Analytic CCSD(T) Second Derivatives.
+    Google Scholar Go here for SFX
+    Szalay, P. G. , Gauss, J. , and Stanton, J. F. , Theor. Chim. Acta , 100 , 5 ( 1998 ). Analytic UHFCCSD(T) Second Derivatives: Implementation and Application to the Calculation of the Vibration‐Rotation Interaction Constants of NCO and NCS.
+    Google Scholar Go here for SFX
+    Mukherjee, D. and Mukherjee, P. K. , Chem. Phys. , 39 , 325 ( 1979 ). A Response‐Function Approach to the Direct Calculation of the Transition‐Energy in a Multiple‐Cluster Expansion Formalism.
+    Google Scholar Go here for SFX
+    Emrich, K. , Nucl. Phys. A , 351 , 379 ( 1981 ). An Extension of the Coupled Cluster Formalism to Excited States (I).
+    Google Scholar Go here for SFX
+    Ghosh, S. and Mukherjee, D. , Proc. Indian Acad. Sci. (Chem. Sci. ), 93 , 947 ( 1984 ). Use of Cluster Expansion Techniques in Quantum Chemistry. A Linear Response Model for Calculating Energy Differences.
+    Google Scholar Go here for SFX
+    Sekino, H. and Bartlett, R. J. , Int. J. Quantum Chem. Symp. , 18 , 255 ( 1984 ). A Linear Response, Coupled‐Cluster Theory for Excitation Energy.
+    Google Scholar Go here for SFX
+    Meissner, L. and Bartlett, R. J. , J. Chem. Phys. , 94 , 6670 ( 1991 ). Transformation of the Hamiltonian in Excitation Energy Calculations: Comparison Between Fock‐Space Multireference Coupled‐Cluster and Equation‐of‐Motion Coupled‐Cluster Methods.
+    Google Scholar Go here for SFX
+    Stanton, J. F. and Bartlett, R. J. , J. Chem. Phys. , 98 , 7029 ( 1993 ). The Equation of Motion Coupled‐Cluster Method. A Systematic Biorthogonal Approach to Molecular Excitation Energies, Transition Probabilities, and Excited State Properties.
+    Google Scholar Go here for SFX
+    Stanton, J. F. and Gauss, J. , J. Chem. Phys. , 99 , 8840 ( 1993 ). Many‐Body Methods for Excited State Potential Energy Surfaces. I. General Theory of Energy Gradients for the Equation‐of‐Motion Coupled‐Cluster Method.
+    Google Scholar Go here for SFX
+    Stanton, J. F. and Gauss, J. , J. Chem. Phys. , 101 , 8938 ( 1994 ). Analytic Energy Derivatives for Ionized States Described by the Equation‐of‐Motion Coupled‐Cluster Method.
+    Google Scholar Go here for SFX
+    Stanton, J. F. , Gauss, J. , Ishikawa, N. , and Head‐Gordon, M. , J. Chem. Phys. , 103 , 4160 ( 1995 ). A Comparison of Single Reference Methods for Characterizing Stationary Points of Excited State Potential Energy Surfaces.
+    Google Scholar Go here for SFX
+    Koch, H. and Jørgensen, P. , J. Chem. Phys. , 93 , 3333 ( 1990 ). Coupled Cluster Response Functions.
+    Google Scholar Go here for SFX
+    Koch, H. , Christiansen, O. , Jørgensen, P. , and Olsen, J. , Chem. Phys. Lett. , 244 , 75 ( 1995 ). Excitation Energies of BH, CH 2 , and Ne in Full Configuration Interaction and the Hierarchy CCS, CC2, CCSD, and CC3 of Coupled‐Cluster Models.
+    Google Scholar Go here for SFX
+    Watts, J. D. , Gwaltney, S. R. , and Bartlett, R. J. , J. Chem. Phys. , 105 , 6979 ( 1996 ). Coupled‐Cluster Calculations of the Excitation Energies of Ethylene, Butadiene, and Cyclopentadiene.
+    Google Scholar Go here for SFX
+    Christiansen, O. , Koch, H. , Halkier, A. , Jørgensen, P. , Helgaker, T. , and De Merás, A. S. , J. Chem. Phys. , 105 , 6921 ( 1996 ). Large‐Scale Calculations of Excitation Energies in Coupled‐Cluster Theory: The Singlet Excited States of Benzene.
+    Google Scholar Go here for SFX
+    Head‐Gordon, M. and Lee, T. J. , in Recent Advances in Coupled‐Cluster Methods , R. J. Bartlett , Ed., World Scientific Publishing, Singapore , 1997 , pp. 221 – 253 . Single Reference Coupled Cluster and Perturbation Theories of Electronic Excitation Energies.
+    Google Scholar Go here for SFX
+    Nooijen, M. and Bartlett, R. J. , J. Chem. Phys. , 106 , 6441 ( 1997 ). A New Method for Excited States: Similarity Transformed Equation‐of‐Motion Coupled‐Cluster Theory.
+    Google Scholar Go here for SFX
+    Sinanoǧlu, O. , Adv. Chem. Phys. , 6 , 315 ( 1964 ). Many‐Electron Theory of Atoms, Molecules, and Their Interactions.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. , J. Phys. Chem. , 93 , 1697 ( 1989 ). Coupled‐Cluster Approach to Molecular Structure and Spectra: A Step Toward Predictive Quantum Chemistry.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. and Stanton, J. F. , in Reviews in Computational Chemistry , K. B. Lipkowitz and D. B. Boyd , Eds., VCH Publishers, New York , 1994 , Vol. 5 , pp. 65 – 169 . Applications of Post‐Hartree‐Fock Methods: A Tutorial.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. , in Modern Electronic Structure Theory, Vol. 2 of Advanced Series in Physical Chemistry , D. R. Yarkony , Ed., World Scientific Publishing, Singapore , 1995 , pp. 1047 – 1131 . Coupled‐Cluster Theory: An Overview of Recent Developments.
+    Google Scholar Go here for SFX
+    Lee, T. J. and Scuseria, G. E. , in Quantum Mechanical Electronic Structure Calculations with Chemical Accuracy , S. R. Langhoff , Ed., Kluwer Academic Publishers, Dordrecht , 1995 , pp. 47 – 108 . Achieving Chemical Accuracy with Coupled‐Cluster Theory.
+    Google Scholar Go here for SFX
+    Harris, F. E. , Monkhorst, H. J. , and Freeman, D. L. , Algebraic and Diagrammatic Methods in Many‐Fermion Theory , Oxford University Press, New York , 1992 .
+    Google Scholar Go here for SFX
+    Taylor, P. R. , in Lecture Notes in Quantum Chemistry: European Summer School II, Vol. 64 of Lecture Notes in Chemistry , B. O. Roos , Ed., Springer‐Verlag, Berlin , 1994 , pp. 125 – 202 . Coupled‐Cluster Methods in Quantum Chemistry.
+    Google Scholar Go here for SFX
+    Szabo, A. and Ostlund, N. S. , Modern Quantum Chemistry: Introduction to Advanced Electronic Structure Theory , 1st ed. , McGraw‐Hill, New York , 1989 .
+    Google Scholar Go here for SFX
+    Kutzelnigg, W. , in Methods of Electronic Structure Theory , H. F. Schaefer , Ed., Plenum Press, New York , 1977 , pp. 129 – 188 . Pair‐Correlation Theories.
+    Google Scholar Go here for SFX
+    Jørgensen, P. and Simons, J. , Second Quantization‐Based Methods in Quantum Chemistry , Academic Press, New York , 1981 .
+    Google Scholar Go here for SFX
+    Shavitt, I. , in Methods of Electronic Structure Theory , H. F. Schaefer , Ed., Plenum Press, New York , 1977 , pp. 189 – 275 . The Method of Configuration Interaction.
+    Google Scholar Go here for SFX
+    Sherrill, C. D. and Schaefer, H. F. , Adv. Quantum Chem. , 34 , 143 ( 1999 ). The Configuration Interaction Method: Advances in Highly Correlated Approaches.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. , Annu. Rev. Phys. Chem. , 32 , 359 ( 1981 ). Many‐Body Perturbation Theory and Coupled‐Cluster Theory for Electron Correlation in Molecules.
+    Google Scholar Go here for SFX
+    Nooijen, M. , Ph.D. Thesis, Vrije Universiteit Am sterdam, 1992. The Coupled Cluster Green's Function.
+    Google Scholar Go here for SFX
+    Pople, J. A. , in Energy, Structure, and Reactivity , D. W. Smith and W. B. McRae , Eds., Wiley, New York , 1973 , pp. 51 – 61 . Theoretical Models for Chemistry.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. , Dykstra, C. E. , and Paldus, J. , in Advanced Theories and Computational Approaches to the Electronic Structure of Molecules , C. E. Dykstra , Ed., D. Reidel, Dordrecht , 1984 , pp. 127 – 159 . Coupled‐Cluster Methods for Molecular Calculations.
+    Google Scholar Go here for SFX
+    Merzbacher, E. , Quantum Mechanics , 2nd ed. , Wiley, New York , 1970 .
+    Google Scholar Go here for SFX
+    Stanton, J. F. , unpublished notes, Austin, TX, 1996. Fundamentals of Second Quantization.
+    Google Scholar Go here for SFX
+    Kutzelnigg, W. , Mol. Phys. , 94 , 65 ( 1998 ). Almost Variational Coupled Cluster Theory.
+    Google Scholar Go here for SFX
+    Hoffmann, M. R. and Simons, J. , J. Chem. Phys. , 88 , 993 ( 1988 ). A Unitary Coupled‐Cluster Method: Theory and Applications.
+    Google Scholar Go here for SFX
+    Hoffmann, M. R. and Simons, J. , Chem. Phys. Lett. , 142 , 451 ( 1987 ). Analytical Energy Gradients for a Unitary Coupled‐Cluster Theory.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. and Noga, J. , Chem. Phys. Lett. , 150 , 29 ( 1988 ). The Expectation Value Coupled‐Cluster Method and Analytical Energy Derivatives.
+    Google Scholar Go here for SFX
+    Arponen, J. S. , Ann. Phys. , 151 , 311 ( 1983 ). Variational Principles and Linked‐Cluster Exp S Expansions for Static and Dynamic Many‐Body Problems.
+    Google Scholar Go here for SFX
+    Bishop, R. F. and Arponen, J. S. , Int. J. Quantum Chem. Symp. , 24 , 197 ( 1990 ). Correlations in Extended Systems: A Microscopic Multilocal Method for Describing Both Local and Global Properties.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. , Kucharski, S. A. , Noga, J. , Watts, J. D. , and Trucks, G. W. , in Lecture Notes in Quantum Chemistry, Vol. 52 of Lecture Notes in Chemistry , U. Kaldor , Ed., Springer‐Verlag, Berlin , 1989 , pp. 125 – 149 . Some Consideration of Alternative Ansätz in Coupled‐Cluster Theory.
+    Google Scholar Go here for SFX
+    Szalay, P. G. , Nooijen, M. , and Bartlett, R. J. , J. Chem. Phys. , 103 , 281 ( 1995 ). Alternative Ansätze in Single Reference Coupled‐Cluster Theory. III. A Critical Analysis of Different Methods.
+    Google Scholar Go here for SFX
+    Stanton, J. F. , unpublished notes, Austin, TX, 1998. Coupled Cluster Theory for the Ambidextrous.
+    Google Scholar Go here for SFX
+    Koch, H. , Aa, H. J. . Jensen, Jørgensen, P. , and Helgaker, T. , J. Chem. Phys. , 93 , 3345 ( 1990 ). Excitation Energies from the Coupled Cluster Singles and Doubles Linear Response Function (CCSDLR). Applications to Be, CH + , CO, and H 2 O.
+    Google Scholar Go here for SFX
+    Rico, R. J. and Head‐Gordon, M. , Chem. Phys. Lett. , 213 , 224 ( 1993 ). Single‐Reference Theories of Molecular Excited States with Single and Double Substitutions.
+    Google Scholar Go here for SFX
+    Christiansen, O. , Koch, H. , and Jørgensen, P. , Chem. Phys. Lett. , 243 , 409 ( 1995 ). The Second‐Order Approximate Coupled Cluster Singles and Doubles Model CC2.
+    Google Scholar Go here for SFX
+    Christiansen, O. , Koch, H. , and Jørgensen, P. , J. Chem. Phys. , 103 , 7429 ( 1995 ). Response Functions in the CC3 Iterative Triple Excitation Model.
+    Google Scholar Go here for SFX
+    Nakatsuji, H. and Hirao, K. , J. Chem. Phys. , 68 , 2053 ( 1978 ). Cluster Expansion of the Wavefunction. Symmetry‐Adapted‐Cluster Expansion, Its Variational Determination, and Extension of Open‐Shell Orbital Theory.
+    Google Scholar Go here for SFX
+    Nakatsuji, H. , Chem. Phys. Lett. , 59 , 362 ( 1978 ). Cluster Expansion of the Wavefunctions. Excited States.
+    Google Scholar Go here for SFX
+    Nakatsuji, H. , Chem. Phys. Lett. , 67 , 329 ( 1979 ). Cluster Expansion of the the Wavefunction. Electron Correlations in Ground and Excited States by SAC (Symmetry‐Adapted‐Cluster) and SAC CI Theories.
+    Google Scholar Go here for SFX
+    Kaldor, U. , Theor. Chim. Acta , 80 , 427 ( 1991 ). The Fock Space Coupled Cluster Method: Theory and Application.
+    Google Scholar Go here for SFX
+    Mukhopadhyay, D. , Mukhopadhyay, S. , Chaudhuri, R. , and Mukherjee, D. , Theor. Chim. Acta , 80 , 441 ( 1991 ). Aspects of Separability in the Coupled Cluster Based Direct Method for Energy Differences.
+    Google Scholar Go here for SFX
+    Rittby, C. M. L. and Bartlett, R. J. , Theor. Chim. Acta , 80 , 469 ( 1991 ). Multireference Coupled Cluster Theory in Fock Space.
+    Google Scholar Go here for SFX
+    Stanton, J. F. , Bartlett, R. J. , and Rittby, C. M. L. , J. Chem. Phys. , 97 , 5560 ( 1992 ). Fock Space Multireference Coupled‐Cluster Theory for General Single Determinant Reference Functions.
+    Google Scholar Go here for SFX
+    Nooijen, M. and Bartlett, R. J. , J. Chem. Phys. , 102 , 3629 ( 1995 ). Equation‐of‐Motion Coupled‐Cluster Method for Electron Attachment.
+    Google Scholar Go here for SFX
+    Nooijen, M. and Bartlett, R. J. , J. Chem. Phys. , 106 , 6449 ( 1997 ). Similarity Transformed Equation‐of‐Motion Coupled‐Cluster Study of Ionized, Electron Attached, and Excited States of Free Base Porphyrin.
+    Google Scholar Go here for SFX
+    Freed, K. F. , Annu. Rev. Phys. Chem. , 22 , 313 ( 1971 ). Many‐Body Theories of the Electronic Structure of Atoms and Molecules.
+    Google Scholar Go here for SFX
+    Wick, G. C. , Phys. Rev. , 80 , 268 ( 1950 ). The Evaluation of the Collision Matrix.
+    Google Scholar Go here for SFX
+    Paldus, J. and Čížek, J. , Adv. Quantum Chem. , 9 , 105 ( 1975 ). Time‐Independent Diagrammatic Approach to Perturbation Theory of Fermion Systems.
+    Google Scholar Go here for SFX
+    Crawford, T. D. , Ph.D. Thesis, University of Georgia, 1996. Many‐Body Perturbation Theory and Perturbational Triple Excitation Corrections to the Coupled‐Cluster Singles and Doubles Method for High‐Spin Open‐Shell Systems.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. and Silver, D. M. , Int. J. Quantum Chem. Symp. , 9 , 183 ( 1975 ). Some Aspects of Diagrammatic Perturbation Theory.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. , unpublished notes, Gainesville, FL, 1994. Systematic Derivation of Coupled‐Cluster Equations.
+    Google Scholar Go here for SFX
+    Davidson, E. R. , in The World of Quantum Chemistry , R. Daudel and B. Pullman , Eds., D. Reidel, Dordrecht , 1974 , pp. 17 – 30 . Configuration Interaction Description of Electron Correlation.
+    Google Scholar Go here for SFX
+    Langhoff, S. R. and Davidson, E. R. , Int. J. Quantum Chem. , 8 , 61 ( 1974 ). Configuration Interaction Calculations on the Nitrogen Molecule.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. , Shavitt, I. , and Purvis, G. D. , J. Chem. Phys. , 71 , 281 ( 1979 ). The Quartic Force Field of H 2 O Determined by Many‐Body Methods That Include Quadruple Excitation Effects.
+    Google Scholar Go here for SFX
+    Pilar, F. L. , Elementary Quantum Chemistry , 2nd ed. , McGraw‐Hill, New York , 1990 .
+    Google Scholar Go here for SFX
+    Urban, M. , Černušak, I. , Kellö, V. , and Noga, J. , in Electron Correlation in Atoms and Molecules, Vol. 1 of Methods in Computational Chemistry , S. Wilson , Ed., Plenum Press, New York , 1987 , pp. 117 – 250 . Electron Correlation in Molecules.
+    Google Scholar Go here for SFX
+    Møller, C. and Plesset, M. S. , Phys. Rev. , 46 , 618 ( 1934 ). Note on an Approximation Treatment for Many‐Electron Systems.
+    Google Scholar Go here for SFX
+    Hubač, I. and Čársky, P. , Phys. Rev. , A22 , 2392 ( 1980 ). Correlation Energy of Open‐Shell Systems. Application of the Many‐Body Rayleigh‐Schrödinger Perturbation Theory in the Restricted Roothaan‐Hartree‐Fock Formalism.
+    Google Scholar Go here for SFX
+    Amos, R. D. , Andrews, J. S. , Handy, N. C. , and Knowles, P. J. , Chem. Phys. Lett. , 185 , 256 ( 1991 ). Open‐Shell Møller‐Plesset Perturbation Theory.
+    Google Scholar Go here for SFX
+    Knowles, P. J. , Andrews, J. S. , Amos, R. D. , Handy, N. C. , and Pople, J. A. , Chem. Phys. Lett. , 186 , 130 ( 1991 ). Restricted Møller‐Plesset Theory for Open‐Shell Molecules.
+    Google Scholar Go here for SFX
+    Lauderdale, W. J. , Stanton, J. F. , Gauss, J. , Watts, J. D. , and Bartlett, R. J. , Chem. Phys. Lett. , 187 , 21 ( 1991 ). Many‐Body Perturbation Theory with a Restricted Open‐Shell Hartree‐Fock Reference.
+    Google Scholar Go here for SFX
+    Murray, C. and Davidson, E. R. , Chem. Phys. Lett. , 187 , 451 ( 1991 ). Perturbation Theory for Open‐Shell Systems.
+    Google Scholar Go here for SFX
+    Lee, T. J. and Jayatilaka, D. , Chem. Phys. Lett. , 201 , 1 ( 1993 ). An Open‐Shell Restricted Hartree‐Fock Perturbation Theory Based on Symmetric Spin Orbitals.
+    Google Scholar Go here for SFX
+    Kozlowski, P. M. and Davidson, E. R. , Chem. Phys. Lett. , 226 , 440 ( 1994 ). Construction of Open‐Shell Perturbation Theory Invariant with Respect to Orbital Degeneracy.
+    Google Scholar Go here for SFX
+    Crawford, T. D. , Schaefer, H. F. , and Lee, T. J. , J. Chem. Phys. , 105 , 1060 ( 1996 ). On the Energy Invariance of Open‐Shell Perturbation Theory with Respect to Unitary Transformations of Molecular Orbitals.
+    Google Scholar Go here for SFX
+    Krishnan, R. and Pople, J. A. , Int. J. Quantum Chem. , 14 , 91 ( 1978 ). Approximate Fourth‐Order Perturbation Theory of the Electron Correlation Energy.
+    Google Scholar Go here for SFX
+    Krishnan, R. , Frisch, M. J. , and Pople, J. A. , J. Chem. Phys. , 72 , 4244 ( 1980 ). Contribution of Triple Substitutions to the Electron Correlation Energy in Fourth Order Perturbation Theory.
+    Google Scholar Go here for SFX
+    Thomas, J. R. , DeLeeuw, B. J. , Vacek, G. , and Schaefer, H. F. , J. Chem. Phys. , 98 , 1336 ( 1993 ). A Systematic Study of the Harmonic Vibrational Frequencies for Polyatomic Molecules: The Single, Double, and Perturbative Triple Excitation Coupled‐Cluster [CCSD(T)] Method.
+    Google Scholar Go here for SFX
+    Thomas, J. R. , DeLeeuw, B. J. , Vacek, G. , Crawford, T. D. , Yamaguchi, Y. , and Schaefer, H. F. , J. Chem. Phys. , 99 , 403 ( 1993 ). The Balance Between Theoretical Method and Basis Set Quality: A Systematic Study of Equilibrium Geometries, Dipole Moments, Harmonic Vibrational Frequencies, and Infrared Intensities.
+    Google Scholar Go here for SFX
+    Bartlett, R. J. and Shavitt, I. , Chem. Phys. Lett. , 50 , 190 ( 1977 ). Comparison of High‐Order Many‐Body Perturbation Theory and Configuration Interaction for H 2 O.
+    Google Scholar Go here for SFX
+    Crawford, T. D. , Stanton, J. F. , Allen, W. D. , and Schaefer, H. F. , J. Chem. Phys. , 107 , 10626 ( 1997 ). Hartree‐Fock Orbital Instability Envelopes in Highly Correlated Single‐Reference Wavefunctions.
+    Google Scholar Go here for SFX
+    Lee, T. J. , Rendell, A. P. , and Taylor, P. R. , J. Phys. Chem. , 94 , 5463 ( 1990 ). Comparison of the Quadratic Configuration Interaction and Coupled‐Cluster Approaches to Electron Correlation Including the Effect of Triple Excitations.
+    Google Scholar Go here for SFX
+    Rendell, A. P. , Lee, T. J. , and Komornicki, A. , Chem. Phys. Lett. , 178 , 462 ( 1991 ). A Parallel Vectorized Implementation of Triple Excitations in CCSD(T): Application to the Binding Energies of the AlH 3 , AlH 2 F, AlHF 2 , and AlF 3 Dimers.
+    Google Scholar Go here for SFX
+    Raghavachari, K. , Pople, J. A. , Replogle, E. S. , and Head‐Gordon, M. , J. Phys. Chem. , 94 , 5579 ( 1990 ). Fifth‐Order Møller‐Plesset Perturbation Theory: Comparison of Existing Correlation Methods and Implementation of New Methods Correct to Fifth Order.
+    Google Scholar Go here for SFX
+    East, A. L. L. , Ph.D. Thesis, Stanford University, 1994. Selected Theoretical Studies of Vibrational Anharmonicity and Thermochemistry.
+    Google Scholar Go here for SFX
+    Kucharski, S. A. and Bartlett, R. J. , J. Chem. Phys. , 108 , 5243 ( 1998 ). Noniterative Energy Corrections Through Fifth‐Order to the Coupled Cluster Singles and Doubles Method.
+    Google Scholar Go here for SFX
+    Kvasnička, V. , Lurinc, V. , Biskupič, S. , and Haring, M. , Adv. Chem. Phys. , 52 , 181 ( 1983 ). Coupled‐Cluster Approach in the Electronic‐Structure Theory of Molecules.
+    Google Scholar Go here for SFX
+    Kucharski, S. A. and Bartlett, R. J. , Theor. Chim. Acta , 80 , 387 ( 1991 ). Recursive Intermediate Factorization and Complete Computational Linearization of the Coupled‐Cluster Single, Double, Triples, and Quadruple Excitation Equations.
+    Google Scholar Go here for SFX
+    Janssen, C. L. , Seidl, E. T. , Scuseria, G. E. , Hamilton, T. P. , Yamaguchi, Y. , Remington, R. B. , Xie, Y. , Vacek, G. , Sherrill, C. D. , Crawford, T. D. , Fermann, J. T. , Allen, W. D. , Brooks, B. R. , Fitzgerald, G. B. , Fox, D. J. , Gaw, J. F. , Handy, N. C. , Laidig, W. D. , Lee, T. J. , Pitzer, R. M. , Rice, J. E. , Saxe, P. , Scheiner, A. C. , and Schaefer, H. F. , PSI 2.0.8, PSITECH, Inc., Watkinsville, GA 30677, 1995 . E‐mail: psi@ccqc.uga.edu. This program is available for a handling fee of $100.
+    Google Scholar Go here for SFX
+    MOLPRO is a package of ab initio programs written by Werner, H.‐J. and Knowles, P. J. with contributions from Amos, R. D. , Berning, A. , Cooper, D. L. , Deegan, M. J. O. , Dobbyn, A. J. , Eckert, F. , Hampel, C. , Leininger, T. , Lindh, R. , Lloyd, A. W. , Meyer, W. , Mura, M. E. , Nicklass, A. , Palmieri, P. , Peterson, K. , Pitzer, R. , Pulay, P. , Rauhut, G. , Schütz, M. , Stoll, H. , Stone, A. J. , and Thorsteinsson, T. . E‐mail: molpro‐support@tc.bham.ac.uk.
+    Google Scholar Go here for SFX
+    Stanton, J. F. , Gauss, J. , Watts, J. D. , Lauderdale, W. J. , and Bartlett, R. J. , ACES II. The package also contains modified versions of the MOLECULE Gaussian integral program of J. Almlöf and P. R. Taylor, the ABACUS integral derivative program written by T. U. Helgaker, H. J. Aa. Jensen, P. Jørgensen and P. R. Taylor, and the PROPS property evaluation integral code of P. R. Taylor. E‐mail: aces2@qtp.ufl.edu.
+    Google Scholar Go here for SFX
+    Dowd, K. , High Performance Computing: RISC Architectures, Optimization, and Benchmarks , O'Reilly and Associates, Sebastopol, CA , 1993 .
+    Google Scholar Go here for SFX
+    Čársky, P. , Schaad, L. J. , Hess, B. A. , Urban, M. , and Noga, J. , J. Chem. Phys. , 87 , 411 ( 1987 ). Use of Molecular Symmetry in Coupled‐Cluster Theory.
+    Google Scholar Go here for SFX
+    Häser, M. , J. Chem. Phys. , 95 , 8259 ( 1991 ). Molecular Point‐Group Symmetry in Electronic Structure Calculations.
+    Google Scholar Go here for SFX
+    Haase, F. and Ahlrichs, R. , J. Comput. Chem. , 14 , 907 ( 1993 ). Semidirect MP2 Gradient Evaluation on Workstation Computers—The MPGRAD Program.
+    Google Scholar Go here for SFX
+    Kollwitz, M. , Háser, M. , and Gauss, J. , J. Chem. Phys. , 108 , 8295 ( 1998 ). Non‐Abelian Point Group Symmetry in Direct Second‐Order Many‐Body Perturbation Theory Calculations of NMR Chemical Shifts.
+    Google Scholar Go here for SFX
+    Pauncz, R. , Spin Eigenfunctions: Construction and Use , Plenum Press, New York , 1979 .
+    Google Scholar Go here for SFX
+    Pauncz, R. , The Symmetric Group in Quantum Chemistry , CRC Press, Boca Raton, FL , 1995 .
+    Google Scholar Go here for SFX
+    Li, X. and Paldus, J. , J. Chem. Phys. , 103 , 6536 ( 1995 ). Unitary Group Based Open‐Shell Coupled‐Cluster Approach and Triplet and Open‐Shell Singlet Stabilities of Hartree‐Fock References.
+    Google Scholar Go here for SFX
+    Wilson, S. , in Electron Correlation in Atoms and Molecules, Vol. 1 of Methods in Computational Chemistry , S. Wilson , Ed., Plenum Press, New York , 1987 , pp. 251 – 309 . Four‐Index Transformations.
+    Google Scholar Go here for SFX
+    Hampel, C. , Peterson, K. A. , and Werner, H.‐J. , Chem. Phys. Lett. , 190 , 1 ( 1992 ). A Comparison of the Efficiency and Accuracy of the Quadratic Configuration Interaction (QCISD), Coupled‐Cluster (CCSD), and Brueckner Coupled‐Cluster (BCCD) Methods.
+    Google Scholar Go here for SFX
+    Taylor, P. R. , Int. J. Quantum Chem. , 31 , 521 ( 1987 ). Integral Processing in Beyond‐Hartree‐Fock Calculations.
+    Google Scholar Go here for SFX
+    Frisch, M. J. , Head‐Gordon, M. , and Pople, J. A. , Chem. Phys. Lett. , 166 , 281 ( 1990 ). Semi‐Direct Algorithms for the MP2 Energy and Gradient.
+    Google Scholar Go here for SFX
+    Koch, H. , Christiansen, O. , Kobayashi, R. , Jørgensen, P. , and Helgaker, T. , Chem. Phys. Lett. , 228 , 233 ( 1994 ). A Direct Atomic Orbital Driven Implementation of the Coupled Cluster Singles and Doubles (CCSD) Model.
+    Google Scholar Go here for SFX
+    Koch, H. , De Merás, A. S. , Helgaker, T. , and Christiansen, O. , J. Chem. Phys. , 104 , 4157 ( 1996 ). The Integrals‐Direct Coupled‐Cluster Singles and Doubles Model.
+    Google Scholar Go here for SFX
+    Rendell, A. P. and Lee, T. J. , J. Chem. Phys. , 101 , 400 ( 1994 ). Coupled‐Cluster Theory Employing Approximate Integrals: An Approach to Avoid the Input/Output and Storage Bottlenecks.
+    Google Scholar Go here for SFX
+    Martin, J. M. L. , J. Chem. Phys. , 100 , 8186 ( 1994 ). On the Performance of Correlation Consistent Basis Sets for the Calculation of Total Atomization Energies, Geometries and Harmonic Frequencies.
+    Google Scholar Go here for SFX
+    Paldus, J. , in New Horizons of Quantum Chemistry: Proceedings of the Fourth International Congress of Quantum Chemistry , P.‐O. Löwdin and B. Pullman , Eds., D. Reidel, Dordrecht , 1983 , pp. 31 – 60 . Coupled Cluster Approaches to the Many‐Electron Correlation Problem.
+    Google Scholar Go here for SFX
+    Paldus, J. , in Methods in Computational Molecular Physics , S. Wilson and G. H. F. Diercksen , Eds., Plenum Press, New York , 1992 , pp. 99 – 194 . Coupled Cluster Theory.
+    Google Scholar Go here for SFX
+    Balkova, A. and Bartlett, R. J. , Chem. Phys. Lett. , 193 , 364 ( 1992 ). Coupled‐Cluster Method for Open‐Shell Singlets.
+    Google Scholar Go here for SFX
+    Balkova, A. and Bartlett, R. J. , J. Chem. Phys. , 99 , 7907 ( 1993 ). The 2‐Determinant Coupled‐Cluster Method for Electric Properties of Excited Electronic States: The Lowest 1 B 1 and 3 B 1 States of the Water Molecule.
+    Google Scholar Go here for SFX
+    Jayatilaka, D. and Lee, T. J. , Chem. Phys. Lett. , 199 , 211 ( 1992 ). The Form of Spin Orbitals for Open‐Shell Restricted Hartree‐Fock Reference Functions.
+    Google Scholar Go here for SFX
+    Jayatilaka, D. and Lee, T. J. , J. Chem. Phys. , 98 , 9734 ( 1993 ). Open‐Shell Coupled‐Cluster Theory.
+    Google Scholar Go here for SFX
+    Crawford, T. D. , Lee, T. J. , and Schaefer, H. F. , J. Chem. Phys. , 107 , 9980 ( 1997 ). Spin‐Restricted Brueckner Orbitals for Coupled‐Cluster Wavefunctions.
+    Google Scholar Go here for SFX
+    Stanton, J. F. , J. Chem. Phys. , 101 , 371 ( 1994 ). On the Extent of Spin Contamination in Open‐Shell Coupled‐Cluster Wave Functions.
+    Google Scholar Go here for SFX
+    Lee, T. J. , Rendell, A. P. , Dyall, K. G. , and Jayatilaka, D. , J. Chem. Phys. , 100 , 7400 ( 1994 ). Open‐Shell Restricted Hartree‐Fock Perturbation Theory: Some Considerations and Comparisons.
+    Google Scholar Go here for SFX
+    Wolfram, S. , Mathematica: A System for Doing Mathematics by Computer , 2nd ed. , Addison‐Wesley, New York , 1991 .
+    Google Scholar Go here for SFX
+    Brueckner, K. A. , Phys. Rev. , 96 , 508 ( 1954 ). Nuclear Saturation and Two‐Body Forces. II. Tensor Forces.
+    Google Scholar Go here for SFX
+    Nesbet, R. K. , Phys. Rev. , 109 , 1632 ( 1958 ). Brueckner's Theory and the Method of Super‐position of Configurations.
+    Google Scholar Go here for SFX
+    Chiles, R. A. and Dykstra, C. E. , J. Chem. Phys. , 74 , 4544 ( 1981 ). An Electron Pair Operator Approach to Coupled‐Cluster Wave Functions. Application to He 2 , Be 2 , and Mg 2 and Comparison with CEPA Methods.
+    Google Scholar Go here for SFX
+    Stolarczyk, L. Z. and Monkhorst, H. J. , Int. J. Quantum Chem. Symp. , 18 , 267 ( 1984 ). Coupled‐Cluster Method with Optimized Reference State.
+    Google Scholar Go here for SFX
+    Scuseria, G. E. and Schaefer, H. F. , Chem. Phys. Lett. , 142 , 354 ( 1987 ). The Optimization of Molecular Orbitals for Coupled Cluster Wavefunctions.
+    Google Scholar Go here for SFX
+    Handy, N. C. , Pople, J. A. , Head‐Gordon, M. , Raghavachari, K. , and Trucks, G. W. , Chem. Phys. Lett. , 164 , 185 ( 1989 ). Size‐Consistent Brueckner Theory Limited to Double Substitutions.
+    Google Scholar Go here for SFX
+    Kobayashi, R. , Handy, N. C. , Amos, R. D. , Trucks, G. W. , Frisch, M. J. , and Pople, J. A. , J. Chem. Phys. , 95 , 6723 ( 1991 ). Gradient Theory Applied to the Brueckner Doubles Method.
+    Google Scholar Go here for SFX
+    Kobayashi, R. , Amos, R. D. , and Handy, N. C. , Chem. Phys. Lett. , 184 , 195 ( 1991 ). The Analytic Gradient of the Perturbative Triple Excitations Correction to the Brueckner Doubles Method.
+    Google Scholar Go here for SFX
+    Lee, T. J. , Kobayashi, R. , Handy, N. C. , and Amos, R. D. , J. Chem. Phys. , 96 , 8931 ( 1992 ). Comparison of the Brueckner and Coupled‐Cluster Approaches to Electron Correlation.
+    Google Scholar Go here for SFX
+    Stanton, J. F. , Gauss, J. , and Bartlett, R. J. , J. Chem. Phys. , 97 , 5554 ( 1992 ). On the Choice of Orbitals for Symmetry Breaking Problems with Application to NO 3 .
+    Google Scholar Go here for SFX
+    Kobayashi, R. , Koch, H. , Jørgensen, P. , and Lee, T. J. , Chem. Phys. Lett. , 211 , 94 ( 1993 ). Comparison of Coupled‐Cluster and Brueckner Coupled‐Cluster Calculations of Molecular Properties.
+    Google Scholar Go here for SFX
+    Kozlov, V. A. and Pupyshev, V. I. , Chem. Phys. Lett. , 206 , 151 ( 1993 ). Self‐Consistent Brueckner Theory for Molecular Orbitals.
+    Google Scholar Go here for SFX
+    Kobayashi, R. , Amos, R. D. , and Handy, N. C. , J. Chem. Phys. , 100 , 1375 ( 1994 ). Large Basis Set Calculations Using Brueckner Theory.
+    Google Scholar Go here for SFX
+    Watts, J. D. and Bartlett, R. J. , Int. J. Quantum Chem. Symp. , 28 , 195 ( 1994 ). Coupled‐Cluster Singles, Doubles, and Triples Calculations with Hartree‐Fock and Brueckner Orbital Reference Determinants: A Comparative Study.
+    Google Scholar Go here for SFX
+    Scuseria, G. E. , Int. J. Quantum Chem. , 55 , 165 ( 1995 ). On the Connections Between Brueckner‐Coupled‐Cluster, Density‐Dependent Hartree‐Fock, and Density Functional Theory.
+    Google Scholar Go here for SFX
+    Sherrill, C. D. , Krylov, A. I. , Byrd, E. F. C. , and Head‐Gordon, M. , J. Chem. Phys. , 109 , 4171 ( 1998 ). Energies and Analytic Gradients for a Coupled‐Cluster Doubles Model Using Variational Brueckner Orbitals. Application to Symmetry Breaking in O + 4 .
+    Google Scholar Go here for SFX
+    Čížek, J. and Paldus, J. , J. Chem. Phys. , 47 , 3976 ( 1967 ). Stability Conditions for the Solutions of the Hartree‐Fock Equations for Atomic and Molecular Systems. Application to the Pi‐Electron Model of Cyclic Polyenes.
+    Google Scholar Go here for SFX
+    Paldus, J. and Čížek, J. , Chem. Phys. Lett. , 3 , 1 ( 1969 ). Stability Conditions for the Solutions of the Hartree‐Fock Equations for the Simple Open‐Shell Case.
+    Google Scholar Go here for SFX
+    Davidson, E. R. and Borden, W. T. , J. Phys. Chem. , 87 , 4783 ( 1983 ). Symmetry Breaking in Polyatomic Molecules: Real and Artifactual.
+    Google Scholar Go here for SFX
+    See also: Bally, T. and Borden, W. T. , in Reviews in Computational Chemisty , K. B. Lipkowitz and D. B. Boyd , Eds., Wiley‐VCH, New York , Vol. 13 , pp. 1 – 97 . Calculations on Open‐Shell Molecules: A Beginner's Guide.
+    Google Scholar Go here for SFX
+    Allen, W. D. , Horner, D. A. , DeKock, R. L. , Remington, R. B. , and Schaefer, H. F. , Chem. Phys. , 133 , 11 ( 1989 ). The Lithium Superoxide Radical: Symmetry Breaking Phenomena and Potential Energy Surfaces.
+    Google Scholar Go here for SFX
+    Goscinski, O. , Int. J. Quantum Chem. Symp. , 19 , 51 ( 1986 ). Are Localized Broken Symmetry Solutions Acceptable in Molecular Calculations?
+    Google Scholar Go here for SFX
+    Löwdin, P.‐O. , Rev. Mod. Phys. , 35 , 496 ( 1963 ). Discussion on the Hartree‐Fock Approximation.
+    Google Scholar Go here for SFX
+    Deguchi, K. , Nishikawa, K. , and Aono, S. , J. Chem. Phys. , 75 , 4165 ( 1981 ). Instabilities of the Hartree‐Fock Solution and the Vibrational Mode in a Molecule.
+    Google Scholar Go here for SFX
+    Yamaguchi, Y. , Alberts, I. L. , Goddard, J. D. , and Schaefer, H. F. , Chem. Phys. , 147 , 309 ( 1990 ). Use of the Molecular Orbital Hessian for Self‐Consistent‐Field (SCF) Wavefunctions.
+    Google Scholar Go here for SFX
+    Burton, N. A. , Yamaguchi, Y. , Alberts, I. L. , and Schaefer, H. F. , J. Chem. Phys. , 95 , 7466 ( 1991 ). Interpretation of Excited State Hartree‐Fock Analytic Derivative Anomalies for NO 2 and HCO 2 Using the Molecular Orbital Hessian.
+    Google Scholar Go here for SFX
+    Barnes, L. A. and Lindh, R. , Chem. Phys. Lett. , 223 , 207 ( 1994 ). Symmetry Breaking in O + 4 : An Application of the Brueckner Coupled‐Cluster Method.
+    Google Scholar Go here for SFX
+    Xie, Y. , Allen, W. D. , Yamaguchi, Y. , and Schaefer, H. F. , J. Chem. Phys. , 104 , 7615 ( 1996 ). Is the Oxywater Radical Cation More Stable Than Neutral Oxywater?
+    Google Scholar Go here for SFX
+    Hrušák, J. and Iwata, S. , J. Chem. Phys. , 106 , 4877 ( 1997 ). The Vibrational Spectrum of H 2 O + 2 Radical Cation: An Illustration of Symmetry Breaking.
+    Google Scholar Go here for SFX
+    Crawford, T. D. , Stanton, J. F. , Szalay, P. G. , and Schaefer, H. F. , J. Chem. Phys. , 107 , 2525 ( 1997 ). The C̃ 2 A 2 Excited State of NO 2 : Evidence for a C s Equilibrium Structure and a Failure of Some Spin‐Restricted Reference Wavefunctions.
+    Google Scholar Go here for SFX
+    Shibuya, K. , Terauchi, C. , Sugawara, M. , Aoki, K. , Tsuji, K. , and Tsuchiya, S. , J. Mol. Struct. , 413–414 , 501 ( 1997 ). Vibrational Level Structure of NO 2 C̃ 2 A 2 in the Energy Region of 16200–21000 cm −1 : Evidence for the Breakdown of C 2v Symmetry.
+    Google Scholar Go here for SFX
+    King, R. A. , Crawford, T. D. , Stanton, J. F. , and Schaefer, H. F. , J. Am. Chem. Soc. , submitted, 1999. Conformations of [10]Annulene. More Bad News for Density‐Functional Theory and Perturbation Theory.
+    Google Scholar Go here for SFX
+    Pulay, P. , Chem. Phys. Lett. , 100 , 151 ( 1983 ). Localizability of Dynamic Electron Correlation.
+    Google Scholar Go here for SFX
+    Sæbø, S. and Pulay, P. , Chem. Phys. Lett. , 113 , 13 ( 1985 ). Local Configuration Interaction: An Efficient Approach for Larger Molecules.
+    Google Scholar Go here for SFX
+    Pulay, P. and Sæbø, S. , Theor. Chim. Acta , 69 , 357 ( 1986 ). Orbital‐Invariant Formulation and Second‐Order Gradient Evaluation in Møller‐Plesset Perturbation Theory.
+    Google Scholar Go here for SFX
+    Sæbø, S. and Pulay, P. , J. Chem. Phys. , 86 , 914 ( 1987 ). Fourth‐Order Møller‐Plesset Perturbation Theory in the Local Correlation Treatment. I. Method.
+    Google Scholar Go here for SFX
+    Sæbø, S. , Tong, W. , and Pulay, P. , J. Chem. Phys. , 98 , 2170 ( 1993 ). Efficient Elimination of Basis Set Superposition Errors by the Local Correlation Method: Accurate Ab Initio Studies of the Water Dimer.
+    Google Scholar Go here for SFX
+    Hampel, C. and Werner, H.‐J. , J. Chem. Phys. , 104 , 6286 ( 1996 ). Local Treatment of Electron Correlation in Coupled Cluster Theory.
+    Google Scholar Go here for SFX
+    Watts, J. D. and Bartlett, R. J. , J. Chem. Phys. , 101 , 3073 ( 1994 ). The Inclusion of Connected Triples Excitations in the Equation‐of‐Motion Coupled‐Cluster Methods.
+    Google Scholar Go here for SFX
+    Watts, J. D. and Bartlett, R. J. , Chem. Phys. Lett. , 233 , 81 ( 1995 ). Economical Triple Excitation Equation‐of‐Motion Coupled‐Cluster Methods for Excitation‐Energies.
+    Google Scholar Go here for SFX
+    Watts, J. D. and Bartlett, R. J. , Chem. Phys. Lett. , 258 , 581 ( 1996 ). Iterative and Noniterative Triple Excitation Corrections in Coupled‐Cluster Methods for Excited Electronic States—The EOM‐CCSDT‐3 and EOM‐CCSD(T̃) Methods.
+    Google Scholar Go here for SFX
+    Christiansen, O. , Koch, H. , and Jørgensen, P. , J. Chem. Phys. , 105 , 1451 ( 1996 ). Perturbative Triple Excitation Corrections to Coupled Cluster Singles and Doubles Excitation Energies.
+    Google Scholar Go here for SFX
+    Piecuch, P. , Oliphant, N. , and Adamowicz, L. , J. Chem. Phys. , 99 , 1875 ( 1993 ). A State‐Selective Multireference Coupled‐Cluster Theory Employing the Single‐Reference Formalism.
+    Google Scholar Go here for SFX
+    Piecuch, P. and Adamowicz, L. , J. Chem. Phys. , 102 , 898 ( 1995 ). Breaking Bonds with the State‐Selective Multireference Coupled‐Cluster Methods Employing the Single‐Reference Formalism.
+    Google Scholar Go here for SFX
+    Banerjee, A. and Simons, J. , J. Chem. Phys. , 76 , 4548 ( 1982 ). Applications of Multiconfigurational Coupled‐Cluster Theory.
+    Google Scholar Go here for SFX
+    Laidig, W. D. and Bartlett, R. J. , Chem. Phys. Lett. , 104 , 424 ( 1984 ). A Multi‐Reference Coupled‐Cluster Method for Molecular Applications.
+    Google Scholar Go here for SFX
+    Szalay, P. G. and Bartlett, R. J. , J. Chem. Phys. , 103 , 3600 ( 1995 ). Approximately Extensive Modifications of the Multireference Configuration Interaction Method: A Theoretical and Practical Analysis.
+    Google Scholar Go here for SFX
+    Ghose, K. B. , Piecuch, P. , and Adamovicz, L. , J. Chem. Phys. , 103 , 9331 ( 1995 ). Improved Computational Strategy for the State‐Selective Coupled‐Cluster Theory with Semi‐Internal Triexcited Clusters: Potential Energy Surface of the HF Molecule.
+    Google Scholar Go here for SFX
+    Fermann, J. T. , Sherrill, C. D. , Crawford, T. D. , and Schaefer, H. F. , J. Chem. Phys. , 100 , 8132 ( 1994 ). Benchmark Studies of Electron Correlation in Six‐Electron Systems.
+    Google Scholar Go here for SFX
+    Handy, N. C. and Lee, A. M. , Chem. Phys. Lett. , 252 , 425 ( 1996 ). The Adiabatic Approximation.
+    Google Scholar Go here for SFX
+    Almlöf, J. and Taylor, P. R. J. Chem. Phys. , 86 , 4070 ( 1987 ). General Contraction of Gaussian Basis Sets. I. Atomic Natural Orbitals for First‐ and Second‐Row Atoms.
+    Google Scholar Go here for SFX
+    Almlöf, J. , Helgaker, T. , and Taylor, P. R. , J. Phys. Chem. , 92 , 3029 ( 1988 ). Gaussian Basis Sets for High‐Quality Ab Initio Calculations.
+    Google Scholar Go here for SFX
+    Dunning, T. H. , J. Chem. Phys. , 90 , 1007 ( 1989 ). Gaussian Basis Sets for Use in Correlated Molecular Calculations. I. The Atoms Boron Through Neon.
+    Google Scholar Go here for SFX
+    Persson, B. J. and Taylor, P. R. , J. Chem. Phys. , 105 , 5915 ( 1996 ). Accurate Quantum‐Chemical Calculations: The Use of Gaussian‐Type Geminal Functions in the Treatment of Electron Correlation.
+    Google Scholar Go here for SFX
+    Martin, J. M. L. and Taylor, P. R. , J. Chem. Phys. , 106 , 8620 ( 1997 ). Benchmark Quality Total Atomization Energies of Small Polyatomic Molecules.
+    Google Scholar Go here for SFX
+    Helgaker, T. , Klopper, W. , Koch, H. , and Noga, J. , J. Chem. Phys. , 106 , 9639 ( 1997 ). Basis‐Set Convergence of Correlated Calculations on Water.
+    Google Scholar Go here for SFX
+    Klopper, W. , Habilitationsschrift, Eidgenössischen Technischen Hochschule, Zürich , 1996. r 12 ‐Dependent Wave Functions.
+    Google Scholar Go here for SFX
+
+Reviews in Computational Chemistry
+
+Reviews in Computational Chemistry, Volume 14
+
+    References
+    Related
+    Information
+
+Caption
+Additional links
+About Wiley Online Library
+
+    Privacy Policy
+    Terms of Use
+    Cookies
+    Accessibility
+
+Help & Support
+
+    Contact Us
+
+Opportunities
+
+    Subscription Agents
+    Advertisers & Corporate Partners
+
+Connect with Wiley
+
+    The Wiley Network
+    Wiley Press Room
+
+Copyright © 1999-2019 John Wiley & Sons, Inc . All rights reserved
+Wiley Home Page
+Log in to Wiley Online Library
+Email or Customer ID
+Password
+Forgot password?
+NEW USER > INSTITUTIONAL LOGIN >
+Change Password
+Old Password
+New Password
+Too Short Weak Medium Strong Very Strong Too Long
+Congrats!
+
+Your password has been changed
+Create a new account
+Email or Customer ID
+Returning user
+Forgot your password?
+
+Enter your email address below.
+Email or Customer ID
+
+Please check your email for instructions on resetting your password. If you do not receive an email within 10 minutes, your email address may not be registered, and you may need to create a new Wiley Online Library account.
+Request Username
+
+Can't sign in? Forgot your username?
+
+Enter your email address below and we will send you your username
+Email or Customer ID
+Close
+
+If the address matches an existing account you will receive an email with instructions to retrieve your username

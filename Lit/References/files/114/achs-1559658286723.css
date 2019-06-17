@@ -1,0 +1,1275 @@
+/* TEMP FOR LAUNCH: FOR ACHS-4890 and ACHS-4891 */
+.article_header-right .button_primary_2 {
+	display: none;
+}
+
+
+
+/* FOR MAKING PAGE BUILDER EDITING BETTER */
+#pb-editor .pb-sidebar {
+	right: 0;
+}
+#pb-editor .header {
+	position: static;
+}
+#pb-editor .pb-edit-view {
+	width: 85%;
+}
+#pb-editor .row {
+	width: 90%;
+	margin: 0;
+}
+#pb-editor .header_content .show-recommended_slider {
+	position: static;
+}
+#pb-editor .pb-widget-layout {
+	padding: 10px;
+	border: 2px solid orange;
+}
+#pb-editor .col-xs-1, #pb-editor .col-xs-2, #pb-editor .col-xs-3, #pb-editor .col-xs-4, #pb-editor .col-xs-5, #pb-editor .col-xs-6, #pb-editor .col-xs-7, #pb-editor .col-xs-8, #pb-editor .col-xs-9, #pb-editor .col-xs-10, #pb-editor .col-xs-11, #pb-editor .col-xs-12, #pb-editor .col-sm-1, #pb-editor .col-sm-2, #pb-editor .col-sm-3, #pb-editor .col-sm-4, #pb-editor .col-sm-5, #pb-editor .col-sm-6, #pb-editor .col-sm-7, #pb-editor .col-sm-8, #pb-editor .col-sm-9, #pb-editor .col-sm-10, #pb-editor .col-sm-11, #pb-editor .col-sm-12, #pb-editor .col-md-1, #pb-editor .col-md-2, #pb-editor .col-md-3, #pb-editor .col-md-4, #pb-editor .col-md-5, #pb-editor .col-md-6, #pb-editor .col-md-7, #pb-editor .col-md-8, #pb-editor .col-md-9, #pb-editor .col-md-10, #pb-editor .col-md-11, #pb-editor .col-md-12, #pb-editor .col-lg-1, #pb-editor .col-lg-2, #pb-editor .col-lg-3, #pb-editor .col-lg-4, #pb-editor .col-lg-5, #pb-editor .col-lg-6, #pb-editor .col-lg-7, #pb-editor .col-lg-8, #pb-editor .col-lg-9, #pb-editor .col-lg-10, #pb-editor .col-lg-11, #pb-editor .col-lg-12, #pb-editor .col-xl-1, #pb-editor .col-xl-2, #pb-editor .col-xl-3, #pb-editor .col-xl-4, #pb-editor .col-xl-5, #pb-editor .col-xl-6, #pb-editor .col-xl-7, #pb-editor .col-xl-8, #pb-editor .col-xl-9, #pb-editor .col-xl-10, #pb-editor .col-xl-11, #pb-editor .col-xl-12 {
+	float: none;
+	display: inline-block;
+	vertical-align: top;
+}
+#pb-editor .teaser_advDropZone, #pb-editor .advertisement {
+	display: block;
+}
+
+/*LIT-229090*/
+#pb-editor .top-content_slider-dropzone {
+		visibility: visible;
+}
+/*LIT-229090*/
+#pb-editor .owl-carousel {
+		display: block;
+}
+/*LIT-229090*/
+#pb-editor .multi-search_slider-dropzone {
+		visibility: visible;
+}
+
+/*LIT-277780*/
+.cen-art-share div.share__block {
+	right: 0;
+}
+
+/*LIT-226805*/
+.downCit .citatationAlertSection .article-tools__ctrl {
+	display: none;
+}
+.downCit .citatationAlertSection [data-db-target-of] {
+	display: block;
+	position: static;
+	box-shadow: none;
+}
+
+/* TEMP STYLES TO BE MIGRATED TO REAL STYLESHEET */
+
+/* Scrollbar */
+@media(min-width: 1025px) {
+	.pub-modal .pub-content::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 16px;
+		border: 1px solid #d1d1d1;
+		border-radius: 8px;
+	}
+	.pub-modal .pub-content::-webkit-scrollbar-thumb {
+		border-radius: 8px;
+		background-color: #d1d1d1;
+		-webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+	}
+	.pub-modal .pub-content {
+		height: 98%; /* this is an overwrite */
+	}
+}
+
+
+
+/* ads */
+.right-col-ad {
+	margin-bottom: 20px;
+}
+.rightColAdvertisement a {
+	text-align: center;
+	font-size: 10px;
+	color: #aaa;
+	text-decoration: none;
+}
+
+
+/* custom pages - migrated "pubs" template */
+.customPage-pubs {
+	padding-top: 20px;
+}
+.customPage-pubs .pull-right {
+	text-align: right;
+}
+
+/* custom pages - general */
+.cp-header {
+	padding: 25px 1%;
+}
+
+
+
+/* --------- (START) showMostReadArticles scope styles --------------*/
+.mostread-left p {
+				margin: 30px 0px;
+				max-width: 830px;
+
+				@include media("<desktop") {
+						max-width: none;
+		}
+}
+
+.mostread-left:last-child {
+	 margin-bottom: 0px;
+}
+
+.mostread-logo {
+	width:100%;
+	@include media("<desktop") {
+			width: 100%;
+	}
+}
+
+.mostread_text {
+	color:#898989;	
+	max-width: 660px;
+		padding-bottom: 20px;
+		font-size:	0.875rem;	
+}
+
+.mostread-list {
+						list-style: none;
+						padding: 0px;
+						margin: 0px;
+						border-top: 4px double #A7A9AC;
+
+						@include media("<desktop") {
+								margin-top: 40px;
+						}
+
+}
+
+.mostread-list a {
+	padding: 10px 0px 4px 0px;
+	display: inline-block;
+}
+
+.mostread-list a:hover {
+	color: #00A3E0;
+}
+
+.mostread-visited{
+	color:#FDC82F;;
+}
+
+.mostread-list span {
+	color: #0039A6;
+	font-size: 0.875rem;
+	line-height: 1rem;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.mostread-list i {
+	font-size: 1rem;
+	line-height: 1rem;
+	display: inline-block;
+	padding-right: 10px;
+	vertical-align: top;
+}
+
+.mostread-list li {
+	padding: 0px;
+	margin: 0px;
+	border-bottom: 2px solid #EFEFEF;
+}
+
+/* --------- (END) showMostReadArticles scope styles --------------*/
+
+/* --------- (START) Reagents Styles ACS custom styles --------------*/
+#reagents-content .NLM_sec_level_2 {
+	margin-left: 10px;
+}
+#reagents-content #articleBody div .NLM_table-wrap {
+	width: 685px;
+	max-width: 685px;
+	margin-left: 18px;
+	border: 0;
+}
+#reagents-content #articleBody div li .NLM_table-wrap {
+	width: 630px;
+	max-width: 630px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#reagents-content #articleBody div .NLM_table-wrap .NLM_caption {
+	padding-bottom: 0px;
+	margin-bottom: -10px;
+	margin-left: 2px;
+	font-weight: bold;
+}
+#reagents-content #articleBody div .NLM_table-wrap table,
+#reagents-content #articleBody .NLM_array table {
+	border-top: solid 1px #666666;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: solid 1px #666666;
+	width: 685px;
+	max-width: 685px;
+	font-size: 13px;
+}
+#reagents-content #articleBody div li .NLM_table-wrap table {
+	width: 630px;
+	max-width: 630px;
+}
+#reagents-content #articleBody div .NLM_table-wrap table th,
+#reagents-content #articleBody .NLM_array table th {
+	padding: 5px;
+	border-bottom: 1px solid #666666;
+}
+#reagents-content #articleBody div .NLM_table-wrap table td,
+#reagents-content #articleBody .NLM_array table td {
+	padding: 5px 0px 5px 5px;
+}
+#reagents-content #articleBody div .NLM_table-wrap .NLM_table-wrap-foot {
+	margin-top: -15px;
+	margin-left: 15px;
+	margin-bottom: 15px;
+	font-size: 11px;
+}
+#reagents-content .NLM_label {
+	display: inline-block;
+	float: left;
+	margin-right: 2px;
+}
+#reagents-content th i {
+	font-style: italic;
+	font-weight: normal;
+}
+#reagents-content .hlFld-subTitle {
+	color: black;
+}
+#reagents-content .hlFld-subTitle:before {
+	content: "(";
+}
+#reagents-content .hlFld-subTitle:after {
+	content: ")";
+}
+#reagents-content #articleMeta {
+	font-weight: bold;
+}
+#reagents-content .listgroup table,
+#reagents-content .listgroup caption,
+#reagents-content .listgroup tbody,
+#reagents-content .listgroup tfoot,
+#reagents-content .listgroup thead,
+#reagents-content .listgroup tr,
+#reagents-content .listgroup th,
+#reagents-content .listgroup td {
+	vertical-align: baseline;
+}
+/* LIT-235542 comment 1
+#reagents-content .NLM_p {
+	width: 680px;
+}*/
+#reagents-content .boxed-text-float {
+	background-color: #eeeeee;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+#reagents-content .boxed-text-float p {
+	margin-bottom: 0px;
+}
+#reagents-content #articleBody p {
+	margin-bottom: 0px;
+}
+#reagents-content #abstractBox p {
+		/* width: 660px; */
+		width: 100%;
+}
+#reagents-content .def-list {/*LIT-253753*/
+	overflow-x: auto;
+}
+#reagents-content .def-list dl {/*LIT-253753*/
+	min-width: 650px;
+}
+#reagents-content .def-list dl li p.inline{/*LIT-276743*/
+	display: block;
+}
+#reagents-content .def-list dl li ol p.inline{/*LIT-276743*/
+    width: auto;
+    padding-left: 200px;
+}
+#reagents-content .def-list dl ol.NLM_list-list_type-order{/*LIT-276743*/
+    width: 666px;
+    overflow-x: auto;
+}
+#reagents-content .def-list dl ul{/*LIT-276743*/
+    display: block;
+}
+#reagents-content .def-list dl ol li p.inline{/*LIT-276743*/
+    display: inline;
+}
+#reagents-content .def-list dl ul.NLM_list-list_type-simple{/*LIT-276743*/
+    margin: 0px 0px 10px 6px;
+    list-style-type: initial !important;
+}
+#reagents-content dl {
+	max-width: 700px;
+	margin-bottom: 10px;
+	padding: 0;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+#reagents-content dl dt:before {
+	float: right;
+	width: 0px;
+	white-space: nowrap;
+	display: inline-block;
+	content: "........................................" "........................................" "........................................";
+}
+#reagents-content dl dt {
+	margin-left: 5px;
+	background: white;
+	float: left;
+	clear: both;
+	max-width: 275px;
+}
+#reagents-content .boxed-text-float dl dt,
+#reagents-content .boxed-text-float dl dd {
+	background: #eeeeee;
+}
+#reagents-content dl dd {
+	float: right;
+	margin: 0;
+	padding-left: 20px;
+	background: white;
+}
+#reagents-content dl dd ol.NLM_list-list_type-simple {
+	margin-left: 5px;
+}
+#reagents-content dl dd p {
+	line-height: normal;
+	margin: 0;
+	width: 360px;
+}
+/*Exceptions to DL styles */
+#reagents-content dl.minimal dt:before {
+	content: "";
+}
+#reagents-content dl.minimal dt:after {
+	content: ": ";
+}
+#reagents-content dl.minimal dt {
+	background: none;
+	float: left;
+}
+#reagents-content dl.minimal dd {
+	float: left;
+	padding-left: 10px;
+	background: none;
+	clear: right;
+}
+#reagents-content dl.minimal .title2 {
+	margin-top: 5px;
+	margin-left: 5px;
+}
+#reagents-content dl.minimal dl {
+	margin-left: 10px;
+}
+#reagents-content def-head,
+#reagents-content term-head {
+	clear: both;
+	display: block;
+	margin-left: 320px;
+}
+#reagents-content .NLM_sec_level_2 def-head {
+	margin-left: 290px;
+}
+#reagents-content term-head {
+	margin-left: 5px;
+	position: absolute;
+}
+#reagents-content .hlFld-FullText img {
+	max-width: 500px;
+	max-height: 60px;
+}
+#reagents-content .NLM_sec :not(.NLM_citation) img {
+	margin-right: auto;
+	margin-left: auto;
+	clear: both;
+	display: block;
+}
+#reagents-content .NLM_sec .NLM_citation img {
+	width: auto;
+	margin-left: 0px;
+	border: 0;
+	padding: 0px;
+	clear: none;
+	margin-bottom: 0px;
+	display: inline-block;
+	margin-top: 0px;
+}
+#reagents-content #abstractBox img {
+	display: block;
+	margin-bottom: 5px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 5px;
+}
+#reagents-content .NLM_sec_level_2 .title2,
+#reagents-content .NLM_sec_level_3 .title3 {
+	border-bottom: 1px solid #666666;
+	display: block;
+	width: 685px;
+	padding-bottom: 4px;
+	margin-bottom: 8px;
+	margin-top: 20px;
+}
+#reagents-content .NLM_sec_level_2 dl .title2,
+#reagents-content .NLM_sec_level_3 dl .title3 {
+	border-bottom: 0;
+	text-decoration: underline;
+	display: block;
+	margin-top: 20px;
+}
+#reagents-content li.IN_LIST-title .title3 {
+	border: 0px;
+}
+#reagents-content li.IN_LIST-title {
+	list-style: none;
+}
+#reagents-content .NLM_sec_level_2 .boxed-text-float .title2 {
+	border-bottom: 0px;
+	display: block;
+	width: 670px;
+	padding-bottom: 4px;
+	margin-bottom: 8px;
+	margin-top: 0px;
+}
+#reagents-content .NLM_sec_level_2 .caption .title2 {
+	border-bottom: 0px;
+	display: block;
+	width: auto;
+	clear: both;
+	padding-bottom: 4px;
+	margin-bottom: 8px;
+	margin-top: 0px;
+}
+#reagents-content .NLM_sec_level_2 dl .title2 {
+	display: block;
+	border-bottom: 0px;
+	text-decoration: underline;
+	width: 700px;
+	padding-bottom: 4px;
+	margin-bottom: 0px;
+	margin-top: 20px;
+}
+#reagents-content ul.anchors {
+	display: none;
+}
+#reagents-content #abstractBox table.listgroup {
+	margin-top: 15px;
+	width: 660px;
+	max-width: 660px;
+	margin-left: 5px;
+}
+#reagents-content :not(#abstractBox) table.listgroup {
+	margin-top: 15px;
+	/* width: 680px;*/
+	/* max-width: 680px;*/
+	width: 100%;
+	max-width: 100%;
+	margin-left: 7%;/*LIT-228644*/
+	margin-bottom: 15px;
+	line-height: 1.6em;
+}
+#reagents-content #abstractBox table.listgroup tr {
+	float: left;
+	/* width: 215px; */
+	width: 33%;
+}
+
+
+#reagents-content span.def-head-def {
+/*LIT-228644*/
+	display:none;
+}
+
+@media (min-width: 1025px){
+/*LIT-228644*/
+	#reagents-content def-head, #reagents-content term-head {
+		margin-left: 0px;
+	}
+	#reagents-content def-head italic {
+		float: right;
+		margin-right:209px;
+	}
+}
+
+@media (max-width: 1024px){
+/*LIT-228644*/
+	#reagents-content #abstractBox table.listgroup tr, #reagents-content #abstractBox table.listgroup tbody {
+	    display: block;
+	    width: 100% !important;
+	    text-align: center;
+	}
+
+	#reagents-content #abstractBox table.listgroup td {
+	    display: inline-block;
+	}
+
+
+	#reagents-content #abstractBox table.listgroup {
+		display: block;
+		margin-left: 0px;
+	}
+
+	#reagents-content dl dt:before {
+		display:none;
+	}
+
+	#reagents-content dl dt {
+		margin-left: 0px;
+		float: none;
+		clear: none;
+		max-width: none;
+		margin-top: 20px;
+	}
+
+	#reagents-content dl dt:first-child{
+		margin-top: 0px;
+	}
+
+	#reagents-content dl dd{
+		float: none; 
+	     	margin-top: 0px; 
+	     	padding-left: 0px; 
+		display:table;
+	}
+	
+	#reagents-content dl dd p{
+		display:inline;
+	}
+
+	#reagents-content span.def-head-def {
+		display:inline-block;
+	    	padding-right: 15px;
+	}
+
+	#reagents-content def-head, #reagents-content term-head {
+		clear:none;
+		margin-left: 0px;
+		display: inline-block;
+	}
+
+	#reagents-content dl>def-head {
+	    	display: none !important;
+	}
+}
+
+
+#reagents-content #abstractBox table.listgroup td p.last{
+/*LIT-228644*/
+	font-family: sans-serif;
+}
+#reagents-content #abstractBox table.listgroup td {
+/*LIT-228644*/
+	padding: 1px;
+	text-align: center;
+	vertical-align: bottom;
+}
+#reagents-content #articleBody div table.single-image {
+	border: 0;
+}
+#reagents-content #metrics div div:last-child {
+	display: none;
+}
+#reagents-content .figure {
+	margin: 0;
+	margin-left: 200px;
+	width: auto;
+	margin-right: 225px;
+	margin-bottom: 20px;
+}
+#reagents-content .figure a.thumbnail {
+	display: block;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+#reagents-content .NLM_sec .figure img {
+	width: auto;
+	margin-left: 0px;
+	border: 0;
+	padding: 5px;
+	margin-bottom: 0px;
+	display: block;
+	margin-top: 0px;
+}
+#reagents-content li ul {
+	margin-left: 20px;
+}
+#reagents-content ol.NLM_list-list_type-simple {
+	list-style: none;
+}
+#reagents-content p:empty {
+	display: none;
+}
+#reagents-content .title4 {
+	display: block;
+	margin-top: 10px;
+	text-decoration: underline;
+}
+#reagents-toc .tocListtDropZone2 {
+	border: 1px solid #ccc;
+	border-top: 0;
+	margin-top: -10px;
+	margin-left: 2px;
+	width: 729px;
+}
+#reagents-toc .tocTools .tocContent {
+	border: 1px solid #ccc;
+	border-bottom: 0;
+	padding: 10px;
+}
+#reagents-toc .articleLinksIcons ul.icons li.icon-item.chemworx-entry {
+	margin: 0 0 0 0;
+}
+#reagents-toc .articleBox {
+	min-height: 160px;
+}
+#reagents-toc img.NLM_inline-graphic {
+	height: 21px;
+}
+#reagents-toc .bookInfo {
+	display: none;
+}
+#reagents-toc .articleGroupHead {
+	width: 97%;
+}
+#reagents-toc .articleBox {
+	width: 98.5%;
+}
+#reagents-toc .title-group-expandable {
+	padding-left: 15px;
+}
+#reagents-toc .articleGroupHead {
+	width: auto;
+	background: #006ea9;
+}
+#reagents-toc .articleGroupHead h3 {
+	padding: 10px 0;
+}
+#reagents-toc .level1 .articleGroupHead {
+	margin: 10px 0 10px 30px;
+	background: #65b2e9;
+}
+#reagents-toc .level1 .book-part-articles {
+	margin-left: 30px;
+}
+#reagents-toc .expanded h3:after {
+	content: "";
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin: 0 0 1px 7px;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #fff;
+}
+#reagents-toc .collapsed h3:after {
+	content: "";
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin: 0 0 1px 7px;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-top: 7px solid #fff;
+}
+#reagents-toc .treeControl {
+	display: none;
+}
+#reagents-toc .articleGroupHead {
+	text-transform: capitalize;
+}
+#reagents-toc legend.tocListTitle {
+	left: 10px;
+}
+.reagents-icon {
+	max-height: 18px;
+}
+#reagents-content #t-upd th {
+	width: 70px;
+}
+#reagents-content #t-upd th:nth-child(4) {
+	width: 45px;
+}
+#reagents-content #t-upd .NLM_inline-graphic img {
+	display: inline;
+}
+#reagents-content #t-upd .NLM_inline-graphic {
+	margin: 0 0.4em;
+}
+.expire-message,
+#expire-big {
+	color: #ea2b35;
+}
+#reagents-content #expire-big {
+	position: absolute;
+	top: 60px;
+	right: 400px;
+	font-size: 60px;
+}
+#reagents-content #t-upd a {
+	text-decoration-line: none;
+}
+#reagents-content #t-upd .NLM_inline-graphic {
+	margin: 0 0.4em;
+}
+#reagents-content #articleBody i.expired {
+	float: left;
+	font-size: 30px;
+	line-height: 44px;
+	margin-right: 8px;
+	color: #ea2b35;
+}
+#reagents-content #articleBody i.current {
+	float: left;
+	font-size: 30px;
+	line-height: 24px;
+	margin-right: 8px;
+	color: #1e73b3;
+}
+#reagents-content #articleBody .current-message p,
+#reagents-content #articleBody .expire-message p,
+#reagents-content #articleBody .expired-message p {
+	color: black;
+}
+#reagents-content .MathJaxEquation {
+	margin: 0 auto;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+/* --------- (END) Reagents Styles ACS custom styles --------------*/
+
+/* --------- START C&EN STYLES TO BE MIGRATED TO STYLEGUIDE ----------------- */
+.cen-hp-topSection {
+	margin-top: 135px;
+}
+.toc-article-group_home-feature p {
+	font-size: 14px;
+}
+.cen-coverStory {
+	position: relative;
+}
+.cen-coverStory__text {
+	position: absolute;
+	left: 2%;
+	bottom: 10%;
+	width: 90%;
+}
+.cen-coverStory__text > div {
+	display: inline;
+	max-width: 100%;
+	margin-bottom: .7%;
+	padding: .2em;
+	background: #fff;
+	line-height: 1.8em;
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+}
+.cen-coverStory__text > div:after {
+	content: "\A";
+	white-space: pre; 
+}
+.cen-coverStory__text .cen-coverStory__text__badge {
+	padding: 5px 10px;
+	background: #ED272D;
+	font-size: 20px;
+	color: #fff;
+}
+.cen-coverStory__text__title {
+	font-size: 34px;
+	color: #000;
+}
+.cen-coverStory__text__authors, .cen-coverStory__text__summary {
+	font-size: 13px;
+	color: #000;
+}
+.cen-coverStory__text__credit {
+	position: absolute;
+	bottom: 10px;
+	right: 5px;
+	padding: 3px;
+	background: #fff;
+	font-size: 12px;
+	color: #000;
+	line-height: normal;
+}
+
+main.cen-toc {
+	margin-top: 160px;
+}
+.cen-issue-header {
+	padding: 30px 10px;
+	background: #1f429b url('/pb-assets/images/cgeabj/highlightBox-bg.jpg') no-repeat;
+	background-size: cover;
+}
+.cen-issue-header-top:before {
+	content: "";
+	display: block;
+	padding-top: 10px;
+	border-top: 1px dotted #fff;
+}
+.toc-article-group_grid-item {
+	max-width: 450px;
+	vertical-align: top;
+}
+.toc-article-group_grid .toc-article-group_item {
+	border-color: #fff;
+}
+.cen-issue-header .toc-article-group_grid .toc-article-group_item *, .cen-issue-header .toc-article-group_grid .toc-article-group_title a:hover {
+	color: #fff;
+}
+
+.toc-article-group_buttons {
+	float: right;
+}
+.toc-article-group_buttons .toc-article-group_list .toc-article-group_item {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+.toc-article-group_buttons .toc-article-group_list .toc-article-group_title a {
+	display: block;
+	width: 12em;
+	font-family: Roboto;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 7px;
+	margin-bottom: 5px;
+	border: 1px solid #ccc;
+	display: block;
+	text-align: center;
+	background: #4668B2;
+	color: #fff;
+}
+
+.cen-recent-covers {
+	margin-bottom: 1.5rem;
+	text-align: center;
+	border: 1px solid #ccc;
+}
+.cen-recent-covers li {
+	display: inline-block;
+	width: 40%;
+	margin: 0 10px 15px;
+}
+.cen-recent-covers .serial-title {
+	display: none;
+}
+
+.cen-article-page #articleMeta {
+	clear: both;
+}
+.cen-article-page .affiliations:before {
+  content: ", ";
+}
+.cen-article-page .affiliations {
+	font-size: .875rem;
+}
+.cen-article-page .issue-date:before {
+	content: " | ";
+}
+.cen-article-page .cit-info {
+	padding-left: 2px;
+}
+
+.cen-art-pdfLink {
+	margin-top: 3px;
+}
+.cen-art-share .share__ctrl {
+	width: 26px;
+	height: 26px;
+}
+.cen-art-share .icon-Icon_Share {
+	font-size:.75rem;
+	line-height:26px;
+}
+
+@media (max-width: 767px) {
+	.cen-hp-topSection {
+		margin-top: 0;
+	}
+	main.cen-toc {
+		margin-top: 77px;
+	}
+	.cen-issue-header-top {
+		margin-top: 10px;
+	}
+	.toc-article-group_buttons .toc-article-group_list .toc-article-group_title a {
+		width: auto;
+	}	
+}
+
+/* ============ TOC Scroll-To Nav ============ */
+#cen-tocNav {
+	clear: both;
+	margin-top: 10px;
+	background: #FAFAFA;
+	z-index: 1;
+}
+#cen-tocNav h4 {
+	font-size: 18px;
+	margin: 0;
+	padding: 10px;
+}
+#cen-tocNav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#cen-tocNav ul li {
+	margin: 0;
+}
+#cen-tocNav ul li a {
+	display: block;
+	padding: 10px;
+	border-top: 1px solid #ddd;
+	border-left: 5px solid transparent;
+	color: #999;
+	font-size: 14px;
+}
+#cen-tocNav ul li a:hover {
+	border-left-color: #2173B4;
+	color: #2173B4;
+	text-decoration: none;
+}
+#cen-tocNav ul li a.selected {
+	border-left-color: #2173B4;
+	color: #2173B4;
+}
+
+/* ====== START CEN JOBS RSS FEED READER ======= */
+.cen-jobs-rss .widget-rss-reader > a, .cen-jobs-rss hr.titleHR {
+	display: none;
+}
+.cen-jobs-rss .heading-title_style-1 {
+	line-height: 37px;
+}
+.cen-jobs-rss .heading-title_style-1 img {
+	vertical-align: middle;
+}
+.cen-jobs-rss-body {
+	margin-top: -10px;
+}
+.cenJobs-buttons {
+	margin: 0 0 15px;
+	padding: 0;
+	list-style: none;
+	font-size: 0;
+}
+.cenJobs-buttons__button {
+	display: inline-block;
+	font-family: "Cabin Condensed", "Helvetica Neue", Helvetica; sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+.cenJobs-buttons__button:first-child {
+	margin-right: 15px;
+	padding-right: 15px;
+	border-right: 1px solid #EAEAEA;
+}
+.cenJobs-buttons a {
+	color: #000;
+}
+.cenJobs-buttons a:hover {
+	color: #333;
+}
+.widget-rss-reader ul {
+	margin-top: 0;
+}
+.widget-rss-reader ul li {
+	list-style: none;
+	margin: 0 0 15px;
+}
+.widget-rss-reader ul li a {
+	font-size: 14px;
+	font-weight: bold;
+	color: #000;
+}
+.cen-feed .title,
+.cen-feed .titleHR {
+	display: none;
+}
+.horizontal-links {
+	text-align: justify;
+	padding: 0 10px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+}
+.horizontal-links:after {
+	content: "";
+	display: inline-block;
+	width: 100%;
+}
+.horizontal-links a {
+	display: inline-block;
+	font-size: 12px;
+	color: #333;
+}
+.cen-feed .archive-link {
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-weight: bold;
+}
+/* ====== END CEN JOBS RSS FEED READER ======= */
+
+/* ====== START CEN ARTICLE DISPLAY ========== */
+.cen-article-page {
+	margin-top: 180px;
+}
+.cen-article-page main.content {
+	margin-top: 0;
+	box-shadow: none;
+}
+.cen-article-page .article {
+	box-shadow: none;
+}
+
+/* ====== END CEN ARTICLE DISPLAY ========== */
+
+@media (max-width: 767px) {
+	main.cen-toc {
+		margin-top: 77px;
+	}
+	.cen-issue-header-top {
+		margin-top: 10px;
+	}
+	.cen-coverStory__text__title { 
+    	font-size: 17px; 
+	} 
+	.toc-article-group_buttons .toc-article-group_list .toc-article-group_title a {
+		width: auto;
+	}
+	.cen-article-page {
+		margin-top: 90px;
+	}
+}
+
+/* --------- END C&EN STYLES TO BE MIGRATED TO STYLEGUIDE ----------------- */
+
+
+
+/*LIT-229078 comment#5*/
+
+.archiveNote p{
+	box-shadow: 0 3px 6px rgba(0,0,0,.16);
+		padding: 15px 20px;
+		margin-bottom: 20px;
+		margin-top: 20px;
+		border-bottom: 4px solid #df2a2e;
+		background: #ffffff;
+}
+
+
+/*LIT-230114 issue#1*/
+.advanced-search--advancedFilters .accordion__control i{
+	margin-left:5px;
+}
+
+.inline {
+		display: inline;
+}
+
+/*LIT-228118 comment#3*/
+
+.noSectionNav .article_content-sections { display: none;}
+
+
+
+
+
+/* ============== STYLES BELOW THIS LINE ARE ADDED BY ACS STAFF ================ */
+dl dt { font-weight: bold; }
+dl dd { margin: 0; }
+.editorial-board-list {
+	-webkit-column-count: 2;
+	-moz-column-count: 2;
+	column-count: 2;
+}
+.editorial-board-list dl {
+	-webkit-column-break-inside: avoid;
+	page-break-inside: avoid;
+	break-inside: avoid;
+	margin: 0 0 10px 0;
+}
+@media (max-width: 500px) { 
+	.editorial-board-list {
+		-webkit-column-count: 1;
+		-moz-column-count: 1;
+		column-count: 1;
+	}
+}
+
+
+/*for the 2fa reset button in accountinfo page*/
+.tfarelated{
+	display: none;
+}
+
+
+/*LIT-234187*/
+.toc-article-group_buttons .toc-article-group .toc-article-group_title a:after {
+    content: " (PDF)";
+}
+
+/*LIT-215007 #7*/
+div.topical-index_level1 a.topical-index_seeAll-link {
+    display:none;
+}  
+
+.noRecommendedWhenNotLoggedIn{
+	display: none;
+}
+
+
+/*cenear has the CENGE layout but we need to add some extra padding to the main container because CENGE page header is by 32px bigger than the normal issues*/
+@media (min-width: 767px){ 
+	.cenge-hdr-ptop32{
+		padding-top: 32px;
+	}
+}
+
+
+/*ACHS-5066 LOI enhancements*/
+.content.journal-home.loinav{
+	padding-bottom: 0px;
+}
+
+.ajcHeaderloi_left {
+    padding-right: 25px;
+    width: calc(100% - 535px);
+}
+
+
+.ajcHeaderloi_right {
+    width: 435px;
+}
+
+@media (max-width: 1024px){
+	.ajcHeaderloi_left {
+		width: 100%;
+		padding-right: 0;
+		float: none;
+	}
+}
+
+.ajcHeaderloi_right {
+    width: 100%;
+    padding-right: 0;
+    float: none;
+}
+
+
+@media (max-width: 767px){
+	.content.journal-home.container_scaled-down.loinav {
+	    padding-left: 0px;
+	    padding-right: 0px;
+	}	
+}
+
+
+
+@media (max-width: 767px) {
+	.allbutmobile{
+		display: none;
+	}
+	.mobileonly{
+		display:inline;
+	}
+}
+
+@media (min-width: 768px) {
+	.allbutmobile{
+		display: block;
+	}
+	.mobileonly{
+		display:none;
+	}
+}
+/*END ACHS-5066 LOI enhancements*/
+
+
+/*ACHS-5098 URGENT as always*/
+.MathJaxEquation{
+	overflow:auto;
+	
+}
+
+
+
+/*ACHS-5066 LOI enhancements*/
+.content.journal-home.loinav{
+	padding-bottom: 0px;
+}
+
+.ajcHeaderloi_left {
+    padding-right: 25px;
+    width: calc(100% - 535px);
+}
+
+
+.ajcHeaderloi_right {
+    width: 435px;
+}
+
+@media (max-width: 1024px){
+.ajcHeaderloi_left {
+    width: 100%;
+    padding-right: 0;
+    float: none;
+}
+
+.ajcHeaderloi_right {
+    width: 100%;
+    padding-right: 0;
+    float: none;
+}
+
+
+@media (max-width: 767px){
+	.content.journal-home.container_scaled-down.loinav {
+	    padding-left: 0px;
+	    padding-right: 0px;
+	}	
+}
+
+
+
+@media (max-width: 767px) {
+	.allbutmobile{
+		display: none;
+	}
+	.mobileonly{
+		display:inline;
+	}
+}
+
+@media (min-width: 768px) {
+	.allbutmobile{
+		display: block;
+	}
+	.mobileonly{
+		display:none;
+	}
+}
+/*END ACHS-5066 LOI enhancements*/
