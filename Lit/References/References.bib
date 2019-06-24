@@ -405,3 +405,80 @@ Simulations of quantum computing indicate that ground-state energy calculations 
         file = {APS Snapshot:/home/hrgrimsl/Zotero/storage/QRY522YG/PhysRevLett.83.html:text/html;Full Text PDF:/home/hrgrimsl/Zotero/storage/CYZQWKGC/Abrams and Lloyd - 1999 - Quantum Algorithm Providing Exponential Speed Incr.pdf:application/pdf}
 }
 
+@article{peruzzo,
+        title = {A variational eigenvalue solver on a photonic quantum processor},
+        volume = {5},
+        copyright = {2014 Nature Publishing Group},
+        issn = {2041-1723},
+        url = {https://www.nature.com/articles/ncomms5213},
+        doi = {10.1038/ncomms5213},
+        abstract = {Quantum computers promise to efficiently solve important problems that are intractable on a conventional computer. For quantum systems, where the physical dimension grows exponentially, finding the eigenvalues of certain operators is one such intractable problem and remains a fundamental challenge. The quantum phase estimation algorithm efficiently finds the eigenvalue of a given eigenvector but requires fully coherent evolution. Here we present an alternative approach that greatly reduces the requirements for coherent evolution and combine this method with a new approach to state preparation based on ansätze and classical optimization. We implement the algorithm by combining a highly reconfigurable photonic quantum processor with a conventional computer. We experimentally demonstrate the feasibility of this approach with an example from quantum chemistry—calculating the ground-state molecular energy for He–H+. The proposed approach drastically reduces the coherence time requirements, enhancing the potential of quantum resources available today and in the near future.},
+        language = {en},
+        urldate = {2019-06-20},
+        journal = {Nature Communications},
+        author = {Peruzzo, Alberto and McClean, Jarrod and Shadbolt, Peter and Yung, Man-Hong and Zhou, Xiao-Qi and Love, Peter J. and Aspuru-Guzik, Alán and O’Brien, Jeremy L.},
+        month = jul,
+        year = {2014},
+        pages = {4213},
+        file = {Full Text PDF:/home/hrgrimsl/Zotero/storage/CUJ3CHDL/Peruzzo et al. - 2014 - A variational eigenvalue solver on a photonic quan.pdf:application/pdf;Snapshot:/home/hrgrimsl/Zotero/storage/DIZB8DBG/ncomms5213.html:text/html}
+}
+@article{grimsley,
+        title = {{ADAPT}-{VQE}: {An} exact variational algorithm for fermionic simulations on a quantum computer},
+        shorttitle = {{ADAPT}-{VQE}},
+        url = {http://arxiv.org/abs/1812.11173},
+        abstract = {Quantum simulation of chemical systems is one of the most promising near-term applications of quantum computers. The variational quantum eigensolver, a leading algorithm for molecular simulations on quantum hardware, has a serious limitation in that it typically relies on a pre-selected wavefunction ansatz that results in approximate wavefunctions and energies. Here we present an arbitrarily accurate variational algorithm termed ADAPT-VQE. Instead of fixing an ansatz upfront, this algorithm grows it systematically one operator at a time in a way dictated by the system being simulated. This generates an ansatz with a small number of parameters, leading to shallow-depth circuits. We present numerical simulations, including for a prototypical strongly correlated molecule, which show that our algorithm performs much better than a unitary coupled cluster approach, in terms of both circuit depth and chemical accuracy. Our results highlight the potential of our adaptive algorithm for exact simulations with present-day and near-term quantum hardware.},
+        urldate = {2019-06-20},
+        journal = {arXiv:1812.11173 [cond-mat, physics:physics, physics:quant-ph]},
+        author = {Grimsley, Harper R. and Economou, Sophia E. and Barnes, Edwin and Mayhall, Nicholas J.},
+        month = dec,
+        year = {2018},
+        note = {arXiv: 1812.11173},
+        keywords = {Condensed Matter - Strongly Correlated Electrons, Physics - Chemical Physics, Quantum Physics},
+        annote = {Comment: 13 pages, 4 figures},
+        file = {arXiv\:1812.11173 PDF:/home/hrgrimsl/Zotero/storage/6UCL6S9B/Grimsley et al. - 2018 - ADAPT-VQE An exact variational algorithm for ferm.pdf:application/pdf;arXiv.org Snapshot:/home/hrgrimsl/Zotero/storage/5CG6ZISJ/1812.html:text/html}
+}
+@article{suzuki,
+        title = {Finding {Exponential} {Product} {Formulas} of {Higher} {Orders}},
+        volume = {679},
+        url = {http://arxiv.org/abs/math-ph/0506007},
+        doi = {10.1007/11526216_2},
+        abstract = {In the present article, we review a continual effort on generalization of the Trotter formula to higher-order exponential product formulas. The exponential product formula is a good and useful approximant, particularly because it conserves important symmetries of the system dynamics. We focuse on two algorithms of constructing higher-order exponential product formulas. The first is the fractal decomposition, where we construct higher-order formulas recursively. The second is to make use of the quantum analysis, where we compute higher-order correction terms directly. As interludes, we also have described the decomposition of symplectic integrators, the approximation of time-ordered exponentials, and the perturbational composition.},
+        urldate = {2019-06-21},
+        journal = {arXiv:math-ph/0506007},
+        author = {Hatano, Naomichi and Suzuki, Masuo},
+        month = nov,
+        year = {2005},
+        note = {arXiv: math-ph/0506007},
+        keywords = {Quantum Physics, Physics - Computational Physics, 41A35, 65P10, 82C80, Condensed Matter - Statistical Mechanics, Mathematical Physics},
+        pages = {37--68},
+        annote = {Comment: 22 pages, 9 figures. To be published in the conference proceedings ''Quantum Annealing and Other Optimization Methods," eds. B.K.Chakrabarti and A.Das (Springer, Heidelberg)},
+        file = {arXiv\:math-ph/0506007 PDF:/home/hrgrimsl/Zotero/storage/FFVFJB54/Hatano and Suzuki - 2005 - Finding Exponential Product Formulas of Higher Ord.pdf:application/pdf;arXiv.org Snapshot:/home/hrgrimsl/Zotero/storage/BTLUPFQ3/0506007.html:text/html}
+}
+
+@article{jordan-wigner,
+        title = {Quantum codes for quantum simulation of fermions on a square lattice of qubits},
+        volume = {99},
+        url = {https://link.aps.org/doi/10.1103/PhysRevA.99.022308},
+        doi = {10.1103/PhysRevA.99.022308},
+        abstract = {Quantum simulation of fermionic systems is a promising application of quantum computers, but to program them, we need to map fermionic states and operators to qubit states and quantum gates. While quantum processors may be built as two-dimensional qubit networks with couplings between nearest neighbors, standard fermion-to-qubit mappings do not account for that kind of connectivity. In this work we concatenate the (one-dimensional) Jordan-Wigner transform with specific quantum codes defined under the addition of a certain number of auxiliary qubits. This yields a class of mappings with which any fermionic system can be embedded in a two-dimensional qubit setup, fostering scalable quantum simulation. Our technique is demonstrated on the two-dimensional Fermi-Hubbard model, which we transform into a local Hamiltonian. What is more, we adapt the Verstraete-Cirac transform and Bravyi-Kitaev superfast simulation to the square lattice connectivity and compare them to our mappings. An advantage of our approach in this comparison is that it allows us to encode and decode a logical state with a simple unitary quantum circuit.},
+        number = {2},
+        urldate = {2019-06-21},
+        journal = {Phys. Rev. A},
+        author = {Steudtner, Mark and Wehner, Stephanie},
+        month = feb, 
+        year = {2019},
+        pages = {022308},
+        file = {APS Snapshot:/home/hrgrimsl/Zotero/storage/ECPNJEUV/PhysRevA.99.html:text/html;Full Text PDF:/home/hrgrimsl/Zotero/storage/22JDJATU/Steudtner and Wehner - 2019 - Quantum codes for quantum simulation of fermions o.pdf:application/pdf}
+}
+
+@misc{notes,
+        title = {Complete notes on fermions and the {Jordan}-{Wigner} transform},
+        url = {http://michaelnielsen.org/blog/complete-notes-on-fermions-and-the-jordan-wigner-transform},
+        language = {en-US},
+        urldate = {2019-06-24},
+        author = {Nielsen, Michael A.},
+        month = jul,
+        year = {2005},
+        file = {Snapshot:/home/hrgrimsl/Zotero/storage/C23H44UD/complete-notes-on-fermions-and-the-jordan-wigner-transform.html:text/html}
+}
+
