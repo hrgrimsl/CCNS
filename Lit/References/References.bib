@@ -27,7 +27,7 @@
 }
 
 @book{atkins,
-	address = {Oxford ; New York},
+	address = {Oxford; New York},
 	edition = {5 edition},
 	title = {Molecular {Quantum} {Mechanics}},
 	isbn = {978-0-19-954142-3},
@@ -473,7 +473,7 @@ Simulations of quantum computing indicate that ground-state energy calculations 
 
 @misc{jwnotes,
         title = {Complete notes on fermions and the {Jordan}-{Wigner} transform},
-        url = {http://michaelnielsen.org/blog/complete-notes-on-fermions-and-the-jordan-wigner-transform},
+        url = {http://michaelnielsen.org/blog/complete-notes-on-fermions-and-the-jordan-wigner-transform/},
         language = {en-US},
         urldate = {2019-06-24},
         author = {Nielsen, Michael A.},
@@ -517,7 +517,6 @@ Noisy Intermediate-Scale Quantum (NISQ) technology will be available in the near
 @article{lucas,
         title = {A long-lived memory qubit on a low-decoherence quantum bus},
         url = {http://arxiv.org/abs/0710.4421},
-        abstract = {We demonstrate long-lived coherence in internal hyperfine states of a single {\textbackslash}Ca\{43\} trapped-ion qubit \$[T\_2=1.2(2){\textbackslash}s]\$, and in external motional states of a single {\textbackslash}Ca\{40\} trapped-ion qubit \$[T\_2'=0.18(4){\textbackslash}s]\$, in the same apparatus. The motional decoherence rate is consistent with the heating rate, which was measured to be 3(1) quanta/sec. Long coherence times in the external motional states are essential for performing high-fidelity quantum logic gates between trapped-ion qubits. The internal-state \$T\_2\$ time that we observe in {\textbackslash}Ca\{43\}, which has not previously been used as a trapped-ion qubit, is about one thousand times longer than that of physical qubits based on {\textbackslash}Ca\{40\} ions. Using a single spin-echo pulse to ``re-phase'' the internal state, we can detect no decoherence after 1{\textbackslash}s, implying an effective coherence time \$T\_2{\textasciicircum}\{{\textbackslash}mbox\{{\textbackslash}tiny SE\}\} {\textbackslash}gtish 45{\textbackslash}s\$. This compares with timescales in this trap for single-qubit operations of {\textbackslash}ish 1{\textbackslash}us, and for two-qubit operations of {\textbackslash}ish 10{\textbackslash}us.},
         urldate = {2019-06-27},
         journal = {arXiv:0710.4421 [quant-ph]},
         author = {Lucas, D. M. and Keitch, B. C. and Home, J. P. and Imreh, G. and McDonnell, M. J. and Stacey, D. N. and Szwer, D. J. and Steane, A. M.},
@@ -540,3 +539,99 @@ Noisy Intermediate-Scale Quantum (NISQ) technology will be available in the near
         file = {[1906.11192] Iterative qubit coupled cluster method\: A systematic approach to the full-CI limit in quantum chemistry calculations on NISQ devices:/home/hrgrimsl/Zotero/storage/LUXI5KK5/1906.html:text/html}
 }
 
+@article{romero,
+	title = {Strategies for quantum computing molecular energies using the unitary coupled cluster ansatz},
+	url = {http://arxiv.org/abs/1701.02691},
+	abstract = {The variational quantum eigensolver (VQE) algorithm combines the ability of quantum computers to efficiently compute expectation values with a classical optimization routine in order to approximate ground state energies of quantum systems. In this paper, we study the application of VQE to the simulation of molecular energies using the unitary coupled cluster (UCC) ansatz. We introduce new strategies to reduce the circuit depth for the implementation of UCC and improve the optimization of the wavefunction based on efficient classical approximations of the cluster amplitudes. Additionally, we propose an analytical method to compute the energy gradient that reduces the sampling cost for gradient estimation by several orders of magnitude compared to numerical gradients. We illustrate our methodology with numerical simulations for a system of four hydrogen atoms that exhibit strong correlation and show that the circuit depth of VQE using a UCC ansatz can be reduced without introducing significant loss of accuracy in the final wavefunctions and energies.},
+	urldate = {2019-07-01},
+	journal = {arXiv:1701.02691 [quant-ph]},
+	author = {Romero, Jonathan and Babbush, Ryan and McClean, Jarrod R. and Hempel, Cornelius and Love, Peter and Aspuru-Guzik, Alán},
+	month = jan,
+	year = {2017},
+	note = {arXiv: 1701.02691},
+	keywords = {Quantum Physics},
+	annote = {Comment: 18 pages, 9 figures, 3 tables (v2: improved cost analysis of analytical gradient and figures)},
+	file = {arXiv\:1701.02691 PDF:/home/hrgrimsl/Zotero/storage/GY79H6GJ/Romero et al. - 2017 - Strategies for quantum computing molecular energie.pdf:application/pdf;arXiv.org Snapshot:/home/hrgrimsl/Zotero/storage/6UH33G3T/1701.html:text/html}
+}
+
+@article{guerreschi,
+	title = {Practical optimization for hybrid quantum-classical algorithms},
+	url = {http://arxiv.org/abs/1701.01450},
+	abstract = {A novel class of hybrid quantum-classical algorithms based on the variational approach have recently emerged from separate proposals addressing, for example, quantum chemistry and combinatorial problems. These algorithms provide an approximate solution to the problem at hand by encoding it in the state of a quantum computer. The operations used to prepare the state are not a priori fixed but, quite the opposite, are subjected to a classical optimization procedure that modifies the quantum gates and improves the quality of the approximate solution. While the quantum hardware determines the size of the problem and what states are achievable (limited, respectively, by the number of qubits and by the kind and number of possible quantum gates), it is the classical optimization procedure that determines the way in which the quantum states are explored and whether the best available solution is actually reached. In addition, the quantities required in the optimization, for example the objective function itself, have to be estimated with finite precision in any experimental implementation. While it is desirable to have very precise estimates, this comes at the cost of repeating the state preparation and measurement multiple times. Here we analyze the competing requirements of high precision and low number of repetitions and study how the overall performance of the variational algorithm is affected by the precision level and the choice of the optimization method. Finally, this study introduces quasi-Newton optimization methods in the general context of hybrid variational algorithms and presents quantitative results for the Quantum Approximate Optimization Algorithm.},
+	urldate = {2019-07-01},
+	journal = {arXiv:1701.01450 [quant-ph]},
+	author = {Guerreschi, Gian Giacomo and Smelyanskiy, Mikhail},
+	month = jan,
+	year = {2017},
+	note = {arXiv: 1701.01450},
+	keywords = {Quantum Physics},
+	file = {arXiv\:1701.01450 PDF:/home/hrgrimsl/Zotero/storage/9XZJEFWS/Guerreschi and Smelyanskiy - 2017 - Practical optimization for hybrid quantum-classica.pdf:application/pdf;arXiv.org Snapshot:/home/hrgrimsl/Zotero/storage/Y63PPXL3/1701.html:text/html}
+}
+
+@article{crooks,
+	title = {Gradients of parameterized quantum gates using the parameter-shift rule and gate decomposition},
+	url = {http://arxiv.org/abs/1905.13311},
+	abstract = {The parameter-shift rule is an approach to measuring gradients of quantum circuits with respect to their parameters, which does not require ancilla qubits or controlled operations. Here, I discuss applying this approach to a wider range of parameterize quantum gates by decomposing gates into a product of standard gates, each of which is parameter-shift rule differentiable.},
+	urldate = {2019-07-01},
+	journal = {arXiv:1905.13311 [quant-ph]},
+	author = {Crooks, Gavin E.},
+	month = may,
+	year = {2019},
+	note = {arXiv: 1905.13311},
+	keywords = {Quantum Physics},
+	file = {arXiv\:1905.13311 PDF:/home/hrgrimsl/Zotero/storage/ZRHNABDL/Crooks - 2019 - Gradients of parameterized quantum gates using the.pdf:application/pdf;arXiv.org Snapshot:/home/hrgrimsl/Zotero/storage/Z5D9WFEJ/1905.html:text/html}
+}
+
+@article{plateaus,
+	title = {Barren plateaus in quantum neural network training landscapes},
+	volume = {9},
+	copyright = {2018 The Author(s)},
+	issn = {2041-1723},
+	url = {https://www.nature.com/articles/s41467-018-07090-4},
+	doi = {10.1038/s41467-018-07090-4},
+	abstract = {Gradient-based hybrid quantum-classical algorithms are often initialised with random, unstructured guesses. Here, the authors show that this approach will fail in the long run, due to the exponentially-small probability of finding a large enough gradient along any direction.},
+	language = {En},
+	number = {1},
+	urldate = {2019-07-01},
+	journal = {Nature Communications},
+	author = {McClean, Jarrod R. and Boixo, Sergio and Smelyanskiy, Vadim N. and Babbush, Ryan and Neven, Hartmut},
+	month = nov,
+	year = {2018},
+	pages = {4812},
+	file = {Full Text PDF:/home/hrgrimsl/Zotero/storage/PXAKXPTX/McClean et al. - 2018 - Barren plateaus in quantum neural network training.pdf:application/pdf;Snapshot:/home/hrgrimsl/Zotero/storage/XG8G4KPN/s41467-018-07090-4.html:text/html}
+}
+
+@article{babbush,
+	title = {Chemical {Basis} of {Trotter}-{Suzuki} {Errors} in {Quantum} {Chemistry} {Simulation}},
+	volume = {91},
+	issn = {1050-2947, 1094-1622},
+	url = {http://arxiv.org/abs/1410.8159},
+	doi = {10.1103/PhysRevA.91.022311},
+	abstract = {Although the simulation of quantum chemistry is one of the most anticipated applications of quantum computing, the scaling of known upper bounds on the complexity of these algorithms is daunting. Prior work has bounded errors due to Trotterization in terms of the norm of the error operator and analyzed scaling with respect to the number of spin-orbitals. However, we find that these error bounds can be loose by up to sixteen orders of magnitude for some molecules. Furthermore, numerical results for small systems fail to reveal any clear correlation between ground state error and number of spin-orbitals. We instead argue that chemical properties, such as the maximum nuclear charge in a molecule and the filling fraction of orbitals, can be decisive for determining the cost of a quantum simulation. Our analysis motivates several strategies to use classical processing to further reduce the required Trotter step size and to estimate the necessary number of steps, without requiring additional quantum resources. Finally, we demonstrate improved methods for state preparation techniques which are asymptotically superior to proposals in the simulation literature.},
+	number = {2},
+	urldate = {2019-07-02},
+	journal = {Phys. Rev. A},
+	author = {Babbush, Ryan and McClean, Jarrod and Wecker, Dave and Aspuru-Guzik, Alán and Wiebe, Nathan},
+	month = feb,
+	year = {2015},
+	note = {arXiv: 1410.8159},
+	keywords = {Quantum Physics, Physics - Chemical Physics},
+	pages = {022311},
+	annote = {Comment: 18 pages, 11 figures},
+	file = {arXiv\:1410.8159 PDF:/home/hrgrimsl/Zotero/storage/U2JFGV6K/Babbush et al. - 2015 - Chemical Basis of Trotter-Suzuki Errors in Quantum.pdf:application/pdf;arXiv.org Snapshot:/home/hrgrimsl/Zotero/storage/GZB8MLPX/1410.html:text/html}
+}
+
+@article{hastings,
+	title = {Improving {Quantum} {Algorithms} for {Quantum} {Chemistry}},
+	url = {http://arxiv.org/abs/1403.1539},
+	abstract = {We present several improvements to the standard Trotter-Suzuki based algorithms used in the simulation of quantum chemistry on a quantum computer. First, we modify how Jordan-Wigner transformations are implemented to reduce their cost from linear or logarithmic in the number of orbitals to a constant. Our modification does not require additional ancilla qubits. Then, we demonstrate how many operations can be parallelized, leading to a further linear decrease in the parallel depth of the circuit, at the cost of a small constant factor increase in number of qubits required. Thirdly, we modify the term order in the Trotter-Suzuki decomposition, significantly reducing the error at given Trotter-Suzuki timestep. A final improvement modifies the Hamiltonian to reduce errors introduced by the non-zero Trotter-Suzuki timestep. All of these techniques are validated using numerical simulation and detailed gate counts are given for realistic molecules.},
+	urldate = {2019-07-02},
+	journal = {arXiv:1403.1539 [quant-ph]},
+	author = {Hastings, M. B. and Wecker, D. and Bauer, B. and Troyer, M.},
+	month = mar,
+	year = {2014},
+	note = {arXiv: 1403.1539},
+	keywords = {Quantum Physics},
+	annote = {Comment: 12 pages, 11 figures; v2: minor corrections and clarifications},
+	file = {arXiv\:1403.1539 PDF:/home/hrgrimsl/Zotero/storage/FT7NIHBJ/Hastings et al. - 2014 - Improving Quantum Algorithms for Quantum Chemistry.pdf:application/pdf;arXiv.org Snapshot:/home/hrgrimsl/Zotero/storage/FKHI7ET5/1403.html:text/html}
+}
