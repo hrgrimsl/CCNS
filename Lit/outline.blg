@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: outline.aux
+The style file: achemso.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: acs-outline.bib
+Database file #2: References/References.bib.bib
+achemso 2018/02/05 v3.11a
+You've used 34 entries,
+            2536 wiz_defined-function locations,
+            994 strings with 13797 characters,
+and the built_in function-call counts, 10515 in all, are:
+= -- 809
+> -- 612
+< -- 33
++ -- 237
+- -- 211
+* -- 1098
+:= -- 1430
+add.period$ -- 34
+call.type$ -- 34
+change.case$ -- 8
+chr.to.int$ -- 10
+cite$ -- 34
+duplicate$ -- 640
+empty$ -- 734
+format.name$ -- 257
+if$ -- 2057
+int.to.chr$ -- 0
+int.to.str$ -- 1
+missing$ -- 0
+newline$ -- 226
+num.names$ -- 99
+pop$ -- 86
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 34
+stack$ -- 0
+substring$ -- 421
+swap$ -- 593
+text.length$ -- 67
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 220
+warning$ -- 0
+while$ -- 111
+width$ -- 0
+write$ -- 417
