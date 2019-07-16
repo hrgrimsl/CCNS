@@ -20,7 +20,7 @@ psi4.set_options({'basis': 'sto-3g', 'scf_type': 'pk'})
 hf_energy, wfn = psi4.energy('scf', return_wfn = True, scf_type = 'pk')
 #wfn = psi4.core.Wavefunction.build(h2, psi4.core.get_global_option('basis'))
 print('HF energy: %20.16f Eh'%hf_energy)
-
+nr = h2.nuclear_repulsion_energy()
 mints = psi4.core.MintsHelper(wfn.basisset())
 C = wfn.Ca()
 h = mints.ao_kinetic()
@@ -76,20 +76,55 @@ for i in range(0, n_occs):
     for a in range(n_occs, n_orbitals):
         hessian.append([])
         #single/single
-        for j in range(0, n_occs):
+        for j in range(i, n_occs):
             for b in range(n_occs, n_orbitals):
                 if a!=b and i!=j:
                     #first operator (6 terms)
-
                     hab = (2*g[i][j][a][b]-g[i][j][b][a])
                     bha = -g[b][i][a][j]+2*g[b][i][j][a]
-                    print(str([i,j,a,b]))
-
-                    print(hab)
-                    print(bha)
                     hessian[-1].append(hab+bha)
-                    
+                elif a==b and i!=j:
+                    bha = -g[i][a][j][a]-h[i][j]
+                    for n in range(0, n_occs):                       
+                        bha -= g[i][n][j][n]
+                        bha += g[i][n][n][j]
+                    hab = 0 
+                    hessian[-1].append(0)
+                elif a!=b and i==j:
+                    bha = -g[b][i][a][i]-h[a][b]
+                    for n in range(0, n_occs):
+                        bha -= g[a][n][b][n]
+                        bha += g[a][n][n][b]
+                    hab = g[i][i][a][b]-g[i][i][b][a]
+                    hessian[-1].append(0)
+                elif a==b and i==j:
+                    hab = -hf_energy+g[i][i][a][a]
+                       
+                    bha = g[i][a][a][i]+nr
+                    indices = [q for q in range(0, n_occs)]
 
+                    indices.append(a)
+
+                    for k in indices:
+                        fac = 1
+                        if k != a and k != i:
+                            fac *= 2
+                        bha += fac*h[k][k]    
+                        for l in indices:
+                            xfac = 2
+                            if (k == a and l == i) or (k == i and l == a):
+                                xfac = 0
+                            elif k == a or l == i or k == i or l == a:
+                                xfac = 1
+                            fac = 1
+                            if k != a and k != i:
+                                fac *= 2
+                            if l != a and l != i:
+                                fac *= 2
+                            bha += (.5*fac*g[k][l][k][l]-.5*xfac*g[k][l][l][k])
+                    print(bha)
+                    print(hab)
+                    hessian[-1].append(bha+hab)
 hessian = hessian
 print(hessian)            
 
