@@ -1,0 +1,177 @@
+
+*** tstart() called on hrgrimsl-XPS-13-9370
+*** at Tue Jul 16 09:23:28 2019
+
+   => Loading Basis Set <=
+
+    Name: STO-3G
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1-4 entry H          line    19 file /home/hrgrimsl/psi4conda/share/psi4/basis/sto-3g.gbs 
+
+
+         ---------------------------------------------------------
+                                   SCF
+            by Justin Turney, Rob Parrish, Andy Simmonett
+                             and Daniel Smith
+                              RHF Reference
+                        1 Threads,    500 MiB Core
+         ---------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c1
+    Full point group: D_inf_h
+
+    Geometry (in Angstrom), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         H            0.000000000000     0.000000000000    -2.250000000000     1.007825032070
+         H            0.000000000000     0.000000000000    -0.750000000000     1.007825032070
+         H            0.000000000000     0.000000000000     0.750000000000     1.007825032070
+         H            0.000000000000     0.000000000000     2.250000000000     1.007825032070
+
+  Running in c1 symmetry.
+
+  Rotational constants: A = ************  B =      1.48682  C =      1.48682 [cm^-1]
+  Rotational constants: A = ************  B =  44573.78691  C =  44573.78691 [MHz]
+  Nuclear repulsion =    1.528734158148889
+
+  Charge       = 0
+  Multiplicity = 1
+  Electrons    = 4
+  Nalpha       = 2
+  Nbeta        = 2
+
+  ==> Algorithm <==
+
+  SCF Algorithm Type is PK.
+  DIIS enabled.
+  MOM disabled.
+  Fractional occupation disabled.
+  Guess Type is SAD.
+  Energy threshold   = 1.00e-06
+  Density threshold  = 1.00e-06
+  Integral threshold = 0.00e+00
+
+  ==> Primary Basis <==
+
+  Basis Set: STO-3G
+    Blend: STO-3G
+    Number of shells: 4
+    Number of basis function: 4
+    Number of Cartesian functions: 4
+    Spherical Harmonics?: true
+    Max angular momentum: 0
+
+  ==> Pre-Iterations <==
+
+   -------------------------------------------------------
+    Irrep   Nso     Nmo     Nalpha   Nbeta   Ndocc  Nsocc
+   -------------------------------------------------------
+     A          4       4       0       0       0       0
+   -------------------------------------------------------
+    Total       4       4       2       2       2       0
+   -------------------------------------------------------
+
+  ==> Integral Setup <==
+
+  Using in-core PK algorithm.
+   Calculation information:
+      Number of atoms:                   4
+      Number of AO shells:               4
+      Number of primitives:             12
+      Number of atomic orbitals:         4
+      Number of basis functions:         4
+
+      Integral cutoff                 1.00e-12
+      Number of threads:                 1
+
+  Performing in-core PK
+  Using 110 doubles for integral storage.
+  We computed 55 shell quartets total.
+  Whereas there are 55 unique shell quartets.
+
+  ==> DiskJK: Disk-Based J/K Matrices <==
+
+    J tasked:                  Yes
+    K tasked:                  Yes
+    wK tasked:                  No
+    Memory (MB):               375
+    Schwarz Cutoff:          1E-12
+
+    OpenMP threads:              1
+
+  Minimum eigenvalue in the overlap matrix is 6.0060004424E-01.
+  Using Symmetric Orthogonalization.
+
+  SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF.
+
+  ==> Iterations <==
+
+                        Total Energy        Delta E     RMS |[F,P]|
+
+   @RHF iter   0:    -1.16040476450604   -1.16040e+00   6.62433e-04 
+   @RHF iter   1:    -1.82433896405846   -6.63934e-01   1.06669e-02 
+   @RHF iter   2:    -1.82839460670285   -4.05564e-03   4.12232e-03 DIIS
+   @RHF iter   3:    -1.82912862114512   -7.34014e-04   6.18978e-04 DIIS
+   @RHF iter   4:    -1.82913740403991   -8.78289e-06   1.10604e-05 DIIS
+   @RHF iter   5:    -1.82913740861330   -4.57339e-09   5.89458e-08 DIIS
+
+  ==> Post-Iterations <==
+
+    Orbital Energies [Eh]
+    ---------------------
+
+    Doubly Occupied:                                                      
+
+       1A     -0.429165     2A     -0.298356  
+
+    Virtual:                                                              
+
+       3A      0.132726     4A      0.359861  
+
+    Final Occupation by Irrep:
+              A 
+    DOCC [     2 ]
+
+  Energy converged.
+
+  @RHF Final Energy:    -1.82913740861330
+
+   => Energetics <=
+
+    Nuclear Repulsion Energy =              1.5287341581488887
+    One-Electron Energy =                  -5.2607015953369087
+    Two-Electron Energy =                   1.9028300285747219
+    Total Energy =                         -1.8291374086132981
+
+
+
+Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
+
+Properties computed using the SCF density matrix
+
+  Nuclear Dipole Moment: [e a0]
+     X:     0.0000      Y:     0.0000      Z:     0.0000
+
+  Electronic Dipole Moment: [e a0]
+     X:     0.0000      Y:     0.0000      Z:    -0.0000
+
+  Dipole Moment: [e a0]
+     X:     0.0000      Y:     0.0000      Z:    -0.0000     Total:     0.0000
+
+  Dipole Moment: [D]
+     X:     0.0000      Y:     0.0000      Z:    -0.0000     Total:     0.0000
+
+
+*** tstop() called on hrgrimsl-XPS-13-9370 at Tue Jul 16 09:23:29 2019
+Module time:
+	user time   =       0.21 seconds =       0.00 minutes
+	system time =       0.00 seconds =       0.00 minutes
+	total time  =          1 seconds =       0.02 minutes
+Total time:
+	user time   =       0.21 seconds =       0.00 minutes
+	system time =       0.00 seconds =       0.00 minutes
+	total time  =          1 seconds =       0.02 minutes
