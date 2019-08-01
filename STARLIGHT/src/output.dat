@@ -1,13 +1,16 @@
 
 *** tstart() called on hrgrimsl-XPS-13-9370
-*** at Tue Jul 16 09:23:28 2019
+*** at Thu Jul 25 15:39:04 2019
 
    => Loading Basis Set <=
 
     Name: STO-3G
     Role: ORBITAL
     Keyword: BASIS
-    atoms 1-4 entry H          line    19 file /home/hrgrimsl/psi4conda/share/psi4/basis/sto-3g.gbs 
+    atoms 1-2 entry H          line    19 file /home/hrgrimsl/psi4conda/share/psi4/basis/sto-3g.gbs 
+
+    There are an even number of electrons - assuming singlet.
+    Specify the multiplicity in the molecule input block.
 
 
          ---------------------------------------------------------
@@ -27,22 +30,20 @@
 
        Center              X                  Y                   Z               Mass       
     ------------   -----------------  -----------------  -----------------  -----------------
-         H            0.000000000000     0.000000000000    -2.250000000000     1.007825032070
          H            0.000000000000     0.000000000000    -0.750000000000     1.007825032070
          H            0.000000000000     0.000000000000     0.750000000000     1.007825032070
-         H            0.000000000000     0.000000000000     2.250000000000     1.007825032070
 
   Running in c1 symmetry.
 
-  Rotational constants: A = ************  B =      1.48682  C =      1.48682 [cm^-1]
-  Rotational constants: A = ************  B =  44573.78691  C =  44573.78691 [MHz]
-  Nuclear repulsion =    1.528734158148889
+  Rotational constants: A = ************  B =     14.86821  C =     14.86821 [cm^-1]
+  Rotational constants: A = ************  B = 445737.86910  C = 445737.86910 [MHz]
+  Nuclear repulsion =    0.352784805726667
 
   Charge       = 0
   Multiplicity = 1
-  Electrons    = 4
-  Nalpha       = 2
-  Nbeta        = 2
+  Electrons    = 2
+  Nalpha       = 1
+  Nbeta        = 1
 
   ==> Algorithm <==
 
@@ -59,9 +60,9 @@
 
   Basis Set: STO-3G
     Blend: STO-3G
-    Number of shells: 4
-    Number of basis function: 4
-    Number of Cartesian functions: 4
+    Number of shells: 2
+    Number of basis function: 2
+    Number of Cartesian functions: 2
     Spherical Harmonics?: true
     Max angular momentum: 0
 
@@ -70,28 +71,28 @@
    -------------------------------------------------------
     Irrep   Nso     Nmo     Nalpha   Nbeta   Ndocc  Nsocc
    -------------------------------------------------------
-     A          4       4       0       0       0       0
+     A          2       2       0       0       0       0
    -------------------------------------------------------
-    Total       4       4       2       2       2       0
+    Total       2       2       1       1       1       0
    -------------------------------------------------------
 
   ==> Integral Setup <==
 
   Using in-core PK algorithm.
    Calculation information:
-      Number of atoms:                   4
-      Number of AO shells:               4
-      Number of primitives:             12
-      Number of atomic orbitals:         4
-      Number of basis functions:         4
+      Number of atoms:                   2
+      Number of AO shells:               2
+      Number of primitives:              6
+      Number of atomic orbitals:         2
+      Number of basis functions:         2
 
       Integral cutoff                 1.00e-12
       Number of threads:                 1
 
   Performing in-core PK
-  Using 110 doubles for integral storage.
-  We computed 55 shell quartets total.
-  Whereas there are 55 unique shell quartets.
+  Using 12 doubles for integral storage.
+  We computed 6 shell quartets total.
+  Whereas there are 6 unique shell quartets.
 
   ==> DiskJK: Disk-Based J/K Matrices <==
 
@@ -103,7 +104,7 @@
 
     OpenMP threads:              1
 
-  Minimum eigenvalue in the overlap matrix is 6.0060004424E-01.
+  Minimum eigenvalue in the overlap matrix is 7.4321366609E-01.
   Using Symmetric Orthogonalization.
 
   SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF.
@@ -112,12 +113,9 @@
 
                         Total Energy        Delta E     RMS |[F,P]|
 
-   @RHF iter   0:    -1.16040476450604   -1.16040e+00   6.62433e-04 
-   @RHF iter   1:    -1.82433896405846   -6.63934e-01   1.06669e-02 
-   @RHF iter   2:    -1.82839460670285   -4.05564e-03   4.12232e-03 DIIS
-   @RHF iter   3:    -1.82912862114512   -7.34014e-04   6.18978e-04 DIIS
-   @RHF iter   4:    -1.82913740403991   -8.78289e-06   1.10604e-05 DIIS
-   @RHF iter   5:    -1.82913740861330   -4.57339e-09   5.89458e-08 DIIS
+   @RHF iter   0:    -0.56869732494339   -5.68697e-01   4.06142e-17 
+   @RHF iter   1:    -0.91087355261745   -3.42176e-01   2.23378e-16 
+   @RHF iter   2:    -0.91087355261745    1.11022e-16   8.12284e-17 DIIS
 
   ==> Post-Iterations <==
 
@@ -126,26 +124,26 @@
 
     Doubly Occupied:                                                      
 
-       1A     -0.429165     2A     -0.298356  
+       1A     -0.355477  
 
     Virtual:                                                              
 
-       3A      0.132726     4A      0.359861  
+       2A      0.224495  
 
     Final Occupation by Irrep:
               A 
-    DOCC [     2 ]
+    DOCC [     1 ]
 
   Energy converged.
 
-  @RHF Final Energy:    -1.82913740861330
+  @RHF Final Energy:    -0.91087355261745
 
    => Energetics <=
 
-    Nuclear Repulsion Energy =              1.5287341581488887
-    One-Electron Energy =                  -5.2607015953369087
-    Two-Electron Energy =                   1.9028300285747219
-    Total Energy =                         -1.8291374086132981
+    Nuclear Repulsion Energy =              0.3527848057266666
+    One-Electron Energy =                  -1.8163617406497055
+    Two-Electron Energy =                   0.5527033823055925
+    Total Energy =                         -0.9108735526174463
 
 
 
@@ -157,21 +155,21 @@ Properties computed using the SCF density matrix
      X:     0.0000      Y:     0.0000      Z:     0.0000
 
   Electronic Dipole Moment: [e a0]
-     X:     0.0000      Y:     0.0000      Z:    -0.0000
+     X:     0.0000      Y:     0.0000      Z:     0.0000
 
   Dipole Moment: [e a0]
-     X:     0.0000      Y:     0.0000      Z:    -0.0000     Total:     0.0000
+     X:     0.0000      Y:     0.0000      Z:     0.0000     Total:     0.0000
 
   Dipole Moment: [D]
-     X:     0.0000      Y:     0.0000      Z:    -0.0000     Total:     0.0000
+     X:     0.0000      Y:     0.0000      Z:     0.0000     Total:     0.0000
 
 
-*** tstop() called on hrgrimsl-XPS-13-9370 at Tue Jul 16 09:23:29 2019
+*** tstop() called on hrgrimsl-XPS-13-9370 at Thu Jul 25 15:39:04 2019
 Module time:
-	user time   =       0.21 seconds =       0.00 minutes
-	system time =       0.00 seconds =       0.00 minutes
-	total time  =          1 seconds =       0.02 minutes
+	user time   =       0.13 seconds =       0.00 minutes
+	system time =       0.01 seconds =       0.00 minutes
+	total time  =          0 seconds =       0.00 minutes
 Total time:
-	user time   =       0.21 seconds =       0.00 minutes
-	system time =       0.00 seconds =       0.00 minutes
-	total time  =          1 seconds =       0.02 minutes
+	user time   =       0.13 seconds =       0.00 minutes
+	system time =       0.01 seconds =       0.00 minutes
+	total time  =          0 seconds =       0.00 minutes
