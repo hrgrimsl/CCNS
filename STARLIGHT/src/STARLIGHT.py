@@ -11,6 +11,8 @@ psi4.core.set_output_file('output.dat', False)
 molecule = psi4.geometry("""
 H 0 0 0
 H 0 0 1.5
+H 0 0 3
+H 0 0 4.5
 symmetry c1
 """)
 
@@ -41,97 +43,34 @@ f = np.kron(f, (np.array([[1,0],[0,1]])))
 print('HF energy: %20.16f Eh\n'%(hf_energy))
 n_orbitals = 2*wfn.nmo()
 n_occs = 2*wfn.doccpi()[0]
+n_noccs = n_orbitals-n_occs
 occs = [i for i in range(0, n_occs)]
 noccs = [i for i in range(n_occs, n_orbitals)]
 #HF Sanity Check
 assert(abs(hf_energy-.5*np.einsum('abab', g[:n_occs,:n_occs,:n_occs,:n_occs])-.5*np.einsum('abba', g[:n_occs,:n_occs,:n_occs,:n_occs])+np.einsum('aa', h[:n_occs,:n_occs])<.000001))
-
          
 #compute gradient
-print('Computing gradient ...\n')
-gradient = []
 
-#singles
-for i in range(0, n_occs):
-    for a in range(n_occs, n_orbitals):
-        gradient.append(0)
+gradient = []
 
 #doubles
 for i in range(0, n_occs):
     for j in range(i+1, n_occs):
         for a in range(n_occs, n_orbitals):
             for b in range(a+1, n_orbitals):
-                gradient.append(2**.5*(g[i][j][b][a]-g[i][j][a][b]))
+                if (i+j)%2 == (a+b)%2:
+                    gradient.append(2**.5*(g[i][j][b][a]-g[i][j][a][b]))
 
-gradient = np.array([gradient]).T
+#singles
+for i in range(0, n_occs):
+    for a in range(n_occs, n_orbitals):
+        if i%2 == a%2:
+            gradient.append(0)
 
-
-#Hessian Function
-#Input: dx - trial vector
-#Output: Hdx - Hessian action on dx
-
-def Vec_to_Tensor(vector):
-    t1 = np.zeros((n_occs, n_orbitals-n_occs)) 
-    t2 = np.zeros((n_occs, n_orbitals-n_occs, n_occs, n_orbitals-n_occs)) 
-    for i in range(0, len(occs)):
-        for a in range(0, len(noccs)):
-            if i%2==a%2:
-                t1[i][a] = vector[str(i)+','+str(a)]
-            for j in range(i, len(occs)):
-                for b in range(a, len(noccs)):
-
-                    if (j==i and b==a) or ((a+b)%2 != (j+i)%2):
-                        continue                
-                    t2[a][b][i][j] = vector[str(i)+','+str(a)+','+str(j)+','+str(b)]
-                    t2[b][a][j][i] = vector[str(i)+','+str(a)+','+str(j)+','+str(b)]
-                    t2[a][b][j][i] = -vector[str(i)+','+str(a)+','+str(j)+','+str(b)]
-                    t2[b][a][i][j] = -vector[str(i)+','+str(a)+','+str(j)+','+str(b)]
-    return [t1, t2]
-
-def Tensor_to_Vec(tensor):
-    t1 = tensor[0]
-    t2 = tensor[1]
-    vector = {}    
-    for i in range(0, len(occs)):
-        for a in range(0, len(noccs)):
-            if i%2==a%2:
-                vector[str(i)+','+str(a)] = t1[i][a]
-            for j in range(i, len(occs)):
-                for b in range(a, len(noccs)):
-
-                    if (j==i and b==a) or ((a+b)%2 != (j+i)%2):
-                        continue
-                    vector[str(i)+','+str(a)+','+str(j)+','+str(b)] = t2[a][b][i][j]
-    return vector
-
+gradient = np.array(gradient)
 
 def Hessian_Action(dx):
-    print('Computing Hessian ...\n')
-    Hdx = 0
-    Hdx2 = 0
-
-    
-    #Singles/Singles
-    Hdx += np.einsum('ijab,jb->ia',g[:n_occs,:n_occs,n_occs:,n_occs:],dx[0])
-    Hdx -= np.einsum('ijba,jb->ia',g[:n_occs,:n_occs,n_occs:,n_occs:],dx[0])
-    Hdx -= np.einsum('ij,ja->ia',f[:n_occs,:n_occs],dx[0]) 
-    Hdx += np.einsum('ab,jb->ja',f[n_occs:,n_occs:],dx[0]) 
-    Hdx -= np.einsum('ibja,jb->ia',g[:n_occs,n_occs:,:n_occs,n_occs:],dx[0])
-    Hdx += np.einsum('ibaj,jb->ia',g[:n_occs,n_occs:,n_occs:,:n_occs],dx[0])
- 
-    #Singles/Doubles
-    Hdx += np.einsum('icjk,jbkc->ib',g[:n_occs,n_occs:,:n_occs,:n_occs],dx[1])
-    Hdx -= np.einsum('ickj,jbkc->ib',g[:n_occs,n_occs:,:n_occs,:n_occs],dx[1])     
-    Hdx -= np.einsum('bcak,jbkc->ja',g[:n_occs,:n_occs,n_occs:,:n_occs],dx[1])
-    Hdx += np.einsum('bcka,jbkc->ja',g[:n_occs,:n_occs,:n_occs,n_occs:],dx[1])     
-    
-    #Doubles/Singles
-    Hdx2 += np.einsum('ikaj,jb->iakb',g[:n_occs,:n_occs,n_occs:,:n_occs],dx[0]) 
-    Hdx2 -= np.einsum('ikja,jb->iakb',g[:n_occs,:n_occs,:n_occs,n_occs:],dx[0]) 
-    Hdx2 -= np.einsum('ibac,jb->iajc',g[:n_occs,n_occs:,n_occs:,n_occs:],dx[0]) 
-    Hdx2 += np.einsum('ibca,jb->iajc',g[:n_occs,n_occs:,n_occs:,n_occs:],dx[0]) 
-
-    #Doubles/Doubles
+    dx = Populate_Tensor(dx)    
     gvvvv = g[n_occs:,n_occs:,n_occs:,n_occs:]
     goooo = g[:n_occs,:n_occs,:n_occs,:n_occs]
     goovv = g[:n_occs,:n_occs,n_occs:,n_occs:]
@@ -140,9 +79,51 @@ def Hessian_Action(dx):
     gvoov = g[n_occs:,:n_occs,:n_occs,n_occs:]
     govov = g[:n_occs,n_occs:,:n_occs,n_occs:]
     govvo = g[:n_occs,n_occs:,n_occs:,:n_occs]
+    gvvov = g[n_occs:,n_occs:,:n_occs,n_occs:]
+    gvvvo = g[n_occs:,n_occs:,n_occs:,:n_occs]
+    govoo = g[:n_occs,n_occs:,:n_occs,:n_occs]
+    govvv = g[:n_occs,n_occs:,n_occs:,n_occs:]
+    gvooo = g[n_occs:,:n_occs,:n_occs,:n_occs]
+    goovo = g[:n_occs,:n_occs,n_occs:,:n_occs]
+    gooov = g[:n_occs,:n_occs,:n_occs,n_occs:]
     foo = f[:n_occs,:n_occs]
     fvv = f[n_occs:,n_occs:]
 
+    Hdx = 0
+    Hdx2 = 0
+    
+    #Singles/Singles
+    '''
+    Hdx -= np.einsum('ji,bi->bj',foo,dx[0])
+    Hdx += np.einsum('ba,aj->bj',fvv,dx[0]) 
+
+    Hdx += np.einsum('ibaj,ai->bj',govvo,dx[0])
+    Hdx -= np.einsum('ibja,ai->bj',govov,dx[0])
+    
+    Hdx += np.einsum('ijab,ai->bj',goovv,dx[0])
+    Hdx -= np.einsum('ijba,ai->bj',goovv,dx[0])
+    '''
+    
+    #Singles/Doubles
+    Hdx2 += np.einsum('cbaj,ak->bckj',gvvvo,dx[0])
+    Hdx2 -= np.einsum('cbja,ak->bckj',gvvov,dx[0])
+    Hdx2 -= np.einsum('cbak,aj->bckj',gvvvo,dx[0])
+    Hdx2 += np.einsum('cbka,aj->bckj',gvvov,dx[0])
+
+    Hdx2 -= np.einsum('ibkj,ci->bckj',govoo,dx[0])
+    Hdx2 += np.einsum('ibjk,ci->bckj',govoo,dx[0])
+    Hdx2 += np.einsum('ickj,bi->bckj',govoo,dx[0])
+    Hdx2 -= np.einsum('icjk,bi->bckj',govoo,dx[0]) 
+ 
+
+    #Doubles/Singles
+    Hdx -= .5*np.einsum('ibac,acij->bj',govvv,dx[1])
+    Hdx += .5*np.einsum('ibca,acij->bj',govvv,dx[1])
+
+    Hdx += .5*np.einsum('ikaj,abik->bj',goovo,dx[1])
+    Hdx -= .5*np.einsum('ikja,abik->bj',gooov,dx[1])
+    
+    #Doubles/Doubles
     Hdx2 += np.einsum('ab,acjk->bcjk',fvv,dx[1]) 
     Hdx2 -= np.einsum('ac,abjk->bcjk',fvv,dx[1]) 
 
@@ -163,43 +144,88 @@ def Hessian_Action(dx):
     Hdx2 -= np.einsum('ibdj,cdik->cbkj',govvo,dx[1])
     Hdx2 -= np.einsum('ibkd,cdij->cbkj',govov,dx[1])
     Hdx2 += np.einsum('ibdk,cdij->cbkj',govvo,dx[1])
+    return(Populate_Vector([Hdx2, Hdx]))
+
+def Populate_Tensor(t_vec):
+    t_tensor = [np.zeros((n_noccs, n_occs)), np.zeros((n_noccs, n_noccs, n_occs, n_occs))]
+    ind = 0
+    for i in range(0, n_occs):
+        for j in range(i+1, n_occs):
+            for a in range(0, n_noccs):
+                for b in range(a+1, n_noccs):
+                    if (i!=j or a!=b) and (a+b)%2 == (i+j)%2:
+                        t_tensor[1][a][b][i][j] = t_vec[ind]
+                        t_tensor[1][a][b][j][i] = -t_vec[ind]
+                        t_tensor[1][b][a][i][j] = -t_vec[ind]
+                        t_tensor[1][b][a][j][i] = t_vec[ind]
+                        ind += 1
+
+    for a in range(0, n_noccs):
+        for i in range(0, n_occs):
+            if i%2 == a%2:
+                t_tensor[0][a][i] = t_vec[ind]
+                ind += 1             
+    return t_tensor
+
+def Populate_Vector(t_tensor):
+   t_vector = []
+   for i in range(0, n_occs):
+         for j in range(i+1, n_occs):
+             for a in range(0, n_noccs):
+                 for b in range(a+1, n_noccs):
+                     if (i!=j or a!=b) and (a+b)%2 == (i+j)%2:
+                         t_vector.append(t_tensor[0][a][b][i][j])
+ 
+   for a in range(0, n_noccs):
+       for i in range(0, n_occs):
+            if i%2 == a%2:
+                t_vector.append(t_tensor[1][a][i])
+
+   return t_vector
+
+def CG_Solver(t_vec):
+     x = [t_vec]
+     p = [-gradient-Hessian_Action(t_vec)]
+     iter = 1
+     r = []
+     k = 0
+     alpha = []
+     while k<100:
+         r.append(-gradient - Hessian_Action(x[k]))
+         next_p = r[k]
+         for i in range(0, k):              
+             next_p -= p[i].T.dot(Hessian_Action(r[k]))/(p[i].T.dot(Hessian_Action(p[i])))*p[i]
+         p.append(next_p)
+         alpha.append(p[k].T.dot(r[k])/(p[k].T.dot(Hessian_Action(p[k]))))
+         x.append(x[k]+alpha[k]*p[k])
+         print(np.linalg.norm(r[k]))
+         print(Energy(x[k])
+         k += 1
     
 
-    return(Hdx, Hdx2)
+def Energy(x):
+    E = gradient.dot(x)+.5*x.dot(Hessian_Action(x))
+    return E
 
-def Projective_Engine():
-    trial_vec = {}
-    for i in range(0, len(occs)):
-        for a in range(0, len(noccs)):
-            if a%2==i%2:
-                trial_vec[str(i)+','+str(a)] = 1
-            for j in range(i, len(occs)):
-                for b in range(a, len(noccs)):
-                    if (a+b)%2!=(i+j)%2 or (i==j and b==a):
-                        continue
-                    trial_vec[str(i)+','+str(a)+','+str(j)+','+str(b)] = 1
 
-    for i in range(0, len(occs)):
-        for a in range(0, len(noccs)):
-            if a%2==i%2:
-                trial_vec[str(i)+','+str(a)] = 1/np.sqrt(len(trial_vec))
-            for j in range(i, len(occs)):
-                for b in range(a, len(noccs)):
-                    if (a+b)%2!=(i+j)%2 or (i==j and b==a):
-                        continue
-                    trial_vec[str(i)+','+str(a)+','+str(j)+','+str(b)] = 1/np.sqrt(len(trial_vec))
-    trial_vec = Vec_to_Tensor(paramdict)
 
-    for i in range(0, 100):
-        maxi = max([np.amax(abs(trial_vec[0]))**2,np.amax(abs(trial_vec[1]))**2])
-        trial_vec = Hessian_Action([trial_vec[0]/maxi, trial_vec[1]/maxi])
-    trial_vec = Tensor_to_Vec(trial_vec)
 
-      
-        
-      
+
 if __name__ == '__main__':
+    n_ops = 0
+    for i in range(0, n_occs):
+         for j in range(i+1, n_occs):
+             for a in range(0, n_noccs):
+                 for b in range(a+1, n_noccs):
+                     if (i!=j or a!=b) and (a+b)%2 == (i+j)%2:
+                         n_ops += 1
+ 
+    for i in range(0, n_occs):
+        for a in range(0, n_noccs):
+            if i%2 == a%2:
+                n_ops += 1
 
-    paramdict = {'0,0,1,1': 2.2, '0,0': 3.2, '1,1': 2.1}
-    dx = Vec_to_Tensor(paramdict)
-    print(Tensor_to_Vec(Hessian_Action(dx)))
+
+    t_vec = [1 for i in range(1, n_ops+1)]
+    CG_Solver(t_vec)
+            
