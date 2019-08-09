@@ -1,13 +1,14 @@
 
 *** tstart() called on hrgrimsl-XPS-13-9370
-*** at Thu Aug  8 14:15:31 2019
+*** at Fri Aug  9 11:37:29 2019
 
    => Loading Basis Set <=
 
     Name: STO-3G
     Role: ORBITAL
     Keyword: BASIS
-    atoms 1-4 entry H          line    19 file /home/hrgrimsl/psi4conda/share/psi4/basis/sto-3g.gbs 
+    atoms 1 entry LI         line    31 file /home/hrgrimsl/psi4conda/share/psi4/basis/sto-3g.gbs 
+    atoms 2 entry H          line    19 file /home/hrgrimsl/psi4conda/share/psi4/basis/sto-3g.gbs 
 
     There are an even number of electrons - assuming singlet.
     Specify the multiplicity in the molecule input block.
@@ -24,22 +25,20 @@
   ==> Geometry <==
 
     Molecular point group: c1
-    Full point group: D_inf_h
+    Full point group: C_inf_v
 
     Geometry (in Angstrom), charge = 0, multiplicity = 1:
 
        Center              X                  Y                   Z               Mass       
     ------------   -----------------  -----------------  -----------------  -----------------
-         H            0.000000000000     0.000000000000    -2.250000000000     1.007825032070
-         H            0.000000000000     0.000000000000    -0.750000000000     1.007825032070
-         H            0.000000000000     0.000000000000     0.750000000000     1.007825032070
-         H            0.000000000000     0.000000000000     2.250000000000     1.007825032070
+         LI           0.000000000000     0.000000000000    -0.450290313860     7.016004548000
+         H            0.000000000000     0.000000000000     3.134709686140     1.007825032070
 
   Running in c1 symmetry.
 
-  Rotational constants: A = ************  B =      1.48682  C =      1.48682 [cm^-1]
-  Rotational constants: A = ************  B =  44573.78691  C =  44573.78691 [MHz]
-  Nuclear repulsion =    1.528734158148889
+  Rotational constants: A = ************  B =      1.48842  C =      1.48842 [cm^-1]
+  Rotational constants: A = ************  B =  44621.64422  C =  44621.64422 [MHz]
+  Nuclear repulsion =    0.442826115974895
 
   Charge       = 0
   Multiplicity = 1
@@ -63,36 +62,36 @@
   Basis Set: STO-3G
     Blend: STO-3G
     Number of shells: 4
-    Number of basis function: 4
-    Number of Cartesian functions: 4
+    Number of basis function: 6
+    Number of Cartesian functions: 6
     Spherical Harmonics?: true
-    Max angular momentum: 0
+    Max angular momentum: 1
 
   ==> Pre-Iterations <==
 
    -------------------------------------------------------
     Irrep   Nso     Nmo     Nalpha   Nbeta   Ndocc  Nsocc
    -------------------------------------------------------
-     A          4       4       0       0       0       0
+     A          6       6       0       0       0       0
    -------------------------------------------------------
-    Total       4       4       2       2       2       0
+    Total       6       6       2       2       2       0
    -------------------------------------------------------
 
   ==> Integral Setup <==
 
   Using in-core PK algorithm.
    Calculation information:
-      Number of atoms:                   4
+      Number of atoms:                   2
       Number of AO shells:               4
       Number of primitives:             12
-      Number of atomic orbitals:         4
-      Number of basis functions:         4
+      Number of atomic orbitals:         6
+      Number of basis functions:         6
 
       Integral cutoff                 1.00e-12
       Number of threads:                 1
 
   Performing in-core PK
-  Using 110 doubles for integral storage.
+  Using 462 doubles for integral storage.
   We computed 55 shell quartets total.
   Whereas there are 55 unique shell quartets.
 
@@ -106,7 +105,7 @@
 
     OpenMP threads:              1
 
-  Minimum eigenvalue in the overlap matrix is 6.0060004424E-01.
+  Minimum eigenvalue in the overlap matrix is 7.4779599240E-01.
   Using Symmetric Orthogonalization.
 
   SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF.
@@ -115,12 +114,14 @@
 
                         Total Energy        Delta E     RMS |[F,P]|
 
-   @RHF iter   0:    -1.16040476450604   -1.16040e+00   6.62433e-04 
-   @RHF iter   1:    -1.82433896405846   -6.63934e-01   1.06669e-02 
-   @RHF iter   2:    -1.82839460670285   -4.05564e-03   4.12232e-03 DIIS
-   @RHF iter   3:    -1.82912862114512   -7.34014e-04   6.18978e-04 DIIS
-   @RHF iter   4:    -1.82913740403991   -8.78289e-06   1.10604e-05 DIIS
-   @RHF iter   5:    -1.82913740861330   -4.57339e-09   5.89458e-08 DIIS
+   @RHF iter   0:    -7.51904047073999   -7.51904e+00   4.39503e-03 
+   @RHF iter   1:    -7.59996276235407   -8.09223e-02   2.21494e-02 
+   @RHF iter   2:    -7.59200534194201    7.95742e-03   2.41528e-02 DIIS
+   @RHF iter   3:    -7.65345998867093   -6.14546e-02   1.90731e-03 DIIS
+   @RHF iter   4:    -7.65405496724224   -5.94979e-04   5.48975e-04 DIIS
+   @RHF iter   5:    -7.65410553532926   -5.05681e-05   2.27959e-05 DIIS
+   @RHF iter   6:    -7.65410566192503   -1.26596e-07   1.54608e-06 DIIS
+   @RHF iter   7:    -7.65410566245135   -5.26322e-10   2.36657e-07 DIIS
 
   ==> Post-Iterations <==
 
@@ -129,11 +130,12 @@
 
     Doubly Occupied:                                                      
 
-       1A     -0.429165     2A     -0.298356  
+       1A     -2.384538     2A     -0.145759  
 
     Virtual:                                                              
 
-       3A      0.132726     4A      0.359861  
+       3A      0.045251     4A      0.147835     5A      0.147835  
+       6A      0.180589  
 
     Final Occupation by Irrep:
               A 
@@ -141,14 +143,14 @@
 
   Energy converged.
 
-  @RHF Final Energy:    -1.82913740861330
+  @RHF Final Energy:    -7.65410566245135
 
    => Energetics <=
 
-    Nuclear Repulsion Energy =              1.5287341581488887
-    One-Electron Energy =                  -5.2607015953369087
-    Two-Electron Energy =                   1.9028300285747219
-    Total Energy =                         -1.8291374086132981
+    Nuclear Repulsion Energy =              0.4428261159748954
+    One-Electron Energy =                 -11.1332712782450969
+    Two-Electron Energy =                   3.0363394998188533
+    Total Energy =                         -7.6541056624513484
 
 
 
@@ -157,24 +159,24 @@ Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
 Properties computed using the SCF density matrix
 
   Nuclear Dipole Moment: [e a0]
-     X:     0.0000      Y:     0.0000      Z:     0.0000
+     X:     0.0000      Y:     0.0000      Z:     3.3710
 
   Electronic Dipole Moment: [e a0]
-     X:     0.0000      Y:     0.0000      Z:    -0.0000
+     X:    -0.0000      Y:     0.0000      Z:    -5.1795
 
   Dipole Moment: [e a0]
-     X:     0.0000      Y:     0.0000      Z:    -0.0000     Total:     0.0000
+     X:    -0.0000      Y:     0.0000      Z:    -1.8085     Total:     1.8085
 
   Dipole Moment: [D]
-     X:     0.0000      Y:     0.0000      Z:    -0.0000     Total:     0.0000
+     X:    -0.0000      Y:     0.0000      Z:    -4.5968     Total:     4.5968
 
 
-*** tstop() called on hrgrimsl-XPS-13-9370 at Thu Aug  8 14:15:31 2019
+*** tstop() called on hrgrimsl-XPS-13-9370 at Fri Aug  9 11:37:29 2019
 Module time:
-	user time   =       0.24 seconds =       0.00 minutes
+	user time   =       0.15 seconds =       0.00 minutes
 	system time =       0.01 seconds =       0.00 minutes
 	total time  =          0 seconds =       0.00 minutes
 Total time:
-	user time   =       0.24 seconds =       0.00 minutes
+	user time   =       0.15 seconds =       0.00 minutes
 	system time =       0.01 seconds =       0.00 minutes
 	total time  =          0 seconds =       0.00 minutes

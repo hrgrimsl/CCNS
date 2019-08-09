@@ -2,23 +2,26 @@ import psi4
 import numpy as np
 import copy
 import scipy
-print('\n'+'- '*25+'\n')
+import random
+print('\n'+'- '*24+'\n')
 print('  '*10+'STARLIGHT'+' '*10+'\n')
 print(' '*4+'An H.R. Grimsley & N.J. Mayhall Algorithm\n')
-print('- '*25+'\n')
+print('- '*24+'\n')
 psi4.core.set_output_file('output.dat', False)
 
 molecule = psi4.geometry("""
-H 0 0 0
-H 0 0 1.5
-H 0 0 3
-H 0 0 4.5
+Li 0 0 0
+H 0 0 3.5850
+
+
+
+
 symmetry c1
 """)
 
 #Psi4 Calculations
 psi4.set_options({'basis': 'sto-3g', 'scf_type': 'pk'})
-print('Performing Hartree-Fock Orbital Optimization...\n')
+
 hf_energy, wfn = psi4.energy('scf', return_wfn = True, scf_type = 'pk')
 
 #h = 1-electron integral 2-tensor (<i|h|a>)
@@ -40,7 +43,7 @@ g = g.swapaxes(1, 2)
 #f = np.diag(np.linalg.eig(np.array(wfn.Fa()))[0])
 f = np.array(f)
 f = np.kron(f, (np.array([[1,0],[0,1]])))
-print('HF energy: %20.16f Eh\n'%(hf_energy))
+
 n_orbitals = 2*wfn.nmo()
 n_occs = 2*wfn.doccpi()[0]
 n_noccs = n_orbitals-n_occs
@@ -93,7 +96,7 @@ def Hessian_Action(dx):
     Hdx2 = 0
     
     #Singles/Singles
-    '''
+    
     Hdx -= np.einsum('ji,bi->bj',foo,dx[0])
     Hdx += np.einsum('ba,aj->bj',fvv,dx[0]) 
 
@@ -102,9 +105,10 @@ def Hessian_Action(dx):
     
     Hdx += np.einsum('ijab,ai->bj',goovv,dx[0])
     Hdx -= np.einsum('ijba,ai->bj',goovv,dx[0])
-    '''
     
-    #Singles/Doubles
+
+    #Singles/Doubles - Out of Order
+
     Hdx2 += np.einsum('cbaj,ak->bckj',gvvvo,dx[0])
     Hdx2 -= np.einsum('cbja,ak->bckj',gvvov,dx[0])
     Hdx2 -= np.einsum('cbak,aj->bckj',gvvvo,dx[0])
@@ -114,8 +118,8 @@ def Hessian_Action(dx):
     Hdx2 += np.einsum('ibjk,ci->bckj',govoo,dx[0])
     Hdx2 += np.einsum('ickj,bi->bckj',govoo,dx[0])
     Hdx2 -= np.einsum('icjk,bi->bckj',govoo,dx[0]) 
- 
 
+    
     #Doubles/Singles
     Hdx -= .5*np.einsum('ibac,acij->bj',govvv,dx[1])
     Hdx += .5*np.einsum('ibca,acij->bj',govvv,dx[1])
@@ -123,6 +127,7 @@ def Hessian_Action(dx):
     Hdx += .5*np.einsum('ikaj,abik->bj',goovo,dx[1])
     Hdx -= .5*np.einsum('ikja,abik->bj',gooov,dx[1])
     
+
     #Doubles/Doubles
     Hdx2 += np.einsum('ab,acjk->bcjk',fvv,dx[1]) 
     Hdx2 -= np.einsum('ac,abjk->bcjk',fvv,dx[1]) 
@@ -144,6 +149,7 @@ def Hessian_Action(dx):
     Hdx2 -= np.einsum('ibdj,cdik->cbkj',govvo,dx[1])
     Hdx2 -= np.einsum('ibkd,cdij->cbkj',govov,dx[1])
     Hdx2 += np.einsum('ibdk,cdij->cbkj',govvo,dx[1])
+
     return(Populate_Vector([Hdx2, Hdx]))
 
 def Populate_Tensor(t_vec):
@@ -183,33 +189,42 @@ def Populate_Vector(t_tensor):
 
    return t_vector
 
+
+
+
 def CG_Solver(t_vec):
-     x = [t_vec]
-     p = [-gradient-Hessian_Action(t_vec)]
-     iter = 1
-     r = []
      k = 0
-     alpha = []
-     while k<100:
-         r.append(-gradient - Hessian_Action(x[k]))
-         next_p = r[k]
-         for i in range(0, k):              
-             next_p -= p[i].T.dot(Hessian_Action(r[k]))/(p[i].T.dot(Hessian_Action(p[i])))*p[i]
-         p.append(next_p)
-         alpha.append(p[k].T.dot(r[k])/(p[k].T.dot(Hessian_Action(p[k]))))
-         x.append(x[k]+alpha[k]*p[k])
-         print(np.linalg.norm(r[k]))
-         print(Energy(x[k])
+     b = -gradient
+     x = [t_vec]
+     Ax0 = np.array(Hessian_Action(x[0]))
+     r = Ax0-b
+     p = -r
+     r_k_norm = np.dot(r,r)
+     print('%5s|%20.16s|%20.16s'%(('Iter.', 'Residual Norm', 'Energy')))
+     while r_k_norm > 1e-10:
+         print(p)
+         Ap = np.array(Hessian_Action(p))
+         print(Ap)
+         alpha = r_k_norm/np.dot(p,Ap)
+         x += alpha * p
+         r += alpha * Ap
+         r_kplus1_norm = np.dot(r,r)
+         beta = r_kplus1_norm/r_k_norm
+         r_k_norm = r_kplus1_norm
+         p = beta * p - r
+         print('-'*47)
          k += 1
+         print('{}'.format(k).ljust(5)+'|'+'%20.16f|%20.16f'%((np.linalg.norm(r)),hf_energy+Energy(x)))
+
+     print('\nConverged in {} iterations.'.format(k)+'\n')
+     print('HF energy:'.ljust(20)+'%20.16f Eh\n'%(hf_energy))
+     print('Converged energy:'.ljust(20)+'%20.16f Eh\n'%(Energy(x)+hf_energy))
     
 
 def Energy(x):
-    E = gradient.dot(x)+.5*x.dot(Hessian_Action(x))
+    x = x.T
+    E = (np.array(gradient).dot(x)+.5*x.T.dot(Hessian_Action(x)))
     return E
-
-
-
-
 
 if __name__ == '__main__':
     n_ops = 0
@@ -226,6 +241,6 @@ if __name__ == '__main__':
                 n_ops += 1
 
 
-    t_vec = [1 for i in range(1, n_ops+1)]
+    t_vec = [0 for i in range(1, n_ops+1)]
     CG_Solver(t_vec)
-            
+
