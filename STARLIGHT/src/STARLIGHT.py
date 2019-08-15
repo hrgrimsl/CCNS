@@ -3,24 +3,25 @@ import numpy as np
 import copy
 import scipy
 import random
+from sys import argv
+from timeit import default_timer as timer
+
+start = timer()
+
 print('\n'+'- '*24+'\n')
 print('  '*10+'STARLIGHT'+' '*10+'\n')
 print(' '*4+'An H.R. Grimsley & N.J. Mayhall Algorithm\n')
 print('- '*24+'\n')
 psi4.core.set_output_file('output.dat', False)
-
-molecule = psi4.geometry("""
-Li 0 0 0
-H 0 0 3.5850
-
-
-
-
+geometry = '''
+H     0.0000000000   0.0000000000  -1.2533471707
+CL     0.0000000000   0.0000000000   0.0361222790
 symmetry c1
-""")
+'''
 
+molecule = psi4.geometry(geometry)
 #Psi4 Calculations
-psi4.set_options({'basis': 'sto-3g', 'scf_type': 'pk'})
+psi4.set_options({'basis': 'cc-pvdz', 'scf_type': 'pk'})
 
 hf_energy, wfn = psi4.energy('scf', return_wfn = True, scf_type = 'pk')
 
@@ -40,19 +41,13 @@ f.transform(C)
 h = np.kron(np.array(h),(np.array([[1,0],[0,1]])))
 g = np.asarray(mints.mo_spin_eri(C, C))
 g = g.swapaxes(1, 2)
-#f = np.diag(np.linalg.eig(np.array(wfn.Fa()))[0])
 f = np.array(f)
 f = np.kron(f, (np.array([[1,0],[0,1]])))
-
 n_orbitals = 2*wfn.nmo()
 n_occs = 2*wfn.doccpi()[0]
 n_noccs = n_orbitals-n_occs
 occs = [i for i in range(0, n_occs)]
 noccs = [i for i in range(n_occs, n_orbitals)]
-#HF Sanity Check
-assert(abs(hf_energy-.5*np.einsum('abab', g[:n_occs,:n_occs,:n_occs,:n_occs])-.5*np.einsum('abba', g[:n_occs,:n_occs,:n_occs,:n_occs])+np.einsum('aa', h[:n_occs,:n_occs])<.000001))
-         
-#compute gradient
 
 gradient = []
 
@@ -200,11 +195,11 @@ def CG_Solver(t_vec):
      r = Ax0-b
      p = -r
      r_k_norm = np.dot(r,r)
-     print('%5s|%20.16s|%20.16s'%(('Iter.', 'Residual Norm', 'Energy')))
+     print('%5s|%20.16s|%20.16s'%(('Iter.', 'Residual Norm', 'Energy (a.u.)')))
      while r_k_norm > 1e-10:
-         print(p)
+
          Ap = np.array(Hessian_Action(p))
-         print(Ap)
+
          alpha = r_k_norm/np.dot(p,Ap)
          x += alpha * p
          r += alpha * Ap
@@ -212,14 +207,18 @@ def CG_Solver(t_vec):
          beta = r_kplus1_norm/r_k_norm
          r_k_norm = r_kplus1_norm
          p = beta * p - r
-         print('-'*47)
+         print('-'*48)
          k += 1
-         print('{}'.format(k).ljust(5)+'|'+'%20.16f|%20.16f'%((np.linalg.norm(r)),hf_energy+Energy(x)))
+         print('{}'.format(k).ljust(5)+'|'+'%20.16f|%20.16f'%(r_k_norm,hf_energy+Energy(x)))
 
-     print('\nConverged in {} iterations.'.format(k)+'\n')
+     end = timer()
+     print('\nConverged in {} iterations  ({} seconds).'.format(k, end-start)+'\n')
      print('HF energy:'.ljust(20)+'%20.16f Eh\n'%(hf_energy))
+     wfile = open('h2curve', 'a')
      print('Converged energy:'.ljust(20)+'%20.16f Eh\n'%(Energy(x)+hf_energy))
-    
+     wfile.write(str(float(Energy(x))+float(hf_energy))+'\n')
+     wfile = open('hfcurve', 'a')
+     wfile.write(str(float(hf_energy))+'\n')
 
 def Energy(x):
     x = x.T
@@ -240,7 +239,7 @@ if __name__ == '__main__':
             if i%2 == a%2:
                 n_ops += 1
 
-
     t_vec = [0 for i in range(1, n_ops+1)]
     CG_Solver(t_vec)
+
 
