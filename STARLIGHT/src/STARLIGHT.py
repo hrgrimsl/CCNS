@@ -2,29 +2,29 @@ import numpy as np
 from opt_einsum import contract
 import psi4
 import copy
-
 import random
 from sys import argv
 from timeit import default_timer as timer
 
-def get_gradient( n_occs, n_noccs, n_orbitals, f, g, hf_energy):
+def get_gradient(n_occs, n_noccs, n_orbitals, f, g, hf_energy):
     gradient = []
     #doubles
-    for i in range(0, n_occs):
-        for j in range(i+1, n_occs):
-            for a in range(n_occs, n_orbitals):
-                for b in range(a+1, n_orbitals):
+
+    for a in range(n_occs, n_orbitals):
+        for b in range(a+1, n_orbitals):
+            for i in range(0, n_occs):
+               for j in range(i+1, n_occs):
                     gradient.append(2**.5*(g[i,j,b,a]-g[i,j,a,b]))
     #singles
-    for i in range(0, n_occs):
-        for a in range(n_occs, n_orbitals):
+    for a in range(n_occs, n_orbitals):
+        for i in range(0, n_occs):
             gradient.append(0)
 
     gradient = np.array(gradient)
     return gradient
 
 def Hessian_Action(dx, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
-    dx = Populate_Tensor(dx, n_occs, n_noccs, n_orbitals, f, g, hf_energy)    
+    dx = Populate_Tensor(dx, n_occs, n_noccs, n_orbitals, f, g, hf_energy) 
     gvvvv = g[n_occs:,n_occs:,n_occs:,n_occs:]
     goooo = g[:n_occs,:n_occs,:n_occs,:n_occs]
     goovv = g[:n_occs,:n_occs,n_occs:,n_occs:]
@@ -43,9 +43,9 @@ def Hessian_Action(dx, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
     foo = f[:n_occs,:n_occs]
     fvv = f[n_occs:,n_occs:]
 
-    Hdx = 0
-    Hdx2 = 0
-    
+    Hdx = np.zeros((n_noccs,n_occs))
+    Hdx2 = np.zeros((n_noccs,n_noccs,n_occs,n_occs))
+
     #Singles/Singles
     
     Hdx -= contract('ji,bi->bj',foo,dx[0])
@@ -58,7 +58,7 @@ def Hessian_Action(dx, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
     Hdx -= contract('ijba,ai->bj',goovv,dx[0])
     
 
-    #Singles/Doubles - Out of Order
+    #Singles/Doubles
 
     Hdx2 += contract('cbaj,ak->bckj',gvvvo,dx[0])
     Hdx2 -= contract('cbja,ak->bckj',gvvov,dx[0])
@@ -77,7 +77,7 @@ def Hessian_Action(dx, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
 
     Hdx += .5*contract('ikaj,abik->bj',goovo,dx[1])
     Hdx -= .5*contract('ikja,abik->bj',gooov,dx[1])
-    
+
 
     #Doubles/Doubles
     Hdx2 += contract('ab,acjk->bcjk',fvv,dx[1]) 
@@ -105,72 +105,67 @@ def Hessian_Action(dx, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
 
 
 def Populate_Tensor(t_vec, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
-    t_tensor = [np.zeros((n_noccs, n_occs)), np.zeros((n_noccs, n_noccs, n_occs, n_occs))]
-    ind = 0
-    for i in range(0, n_occs):
-        for j in range(i+1, n_occs):
-            for a in range(0, n_noccs):
-                for b in range(a+1, n_noccs):
-                    t_tensor[1][a,b,i,j] = t_vec[ind]
-                    t_tensor[1][a,b,j,i] = -t_vec[ind]
-                    t_tensor[1][b,a,i,j] = -t_vec[ind]
-                    t_tensor[1][b,a,j,i] = t_vec[ind]
-                    ind += 1
-
-    for a in range(0, n_noccs):
-        for i in range(0, n_occs):
-            t_tensor[0][a,i] = t_vec[ind]
-            ind += 1             
-
-    return t_tensor
+    t1 = np.array(t_vec[(len(t_vec)-n_occs*n_noccs):])
+    t1.shape = (n_noccs,n_occs)
+    t2 = np.zeros((n_noccs, n_noccs, n_occs, n_occs)).astype(np.float)
+    t2 = np.zeros((n_noccs, n_noccs, n_occs, n_occs)).astype(np.float)
+    t2 = np.zeros((n_noccs, n_noccs, n_occs, n_occs)).astype(np.float)
+    t2 = np.zeros((n_noccs, n_noccs, n_occs, n_occs)).astype(np.float)
+    O = (np.triu_indices(n_occs, 1))
+    V = (np.triu_indices(n_noccs, 1))
+    v2 = np.array(t_vec[:(len(t_vec)-n_occs*n_noccs)])
+    v2.shape = (len(V[0]),len(O[0]))
+    t2[V[0][:,None],V[1][:,None],O[0],O[1]] = v2
+    t2[V[0][:,None],V[1][:,None],O[1],O[0]] = -v2
+    t2[V[1][:,None],V[0][:,None],O[0],O[1]] = -v2
+    t2[V[1][:,None],V[0][:,None],O[1],O[0]] = v2
+    return(t1,t2)
 
 def Populate_Vector(t_tensor, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
-   t_vector = []
-   for i in range(0, n_occs):
-         for j in range(i+1, n_occs):
-             for a in range(0, n_noccs):
-                 for b in range(a+1, n_noccs):
-                     t_vector.append(t_tensor[0][a,b,i,j])
- 
-   for a in range(0, n_noccs):
-       for i in range(0, n_occs):
-             t_vector.append(t_tensor[1][a,i])
-
-   return t_vector
+   O = (np.triu_indices(n_occs, 1))
+   V = (np.triu_indices(n_noccs, 1))
+   t_vector = (t_tensor[0][V][(slice(None),) + O])
+   t_vector = list(t_vector.flatten())
+   t1 = t_tensor[1]
+   t1 = list(t1.flatten())
+   t_vector+=t1
 
 
 
+   return np.array(t_vector)
 
 def CG_Solver(t_vec, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
      k = 0
      b = -get_gradient(n_occs, n_noccs, n_orbitals, f, g, hf_energy)
-     x = [t_vec]
-     Ax0 = np.array(Hessian_Action(x[0], n_occs, n_noccs, n_orbitals, f, g, hf_energy))
+
+     x = np.array(t_vec)
+     Ax0 = np.array(Hessian_Action(x, n_occs, n_noccs, n_orbitals, f, g, hf_energy))
      r = Ax0-b
      p = -r
      r_k_norm = np.dot(r,r)
-     print('%5s|%20.16s|%20.16s'%(('Iter.', 'Residual Norm', 'Energy (a.u.)')))
-     while r_k_norm > 1e-10:
+     print('%5s|%20.16s'%(('Iter.', 'Residual Norm')))
+     while r_k_norm > 1e-14:
+
 
          Ap = np.array(Hessian_Action(p, n_occs, n_noccs, n_orbitals, f, g, hf_energy))
-
          alpha = r_k_norm/np.dot(p,Ap)
          x += alpha * p
+
+
          r += alpha * Ap
          r_kplus1_norm = np.dot(r,r)
          beta = r_kplus1_norm/r_k_norm
          r_k_norm = r_kplus1_norm
          p = beta * p - r
-         print('-'*48)
+         print('-'*30)
          k += 1
-         print('{}'.format(k).ljust(5)+'|'+'%20.16f|%20.16f'%(r_k_norm,hf_energy+Energy(x, b, n_occs, n_noccs, n_orbitals, f, g, hf_energy)))
+         print('{}'.format(k).ljust(5)+'|'+'%20.16f'%(r_k_norm)) 
+
 
      end = timer()
      print('\nConverged in {} iterations  ({} seconds).'.format(k, end-start)+'\n')
      print('HF energy:'.ljust(20)+'%20.16f Eh\n'%(hf_energy))
-     print('Converged energy:'.ljust(20)+'%20.16f Eh\n'%(Energy(x, b, n_occs, n_noccs, n_orbitals, f, g, hf_energy)+hf_energy))
-
-
+     print('Converged energy:'.ljust(20)+'%20.16f Eh\n'%(Energy(x, -b, n_occs, n_noccs, n_orbitals, f, g, hf_energy)+hf_energy))
 
 def Energy(x, gradient, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
     x = x.T
@@ -179,30 +174,23 @@ def Energy(x, gradient, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
 
 if __name__ == '__main__':
     start = timer()
-
     print('\n'+'- '*24+'\n')
     print('  '*10+'STARLIGHT'+' '*10+'\n')
     print(' '*4+'An H.R. Grimsley & N.J. Mayhall Algorithm\n')
     print('- '*24+'\n')
     psi4.core.set_output_file('output.dat', False)
     geometry = '''
-    H 0 0 0
-    Cl 0 0 1
+    H            0.000000000000     0.000000000000    -1.253347167684
+    CL           0.000000000000     0.000000000000     0.036122278902
+
     symmetry c1
     '''
-    
-    molecule = psi4.geometry(geometry)
-    #Psi4 Calculations
-    psi4.set_options({'basis': 'cc-pvdz', 'scf_type': 'pk'})
 
-    hf_energy, wfn = psi4.energy('scf', return_wfn = True, scf_type = 'pk')
-
-    #h = 1-electron integral 2-tensor (<i|h|a>) 
     molecule = psi4.geometry(geometry)
     #Psi4 Calculations
     psi4.set_options({'basis': 'cc-pvdz', 'scf_type': 'pk'})
     
-    hf_energy, wfn = psi4.energy('scf', return_wfn = True, scf_type = 'pk')
+    hf_energy0, wfn = psi4.energy('scf', return_wfn = True, scf_type = 'pk')
     
     #h = 1-electron integral 2-tensor (<i|h|a>)
     #g = 2-electron integral 4-tensor (<ij|ab>, not <ij||ab>)
@@ -212,32 +200,32 @@ if __name__ == '__main__':
     nr = molecule.nuclear_repulsion_energy()
     mints = psi4.core.MintsHelper(wfn.basisset())
     C = wfn.Ca()
-    h = mints.ao_kinetic()
-    f = wfn.Fa()
-    h.add(mints.ao_potential())
-    h.transform(C)
-    f.transform(C)
-    h = np.kron(np.array(h),(np.array([[1,0],[0,1]])))
-    g = np.asarray(mints.mo_spin_eri(C, C))
-    g = g.swapaxes(1, 2)
-    f = np.array(f)
-    f = np.kron(f, (np.array([[1,0],[0,1]])))
-    n_orbitals = 2*wfn.nmo()
-    n_occs = 2*wfn.doccpi()[0]
-    n_noccs = n_orbitals-n_occs
-    occs = [i for i in range(0, n_occs)]
-    noccs = [i for i in range(n_occs, n_orbitals)]
+    h0 = mints.ao_kinetic()
+    f0 = wfn.Fa()
+    h0.add(mints.ao_potential())
+    h0.transform(C)
+    f0.transform(C)
+    h0 = np.kron(np.array(h0),(np.array([[1,0],[0,1]])))
+    g0 = np.asarray(mints.mo_spin_eri(C, C))
+    g0 = g0.swapaxes(1, 2)
+    f0 = np.array(f0)
+    f0 = np.kron(f0, (np.array([[1,0],[0,1]])))
+    n_orbitals0 = 2*wfn.nmo()
+    n_occs0 = 2*wfn.doccpi()[0]
+    n_noccs0 = n_orbitals0-n_occs0
     n_ops = 0
-    for i in range(0, n_occs):
-         for j in range(i+1, n_occs):
-             for a in range(0, n_noccs):
-                 for b in range(a+1, n_noccs):
-                         n_ops += 1
- 
-    for i in range(0, n_occs):
-        for a in range(0, n_noccs):
+
+    for i in range(0, n_occs0):
+         for j in range(i+1, n_occs0):
+             for a in range(0, n_noccs0):
+                 for b in range(a+1, n_noccs0):
+                     n_ops += 1
+                      
+    for i in range(0, n_occs0):
+        for a in range(0, n_noccs0):
             n_ops += 1
 
-    t_vec = [0 for i in range(1, n_ops+1)]
-    CG_Solver(t_vec, n_occs, n_noccs, n_orbitals, f, g, hf_energy)
+    t_vec0 = np.zeros(n_ops)
+    CG_Solver(copy.copy(t_vec0), copy.copy(n_occs0), copy.copy(n_noccs0), copy.copy(n_orbitals0), copy.copy(f0), copy.copy(g0), copy.copy(hf_energy0))
+
 
