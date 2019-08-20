@@ -13,7 +13,7 @@ def get_gradient(n_occs, n_noccs, n_orbitals, f, g, hf_energy):
         for b in range(a+1, n_orbitals):
             for i in range(0, n_occs):
                for j in range(i+1, n_occs):
-                    gradient.append(2**.5*(g[i,j,b,a]-g[i,j,a,b]))
+                    gradient.append(2**.5*(g[i,j,b,a]))
     #singles
     for a in range(n_occs, n_orbitals):
         for i in range(0, n_occs):
@@ -23,6 +23,7 @@ def get_gradient(n_occs, n_noccs, n_orbitals, f, g, hf_energy):
     return gradient
 
 def Hessian_Action(dx, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
+    t_vec = copy.copy(dx)
     dx = Populate_Tensor(dx, n_occs, n_noccs, n_orbitals, f, g, hf_energy) 
     gvvvv = g[n_occs:,n_occs:,n_occs:,n_occs:]
     goooo = g[:n_occs,:n_occs,:n_occs,:n_occs]
@@ -46,60 +47,56 @@ def Hessian_Action(dx, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
     Hdx2 = np.zeros((n_noccs,n_noccs,n_occs,n_occs))
     
     #Singles/Singles
-    
+    #BHA
     Hdx -= contract('ji,bi->bj',foo,dx[0])
     Hdx += contract('ba,aj->bj',fvv,dx[0]) 
 
     Hdx += contract('ibaj,ai->bj',govvo,dx[0])
-    Hdx -= contract('ibja,ai->bj',govov,dx[0])
     
+
+    #Remove this term for CEPA(0)?
+    #HAB
     Hdx += contract('ijab,ai->bj',goovv,dx[0])
-    Hdx -= contract('ijba,ai->bj',goovv,dx[0])
-    
 
     #Singles/Doubles
-
+    #BHA
     Hdx2 += contract('cbaj,ak->bckj',gvvvo,dx[0])
-    Hdx2 -= contract('cbja,ak->bckj',gvvov,dx[0])
     Hdx2 -= contract('cbak,aj->bckj',gvvvo,dx[0])
-    Hdx2 += contract('cbka,aj->bckj',gvvov,dx[0])
 
     Hdx2 -= contract('ibkj,ci->bckj',govoo,dx[0])
-    Hdx2 += contract('ibjk,ci->bckj',govoo,dx[0])
     Hdx2 += contract('ickj,bi->bckj',govoo,dx[0])
-    Hdx2 -= contract('icjk,bi->bckj',govoo,dx[0]) 
-
     
     #Doubles/Singles
+    #BHA
     Hdx -= .5*contract('ibac,acij->bj',govvv,dx[1])
-    Hdx += .5*contract('ibca,acij->bj',govvv,dx[1])
 
     Hdx += .5*contract('ikaj,abik->bj',goovo,dx[1])
-    Hdx -= .5*contract('ikja,abik->bj',gooov,dx[1])
-
 
     #Doubles/Doubles
+    #BHA
     Hdx2 += contract('ab,acjk->bcjk',fvv,dx[1]) 
     Hdx2 -= contract('ac,abjk->bcjk',fvv,dx[1]) 
 
     Hdx2 -= contract('ij,bcik->bcjk',foo,dx[1]) 
     Hdx2 += contract('ik,bcij->bcjk',foo,dx[1])
- 
-    Hdx2 += .5*contract('bcad,adjk->bcjk',gvvvv,dx[1])
-    Hdx2 -= .5*contract('bcda,adjk->bcjk',gvvvv,dx[1])
- 
-    Hdx2 += .5*contract('iljk,adil->adjk',goooo,dx[1])
-    Hdx2 -= .5*contract('ilkj,adil->adjk',goooo,dx[1])
-    
-    Hdx2 -= contract('icjd,bdik->cbkj',govov,dx[1])
-    Hdx2 += contract('icdj,bdik->cbkj',govvo,dx[1])
-    Hdx2 += contract('ickd,bdij->cbkj',govov,dx[1])
-    Hdx2 -= contract('icdk,bdij->cbkj',govvo,dx[1])
-    Hdx2 += contract('ibjd,cdik->cbkj',govov,dx[1])
-    Hdx2 -= contract('ibdj,cdik->cbkj',govvo,dx[1])
-    Hdx2 -= contract('ibkd,cdij->cbkj',govov,dx[1])
-    Hdx2 += contract('ibdk,cdij->cbkj',govvo,dx[1])
 
+    t2_vec = t_vec[:(len(t_vec)-n_occs*n_noccs)]
+    t2_vec.shape = (int(n_noccs*(n_noccs-1)/2), int(n_occs*(n_occs-1)/2))
+    g2_vec = Populate_VV([gvvvv, f], n_occs, n_noccs, n_orbitals, f, g, hf_energy)
+    g2_vec.shape = (int(n_noccs*(n_noccs-1)/2), int(n_noccs*(n_noccs-1)/2))
+    con = contract('ab,bc->ac',g2_vec, t2_vec)
+    con = con.flatten()
+    con = np.concatenate((con,np.zeros((n_occs*n_noccs))))
+    con = Populate_Tensor(con, n_occs, n_noccs, n_orbitals, f, g, hf_energy)
+
+    Hdx2 += con[1]
+    #Hdx2 += .5*contract('bcad,adjk->bcjk',gvvvv,dx[1])
+
+    Hdx2 += .5*contract('iljk,adil->adjk',goooo,dx[1])
+    Hdx2 -= contract('icjd,bdik->cbkj',govov,dx[1])
+    Hdx2 += contract('ickd,bdij->cbkj',govov,dx[1])
+    Hdx2 += contract('ibjd,cdik->cbkj',govov,dx[1])
+    Hdx2 -= contract('ibkd,cdij->cbkj',govov,dx[1])
     return(Populate_Vector([Hdx2, Hdx], n_occs, n_noccs, n_orbitals, f, g, hf_energy))
 
 
@@ -130,6 +127,15 @@ def Populate_Vector(t_tensor, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
    t_vector = np.concatenate((t_vector,t1))
    return t_vector
 
+def Populate_VV(t_tensor, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
+   O = (np.triu_indices(n_noccs, 1))
+   V = (np.triu_indices(n_noccs, 1))
+   t_vector = (t_tensor[0][V][(slice(None),) + O])
+   t_vector = t_vector.flatten()
+   t1 = t_tensor[1]
+   t1 = t1.flatten()
+   return t_vector
+
 def CG_Solver(t_vec, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
      k = 0
      b = -get_gradient(n_occs, n_noccs, n_orbitals, f, g, hf_energy)
@@ -139,12 +145,10 @@ def CG_Solver(t_vec, n_occs, n_noccs, n_orbitals, f, g, hf_energy):
      p = -r
      r_k_norm = np.dot(r,r)
      print('%5s|%20.16s'%(('Iter.', 'Residual Norm')))
-     while r_k_norm > 1e-4:
+     while r_k_norm > 1e-16:
          Ap = (Hessian_Action(p, n_occs, n_noccs, n_orbitals, f, g, hf_energy))
          alpha = r_k_norm/np.dot(p,Ap)
          x += alpha * p
-
-
          r += alpha * Ap
          r_kplus1_norm = np.dot(r,r)
          beta = r_kplus1_norm/r_k_norm
@@ -173,15 +177,14 @@ if __name__ == '__main__':
     print('- '*24+'\n')
     psi4.core.set_output_file('output.dat', False)
     geometry = '''
-    H 0 0 1
     H 0 0 0
+    Cl 0 0 1
 
     symmetry c1
     '''
-
     molecule = psi4.geometry(geometry)
     #Psi4 Calculations
-    psi4.set_options({'basis': 'sto-3g', 'scf_type': 'pk'})
+    psi4.set_options({'basis': 'cc-pvdz', 'scf_type': 'pk'})
     
     hf_energy0, wfn = psi4.energy('scf', return_wfn = True, scf_type = 'pk')
     
@@ -201,6 +204,9 @@ if __name__ == '__main__':
     h0 = np.kron(np.array(h0),(np.array([[1,0],[0,1]])))
     g0 = np.asarray(mints.mo_spin_eri(C, C))
     g0 = g0.swapaxes(1, 2)
+    g1 = copy.copy(g0)
+    g1 = g1.swapaxes(2, 3)
+    g0 -= g1
     f0 = np.array(f0)
     f0 = np.kron(f0, (np.array([[1,0],[0,1]])))
     n_orbitals0 = 2*wfn.nmo()
