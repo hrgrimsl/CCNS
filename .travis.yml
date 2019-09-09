@@ -13,8 +13,10 @@ install:
   - conda update -q conda
 
   # Replace dep1 dep2 ... with your dependencies
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy scipy opt_einsum
+  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy scipy 
+
   - source activate test-environment
+  - pip install opt_einsum
 
   - conda install psi4 python=3.6 -c psi4;
 
