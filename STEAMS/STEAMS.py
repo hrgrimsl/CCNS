@@ -2,13 +2,15 @@
 #Output: Second-order Taylor Expansion About Mean-field Solution
 
 import numpy as np
+#opt_einsum.contract() is just np.linalg.einsum() but more efficient
 from opt_einsum import contract
 import copy
 import psi4
 
 class Molecule:
     def __init__(self, geometry, basis):
-        #Get Fock matrices fa/fb, as well as exchange matrices, e.g. Labab
+        #compute and store all 1- and 2- electron integrals; currently memory-limiting
+        #needs to be implemented with on-the-fly calculations or with density fitting
         molecule = psi4.geometry(geometry)
         psi4.core.set_output_file('output.dat', False)
         psi4.set_options({'basis': str(basis), 'scf_type': 'pk', 'reference': 'rhf'})
@@ -21,6 +23,9 @@ class Molecule:
         self.multiplicity = molecule.multiplicity
         if molecule.multiplicity == 1:
             Cb = Ca
+        #f_ = fock matrix
+        #J_ _ _ _ = 2-electron matrix if electrons of opposite spin <ij|ab>
+        #L_ _ _ _ = 2-electron matrix if electrons of same spin <ij||ab>
         self.fa = wfn.Fa()
         self.fb = wfn.Fb()
         self.Jaaaa = np.array(mints.mo_eri(Ca, Ca, Ca, Ca))
@@ -34,18 +39,19 @@ class Molecule:
         self.Jabab = self.Jabab.swapaxes(1, 2)
         self.Jbaba = self.Jbaba.swapaxes(1, 2)
         self.Jbbbb = self.Jbbbb.swapaxes(1, 2)
-        self.Kaaaa = copy.copy(self.Jaaaa)
-        self.Kabab = copy.copy(self.Jabab)
-        self.Kbaba = copy.copy(self.Jbaba)
-        self.Kbbbb = copy.copy(self.Jbbbb)
-        self.Kaaaa = self.Kaaaa.swapaxes(2, 3)
-        self.Kabab = self.Kabab.swapaxes(2, 3)
-        self.Kbaba = self.Kbaba.swapaxes(2, 3)
-        self.Kbbbb = self.Kbbbb.swapaxes(2, 3)
-        self.Laaaa = self.Jaaaa - self.Kaaaa
-        self.Labab = self.Jabab - self.Kabab
-        self.Lbaba = self.Jbaba - self.Kbaba
-        self.Lbbbb = self.Jbbbb - self.Kbbbb
+        Kaaaa = copy.copy(self.Jaaaa)
+        Kabab = copy.copy(self.Jabab)
+        Kbaba = copy.copy(self.Jbaba)
+        Kbbbb = copy.copy(self.Jbbbb)
+        Kaaaa = Kabab.swapaxes(2, 3)
+        Kabab = Kabab.swapaxes(2, 3)
+        Kbaba = Kbaba.swapaxes(2, 3)
+        Kbbbb = Kbbbb.swapaxes(2, 3)
+        self.Laaaa = self.Jaaaa - Kaaaa
+        self.Labab = self.Jabab - Kabab
+        self.Lbaba = self.Jbaba - Kbaba
+        self.Lbbbb = self.Jbbbb - Kbbbb
+        #Number_Occupied/Virtual_alpha/beta:
         self.NOa = wfn.Ca_subset("AO", "ACTIVE_OCC").shape[1]
         self.NOb = wfn.Cb_subset("AO", "ACTIVE_OCC").shape[1]
         self.NVa = wfn.Ca_subset("AO", "ACTIVE_VIR").shape[1]
@@ -61,6 +67,7 @@ class Molecule:
         assert(self.tbbbb.shape == self.gbbbb.shape)
 
     def Build_Trial(self):
+        #
         self.taa = np.zeros((self.NOa, self.NVa))
         self.tbb = np.zeros((self.NOb, self.NVb))
         self.taaaa = np.zeros((self.NOa, self.NOa, self.NVa, self.NVa))
