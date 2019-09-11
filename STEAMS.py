@@ -59,15 +59,14 @@ class Molecule:
         #Initialize trial vector t and gradient vector g
         self.Build_Trial()
         self.Build_Gradient()
-        assert(self.taa.shape == self.gaa.shape)
-        assert(self.tbb.shape == self.gbb.shape)
-        assert(self.taaaa.shape == self.gaaaa.shape)
-        assert(self.tabab.shape == self.gabab.shape)
-        assert(self.tbaba.shape == self.gbaba.shape)
-        assert(self.tbbbb.shape == self.gbbbb.shape)
+        self.AA = self.taa
+        self.BB = self.tbb
+        self.AAAA = self.taaaa
+        self.ABAB = self.tabab
+        self.BABA = self.tbaba
+        self.BBBB = self.tbbbb
 
     def Build_Trial(self):
-        #
         self.taa = np.zeros((self.NOa, self.NVa))
         self.tbb = np.zeros((self.NOb, self.NVb))
         self.taaaa = np.zeros((self.NOa, self.NOa, self.NVa, self.NVa))
@@ -92,211 +91,182 @@ class Molecule:
         self.gbaba = 2**.5*self.Jbaba[BO,:,:,:][:,AO,:,:][:,:,BV,:][:,:,:,AV]
 
     def Hessian_Action(self, vector):
-        #This will consist of 6 sets of 6 contractions, and should be of identical shape to the gradient and trial vectors.
-        haa = self.HAA(vector)
-        hbb = self.HBB(vector)
-        haaaa = self.HAAAA(vector)
-        #habab = self.HABAB(vector)
-        #hbaba = self.HBABA(vector)
-        hbbbb = self.HBBBB(vector)
-    def HAA(self, v):
-        #Sums across every interaction with the taa terms
-        h = self.AA_AA(v['aa'])
-        h += self.AA_BB(v['bb'])
-        h += self.AA_AAAA(v['aaaa'])
-        h += self.AA_ABAB(v['abab'])
-        h += self.AA_BABA(v['baba'])
-        h += self.AA_BBBB(v['bbbb'])
-        return h
-        #h += self.BBBB_AA(v)
-    def HBB(self, v):
-        h = self.BB_AA(v['aa'])
-        h += self.BB_BB(v['bb'])
-        h += self.BB_AAAA(v['aaaa'])
-        h += self.BB_ABAB(v['abab'])
-        h += self.BB_BABA(v['baba'])
-        h += self.BB_BBBB(v['bbbb'])
-        return h
-    def HAAAA(self, v):
-        h = self.AAAA_AA(v['aa'])
-        h = self.AAAA_BB(v['bb'])
-        h = self.AAAA_AAAA(v['aaaa'])
-        h = self.AAAA_ABAB(v['abab'])
-        h = self.AAAA_BABA(v['baba'])
-        h = self.AAAA_BBBB(v['bbbb'])
-    def HBBBB(self, v):
-        h = self.BBBB_AA(v['aa'])
-        h += self.BBBB_BB(v['bb'])
-        h += self.BBBB_AAAA(v['aaaa'])
-        h += self.BBBB_ABAB(v['abab'])
-        h += self.BBBB_BABA(v['baba'])
-        h += self.BBBB_BBBB(v['bbbb'])
-        return h
-        #h += self.BBBB_AA(v)
+        self.AA = np.zeros(self.taa.shape)
+        self.BB = np.zeros(self.tbb.shape)
+        self.AAAA = np.zeros(self.taaaa.shape)
+        self.ABAB = np.zeros(self.tabab.shape)
+        self.BABA = np.zeros(self.tbaba.shape)
+        self.BBBB = np.zeros(self.tbbbb.shape)
+        self.SS(vector)
+        self.SD(vector)
+        self.DS(vector)
+        self.DD(vector)
+        print(self.AAAA)
+        print(self.ABAB)
+        print(self.BABA)
+        print(self.BBBB)
+        return {'aa': self.AA, 'bb': self.BB, 'aaaa': self.AAAA, 'abab': self.ABAB, 'baba': self.BABA, 'bbbb': self.BBBB}
 
-    def AA_AA(self,v):
-        h = np.zeros(self.taa.shape)
+    def SS(self, vector):
+        #HAB
+        self.AA += .5*contract('ijab,ia->jb',self.Jaaaa[:self.NOa,:self.NOa,self.NOa:,self.NOa:], vector['aa'])
+        self.BB += .5*contract('ijab,ia->jb',self.Labab[:self.NOa,:self.NOb,self.NOa:,self.NOb:], vector['aa'])
+        self.BB += .5*contract('ijab,ia->jb',self.Jaaaa[:self.NOb,:self.NOb,self.NOb:,self.NOb:], vector['bb'])
+        self.AA += .5*contract('ijab,ia->jb',self.Labab[:self.NOb,:self.NOa,self.NOb:,self.NOa:], vector['bb'])
 
-        #HAB term
-        h += contract('ijab,ia->jb', self.Laaaa[:self.NOa,:self.NOa,self.NOa:,self.NOa:], v)
+        #BHA
+        self.AA += contract('ba,ia->ib',self.fa[self.NOa:,self.NOa:], vector['aa'])
+        self.BB += contract('ba,ia->ib',self.fa[self.NOb:,self.NOb:], vector['bb'])
+        self.AA -= contract('ij,ia->ja',self.fa[:self.NOa,:self.NOa], vector['aa'])
+        self.BB -= contract('ij,ia->ja',self.fa[:self.NOb,:self.NOb], vector['bb'])
 
-        h += contract('ba,ia->ib', self.fa[self.NOa:, self.NOa:], v)
-        h -= contract('ij,ia->ja', self.fa[:self.NOa, :self.NOa], v)
-        h += contract('ibaj,ia->jb', self.Laaaa[:self.NOa,self.NOa:,self.NOa:,:self.NOa], v)
-        return h
+        self.AA += contract('ibaj,ia->jb',self.Laaaa[:self.NOa,self.NOa:,self.NOa:,:self.NOa], vector['aa'])
+        self.BB += contract('ibaj,ia->jb',self.Jabab[:self.NOa,self.NOb:,self.NOa:,:self.NOb], vector['aa'])
+        self.BB += contract('ibaj,ia->jb',self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,:self.NOb], vector['bb'])
+        self.AA += contract('ibaj,ia->jb',self.Jbaba[:self.NOb,self.NOa:,self.NOb:,:self.NOa], vector['bb'])
 
-    def AA_BB(self,v):
-        h = np.zeros(self.taa.shape)
+    def SD(self, vector):
+        #(Doubles Amplitude)
+        self.AA -= .5*contract('ijak,ijab->kb',self.Laaaa[:self.NOa,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
+        self.AA += .5*contract('ijka,ijba->kb',self.Jabab[:self.NOa,:self.NOb,:self.NOa,self.NOb:], vector['abab'])
+        self.AA -= .5*contract('ijak,ijab->kb',self.Jbaba[:self.NOb,:self.NOa,self.NOb:,:self.NOa], vector['aaaa'])
+        self.BB -= .5*contract('ijak,ijab->kb',self.Lbbbb[:self.NOb,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BB += .5*contract('ijka,ijba->kb',self.Jbaba[:self.NOb,:self.NOa,:self.NOb,self.NOa:], vector['baba'])
+        self.BB -= .5*contract('ijak,ijab->kb',self.Jabab[:self.NOa,:self.NOb,self.NOa:,:self.NOb], vector['bbbb'])
 
-        #HAB term
-        h += contract('ijab,ia->jb', self.Jbaba[:self.NOb,:self.NOa,self.NOb:,self.NOa:], v)
+        self.AA += .5*contract('icab,ijab->jc',self.Laaaa[:self.NOa,self.NOa:,self.NOa:,self.NOb:], vector['aaaa'])
+        self.AA += .5*contract('icab,ijab->jc',self.Jbaba[:self.NOb,self.NOa:,self.NOb:,self.NOb:], vector['baba'])
+        self.AA -= .5*contract('icba,ijba->jc',self.Jbaba[:self.NOb,self.NOa:,self.NOb:,self.NOb:], vector['baba'])
+        self.BB += .5*contract('icab,ijab->jc',self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,self.NOa:], vector['bbbb'])
+        self.BB += .5*contract('icab,ijab->jc',self.Jabab[:self.NOa,self.NOb:,self.NOa:,self.NOa:], vector['abab'])
+        self.BB -= .5*contract('icba,ijba->jc',self.Jabab[:self.NOa,self.NOb:,self.NOa:,self.NOa:], vector['abab'])
 
-        h += contract('ibaj,ia->jb', self.Jbaba[:self.NOb,self.NOa:,self.NOb:,:self.NOa], v)
-        return h
-    def AA_AAAA(self,v):
-        h = np.zeros(self.taa.shape)
-        h += contract('cjab,ijab->ic', self.Laaaa[self.NOa:,:self.NOa,self.NOa:,self.NOa:], v)
-        h -= contract('ijkb,ijab->ka', self.Laaaa[:self.NOa,:self.NOa,:self.NOa,self.NOa:], v)
-        return h
-    def AA_ABAB(self,v):
-        h = np.zeros(self.taa.shape)
-        h += contract('cjab,ijab->ic', self.Jabab[self.NOa:,:self.NOb,self.NOa:,self.NOb:], v)
-        h -= contract('ijkb,ijab->ka', self.Jabab[:self.NOa,:self.NOb,:self.NOa,self.NOb:], v)
-        return h
-    def AA_BABA(self,v):
-        h = np.zeros(self.taa.shape)
+    def DS(self, vector):
+        self.AAAA -= contract('ibkj,ia->kjab',self.Laaaa[:self.NOa,self.NOa:,:self.NOa,:self.NOa], vector['aa'])
+        self.BABA -= contract('ibjk,ia->kjba',self.Jabab[:self.NOa,self.NOb:,:self.NOa,:self.NOb], vector['aa'])
+        self.ABAB -= contract('ibkj,ia->kjab',self.Jabab[:self.NOa,self.NOb:,:self.NOa,:self.NOb], vector['aa'])
+        self.AAAA += contract('iakj,ib->kjab',self.Laaaa[:self.NOa,self.NOa:,:self.NOa,:self.NOa], vector['aa'])
+        self.BBBB -= contract('ibkj,ia->kjab',self.Lbbbb[:self.NOb,self.NOb:,:self.NOb,:self.NOb], vector['bb'])
+        self.ABAB -= contract('ibjk,ia->kjba',self.Jbaba[:self.NOb,self.NOa:,:self.NOb,:self.NOa], vector['bb'])
+        self.BABA -= contract('ibkj,ia->kjab',self.Jbaba[:self.NOb,self.NOa:,:self.NOb,:self.NOa], vector['bb'])
+        self.BBBB += contract('iakj,ib->kjab',self.Lbbbb[:self.NOb,self.NOb:,:self.NOb,:self.NOb], vector['bb'])
 
-        return h
-    def AA_BBBB(self,v):
-        h = np.zeros(self.taa.shape)
-        return h
-    def BB_AA(self, v):
-        h = np.zeros(self.taa.shape)
+        self.AAAA += contract('cbaj,ia->ijcb',self.Laaaa[self.NOa:,self.NOa:,self.NOa:,:self.NOa], vector['aa'])
+        self.AAAA -= contract('cbai,ja->ijcb', self.Laaaa[self.NOa:, self.NOa:, self.NOa:, :self.NOa], vector['aa'])
+        self.ABAB += contract('cbaj,ia->ijcb', self.Jabab[self.NOa:, self.NOb:, self.NOa:, :self.NOb], vector['aa'])
+        self.ABAB += contract('bcaj,ia->ijbc', self.Jabab[self.NOa:, self.NOb:, self.NOa:, :self.NOb], vector['aa'])
+        self.BBBB += contract('cbaj,ia->ijcb',self.Lbbbb[self.NOb:,self.NOb:,self.NOb:,:self.NOb], vector['bb'])
+        self.BBBB -= contract('cbai,ja->ijcb', self.Lbbbb[self.NOb:, self.NOb:, self.NOb:, :self.NOb], vector['bb'])
+        self.BABA += contract('cbaj,ia->ijcb', self.Jbaba[self.NOb:, self.NOa:, self.NOb:, :self.NOa], vector['bb'])
+        self.BABA += contract('bcaj,ia->ijbc', self.Jbaba[self.NOb:, self.NOa:, self.NOb:, :self.NOa], vector['bb'])
 
-        # HAB term
-        h += contract('ijab,ia->jb', self.Jabab[:self.NOa, :self.NOb, self.NOa:, self.NOb:], v)
+    def DD(self,vector):
+        self.AAAA += contract('ca,ijab->ijcb',self.fa[self.NOa:,self.NOa:],vector['aaaa'])
+        self.AAAA -= contract('ba,ijba->ijcb',self.fa[self.NOa:,self.NOa:],vector['aaaa'])
+        self.ABAB += contract('ca,jiab->jicb',self.fa[self.NOa:,self.NOa:],vector['abab'])
+        self.ABAB += contract('ca,ijab->ijcb',self.fa[self.NOa:,self.NOa:],vector['abab'])
 
-        h += contract('ibaj,ia->jb', self.Jabab[:self.NOa, self.NOb:, self.NOa:, :self.NOb], v)
-        return h
-    def BB_AA(self,v):
-        h = np.zeros(self.tbb.shape)
+        self.AAAA += .5*contract('cdab,ijab->ijcd',self.Laaaa[self.NOa:,self.NOa:,self.NOa:,self.NOa:], vector['aaaa'])
+        self.ABAB += .5*contract('cdab,ijab->ijcd',self.Jabab[self.NOa:,self.NOb:,self.NOa:,self.NOb:], vector['abab'])
+        self.ABAB += .5*contract('cdba,ijba->ijcd',self.Jabab[self.NOa:,self.NOb:,self.NOa:,self.NOb:], vector['abab'])
+        self.ABAB += .5*contract('dcab,ijab->ijdc',self.Jabab[self.NOa:,self.NOb:,self.NOa:,self.NOb:], vector['abab'])
+        self.ABAB += .5*contract('dcba,ijba->ijdc',self.Jabab[self.NOa:,self.NOb:,self.NOa:,self.NOb:], vector['abab'])
+        self.BBBB += .5*contract('cdab,ijab->ijcd',self.Lbbbb[self.NOb:,self.NOb:,self.NOb:,self.NOb:], vector['bbbb'])
+        self.BABA += .5*contract('cdab,ijab->ijcd',self.Jbaba[self.NOb:,self.NOa:,self.NOb:,self.NOa:], vector['baba'])
+        self.BABA += .5*contract('cdba,ijba->ijcd',self.Jbaba[self.NOb:,self.NOa:,self.NOb:,self.NOa:], vector['baba'])
+        self.BABA += .5*contract('dcab,ijab->ijdc',self.Jbaba[self.NOb:,self.NOa:,self.NOb:,self.NOa:], vector['baba'])
+        self.BABA += .5*contract('dcba,ijba->ijdc',self.Jbaba[self.NOb:,self.NOa:,self.NOb:,self.NOa:], vector['baba'])
 
-        #HAB term
-        h += contract('ijab,ia->jb', self.Jabab[:self.NOa,:self.NOb,self.NOa:,self.NOb:], v)
+        self.AAAA += .5*contract('ijkl,ijab->klab',self.Laaaa[:self.NOa,:self.NOa,:self.NOa,:self.NOa], vector['aaaa'])
+        self.ABAB += .5*contract('ijkl,ijab->klab',self.Jabab[:self.NOa,:self.NOb,:self.NOa,:self.NOb], vector['abab'])
+        self.ABAB += .5*contract('jikl,jiab->klab',self.Jabab[:self.NOa,:self.NOb,:self.NOa,:self.NOb], vector['abab'])
+        self.ABAB += .5*contract('jilk,jiab->lkab',self.Jabab[:self.NOa,:self.NOb,:self.NOa,:self.NOb], vector['abab'])
+        self.ABAB += .5*contract('ijlk,ijab->lkab',self.Jabab[:self.NOa,:self.NOb,:self.NOa,:self.NOb], vector['abab'])
+        self.BBBB += .5*contract('ijkl,ijab->klab',self.Lbbbb[:self.NOb,:self.NOb,:self.NOb,:self.NOb], vector['bbbb'])
+        self.BABA += .5*contract('ijkl,ijab->klab',self.Jbaba[:self.NOb,:self.NOa,:self.NOb,:self.NOa], vector['baba'])
+        self.BABA += .5*contract('jikl,jiab->klab',self.Jbaba[:self.NOb,:self.NOa,:self.NOb,:self.NOa], vector['baba'])
+        self.BABA += .5*contract('jilk,jiab->lkab',self.Jbaba[:self.NOb,:self.NOa,:self.NOb,:self.NOa], vector['baba'])
+        self.BABA += .5*contract('ijlk,ijab->lkab',self.Jbaba[:self.NOb,:self.NOa,:self.NOb,:self.NOa], vector['baba'])
 
-        h += contract('ibaj,ia->jb', self.Jabab[:self.NOa,self.NOb:,self.NOa:,:self.NOb], v)
-        return h
-    def BB_BB(self,v):
-        h = np.zeros(self.tbb.shape)
+        self.AAAA -= contract('cjak,ijab->ikab',self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
+        self.AAAA += contract('ciak,kjab->ikab',self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
+        self.AAAA += contract('bjak,ijac->ikab',self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
+        self.AAAA -= contract('biak,kjac->ikab',self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
+        self.ABAB -= contract('cjak,ijab->ikab',self.Jabab[self.NOa:,:self.NOb,self.NOa:,:self.NOb], vector['abab'])
+        self.BBBB -= contract('cjak,ijab->ikab',self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BBBB += contract('ciak,kjab->ikab',self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BBBB += contract('bjak,ijac->ikab',self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BBBB -= contract('biak,kjac->ikab',self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BABA -= contract('cjak,ijab->ikab',self.Jbaba[self.NOb:,:self.NOa,self.NOb:,:self.NOa], vector['baba'])
 
-        #HAB term
-        h += contract('ijab,ia->jb', self.Lbbbb[:self.NOb,:self.NOb,self.NOb:,self.NOb:], v)
+        self.AAAA += contract('icak,ijab->kjcb',self.Laaaa[:self.NOa,self.NOa:,self.NOa:,:self.NOa], vector['aaaa'])
+        self.AAAA -= contract('ibak,ijac->kjcb',self.Laaaa[:self.NOa,self.NOa:,self.NOa:,:self.NOa], vector['aaaa'])
+        self.AAAA -= contract('icaj,ikab->kjcb',self.Laaaa[:self.NOa,self.NOa:,self.NOa:,:self.NOa], vector['aaaa'])
+        self.AAAA += contract('ibaj,ikac->kjcb',self.Laaaa[:self.NOa,self.NOa:,self.NOa:,:self.NOa], vector['aaaa'])
+        self.ABAB -= contract('ciak,jiab->jkcb',self.Jabab[self.NOa:,:self.NOb,self.NOa:,:self.NOb], vector['abab'])
+        self.BBBB += contract('icak,ijab->kjcb',self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BBBB -= contract('ibak,ijac->kjcb',self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BBBB -= contract('icaj,ikab->kjcb',self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BBBB += contract('ibaj,ikac->kjcb',self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BABA -= contract('ciak,jiab->jkcb',self.Jbaba[self.NOb:,:self.NOa,self.NOb:,:self.NOa], vector['baba'])
 
-        h += contract('ba,ia->ib', self.fb[self.NOb:, self.NOb:], v)
-        h -= contract('ij,ia->ja', self.fb[:self.NOb, :self.NOb], v)
-        h += contract('ibaj,ia->jb', self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,:self.NOb], v)
-        return h
-    def BB_ABAB(self,v):
-        h = np.zeros(self.tbb.shape)
-        return h
-    def BB_BABA(self,v):
-        h = np.zeros(self.tbb.shape)
-        h += contract('cjab,ijab->ic', self.Jbaba[self.NOb:,:self.NOa,self.NOb:,self.NOa:], v)
-        h -= contract('ijkb,ijab->ka', self.Jbaba[:self.NOb,:self.NOa,:self.NOb,self.NOa:], v)
-        return h
-    def BB_AAAA(self,v):
-        h = np.zeros(self.tbb.shape)
-        return h
-    def BB_BBBB(self,v):
-        h = np.zeros(self.tbb.shape)
-        h += contract('cjab,ijab->ic', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,self.NOb:], v)
-        h -= contract('ijkb,ijab->ka', self.Lbbbb[:self.NOb,:self.NOb,:self.NOb,self.NOb:], v)
-        return h
+    def CG(self):
+        b = {'aa': self.gaa, 'bb': self.gbb, 'aaaa': self.gaaaa, 'abab': self.gabab, 'baba': self.gbaba, 'bbbb': self.gbbbb}
+        trial = {'aa': self.taa, 'bb': self.tbb, 'aaaa': self.taaaa, 'abab':self.tabab, 'baba': self.tbaba, 'bbbb': self.gbbbb}
+        x = trial
+        Ax0 = self.Hessian_Action(x)
+        r = TLAdd(Ax0,TLMult(b,-1))
+        p = TLMult(r,-1)
+        r_k_norm = TLDot(r,r)
+        k = 0
+        print('%5s|%20.16s' % (('Iter.', 'Residual Norm')))
+        while r_k_norm > 1e-16:
+            Ap = self.Hessian_Action(p)
+            alpha = r_k_norm/TLDot(p,Ap)
+            x = TLAdd(x, TLMult(p, alpha))
+            r = TLAdd(r, TLMult(Ap, alpha))
+            r_kplus1_norm = TLDot(r,r)
+            beta = r_kplus1_norm/r_k_norm
+            r_k_norm = r_kplus1_norm
+            p = TLAdd(TLMult(p,beta),TLMult(r,-1))
+            print('-'*30)
+            k += 1
+            print('{}'.format(k).ljust(5) + '|' + '%20.16f' % (r_k_norm))
+        E = TLDot(b, x)+.5*TLDot(x, self.Hessian_Action(x))
+        print('Converged energy:'.ljust(20) + '%20.16f Eh\n' % (E + self.hf_energy))
 
-    def AAAA_AA(self,v):
-        h = np.zeros(self.taaaa.shape)
-        h -= contract('ibkj,ia->kjab', self.Laaaa[:self.NOa,self.NOa:,:self.NOa,:self.NOa],v)
-        h += contract('iakj,ib->kjab', self.Laaaa[:self.NOa,self.NOa:,:self.NOa,:self.NOa],v)
-        h += contract('cbaj,ia->ijcb', self.Laaaa[self.NOa:,self.NOa:,self.NOa:,:self.NOa],v)
-        h -= contract('cbai,ja->ijcb', self.Laaaa[self.NOa:,self.NOa:,self.NOa:,:self.NOa],v)
-        return h
 
-    def AAAA_BB(self, v):
-        h = np.zeros(self.taaaa.shape)
-        return h
+def TLDot(A,B):
+    v = 0
+    v += contract('ia,ia', A['aa'], B['aa'])
+    v += contract('ia,ia', A['bb'], B['bb'])
+    v += contract('ijab,ijab', A['aaaa'], B['aaaa'])
+    v += contract('ijab,ijab', A['abab'], B['abab'])
+    v += contract('ijab,ijab', A['baba'], B['baba'])
+    v += contract('ijab,ijab', A['bbbb'], B['bbbb'])
+    return v
 
-    def AAAA_AAAA(self,v):
-        h = np.zeros(self.taaaa.shape)
-        h += .5*contract('klab,ijab->klab', self.Laaaa[:self.NOa,:self.NOa,self.NOa:,self.NOa:],v)
-        h += .5*contract('cdab,ijab->ijcd', self.Laaaa[self.NOa:,self.NOa:,self.NOa:,self.NOa:],v)
-        h -= contract('cjal,ijab->ilcb', self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa],v)
-        h += contract('cjai,ljab->ilcb', self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa],v)
-        h += contract('bjal,ijac->ilcb', self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa],v)
-        h -= contract('bjai,ljac->ilcb', self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa],v)
-        h += contract('jcbk,ijab->ikac', self.Laaaa[:self.NOa, self.NOa:, self.NOa:, :self.NOa], v)
-        h -= contract('jabk,ijcb->ikac', self.Laaaa[:self.NOa, self.NOa:, self.NOa:, :self.NOa], v)
-        h -= contract('jcbi,kjab->ikac', self.Laaaa[:self.NOa, self.NOa:, self.NOa:, :self.NOa], v)
-        h += contract('jabi,kjcb->ikac', self.Laaaa[:self.NOa, self.NOa:, self.NOa:, :self.NOa], v)
-        h -= contract('jl,ijab->ilab', self.fa[:self.NOa,:self.NOa],v)
-        h += contract('ji,ljab->ilab', self.fa[:self.NOa,:self.NOa],v)
-        h += contract('cb,ijab->ijac', self.fa[self.NOa:,self.NOa:],v)
-        h -= contract('ab,ijcb->ijac', self.fa[self.NOa:,self.NOa:],v)
-        return h
+def TLAdd(A,B):
+    C = copy.copy(A)
+    for c in C.keys():
+        C[c]+=B[c]
+    return C
 
-    def AAAA_ABAB(self, v):
-        h = np.zeros(self.taaaa.shape)
-        return h
-
-    def AAAA_BABA(self,v):
-        h = np.zeros(self.taaaa.shape)
-        return h
-
-    def AAAA_BBBB(self, v):
-        h = np.zeros(self.taaaa.shape)
-        return h
-
-    def BBBB_AA(self,v):
-        pass
-    def BBBB_BB(self,v):
-        h = np.zeros(self.tbbbb.shape)
-        h -= contract('ibkj,ia->kjab', self.Lbbbb[:self.NOb,self.NOb:,:self.NOb,:self.NOb],v)
-        h += contract('iakj,ib->kjab', self.Lbbbb[:self.NOb,self.NOb:,:self.NOb,:self.NOb],v)
-        h += contract('cbaj,ia->ijcb', self.Lbbbb[self.NOb:,self.NOb:,self.NOb:,:self.NOb],v)
-        h -= contract('cbai,ja->ijcb', self.Lbbbb[self.NOb:,self.NOb:,self.NOb:,:self.NOb],v)
-        return h
-    def BBBB_AAAA(self,v):
-        pass
-    def BBBB_ABAB(self,v):
-        pass
-    def BBBB_BABA(self,v):
-        pass
-    def BBBB_BBBB(self,v):
-        h = np.zeros(self.bbbb.shape)
-        h += .5*contract('klab,ijab->klab', self.Lbbbb[:self.NOb,:self.NOb,self.NOb:,self.NOb:],v)
-        h += .5*contract('cdab,ijab->ijcd', self.Lbbbb[self.NOb:,self.NOb:,self.NOb:,self.NOb:],v)
-        h -= contract('cjal,ijab->ilcb', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb],v)
-        h += contract('cjai,ljab->ilcb', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb],v)
-        h += contract('bjal,ijac->ilcb', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb],v)
-        h -= contract('bjai,ljac->ilcb', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb],v)
-        h += contract('jcbk,ijab->ikac', self.Lbbbb[:self.NOb, self.NOb:, self.NOb:, :self.NOb], v)
-        h -= contract('jabk,ijcb->ikac', self.Lbbbb[:self.NOb, self.NOb:, self.NOb:, :self.NOb], v)
-        h -= contract('jcbi,kjab->ikac', self.Lbbbb[:self.NOb, self.NOb:, self.NOb:, :self.NOb], v)
-        h += contract('jabi,kjcb->ikac', self.Lbbbb[:self.NOb, self.NOb:, self.NOb:, :self.NOb], v)
-        h -= contract('jl,ijab->ilab', self.fa[:self.NOb,:self.NOb],v)
-        h += contract('ji,ljab->ilab', self.fa[:self.NOb,:self.NOb],v)
-        h += contract('cb,ijab->ijac', self.fa[self.NOb:,self.NOb:],v)
-        h -= contract('ab,ijcb->ijac', self.fa[self.NOb:,self.NOb:],v)
-        return h
+def TLMult(A,a):
+    C = copy.copy(A)
+    for c in C.keys():
+        C[c]*=a
+    return C
 
 if __name__ == '__main__':
     geometry = """
-        0 2
+        0 1
         H 0 0 0
         H 0 0 1
-        H 0 0 2
+        
     symmetry c1
     """
     basis = 'STO-3G'
     mol = Molecule(geometry, basis)
     trial = {'aa': mol.taa, 'bb': mol.tbb, 'aaaa': mol.taaaa, 'abab': mol.tabab, 'baba': mol.tbaba, 'bbbb': mol.tbbbb}
-    mol.Hessian_Action(trial)
+    mol.CG()
