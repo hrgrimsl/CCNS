@@ -60,6 +60,9 @@ class Molecule:
         self.ABAB = self.tabab
         self.BB = self.tbb
         self.BBBB = self.tbbbb
+        print(self.gaaaa)
+        print(self.gabab)
+        print(self.gbbbb)
 
     def Build_Trial(self):
         self.taa = np.zeros((self.NOa, self.NVa))
@@ -106,11 +109,11 @@ class Molecule:
 
         #Ring Potential Hamiltonian
         self.AA += contract('ibaj,ia->jb', self.Laaaa[:self.NOa, self.NOa:, self.NOa:, :self.NOa], vector['aa'])
-        self.AA += contract('bija,ia->jb', self.Jabab[self.NOa:, :self.NOb, :self.NOa, self.NOb:], vector['aa'])
+        self.AA += contract('bija,ia->jb', self.Jabab[self.NOa:, :self.NOb, :self.NOa, self.NOb:], vector['bb'])
         if self.RHF == True:
             self.BB = self.AA
         else:
-            self.BB += contract('ibaj,ia->jb', self.Jabab[:self.NOa, self.NOb:, self.NOa:, :self.NOb], vector['bb'])
+            self.BB += contract('ibaj,ia->jb', self.Jabab[:self.NOa, self.NOb:, self.NOa:, :self.NOb], vector['aa'])
             self.BB += contract('ibaj,ia->jb', self.Lbbbb[:self.NOb, self.NOb:, self.NOb:, :self.NOb], vector['bb'])
 
         if self.UNS == True:
@@ -224,7 +227,6 @@ class Molecule:
         self.AAAA += contract('cjia,kjba->ikcb', self.Jabab[self.NOa:,:self.NOb,:self.NOa,self.NOb:], vector['abab'])
         self.AAAA += contract('bjka,ijca->ikcb', self.Jabab[self.NOa:,:self.NOb,:self.NOa,self.NOb:], vector['abab'])
         self.AAAA -= contract('bjia,kjca->ikcb', self.Jabab[self.NOa:,:self.NOb,:self.NOa,self.NOb:], vector['abab'])
-
         self.ABAB -= contract('jcak,ijab->ikbc', self.Jabab[:self.NOa,self.NOb:,self.NOa:,:self.NOb], vector['aaaa'])
         self.ABAB -= contract('cjak,jiab->kicb', self.Laaaa[self.NOa:, :self.NOa, self.NOa:, :self.NOa], vector['abab'])
         self.ABAB -= contract('cjak,ijab->ikcb', self.Jabab[self.NOa:, :self.NOb, self.NOa:, :self.NOb], vector['abab'])
@@ -232,7 +234,6 @@ class Molecule:
         self.ABAB -= contract('cjak,ijba->ikbc', self.Lbbbb[self.NOb:, :self.NOb, self.NOb:, :self.NOb], vector['abab'])
         self.ABAB -= contract('cjka,ijab->kicb', self.Jabab[self.NOa:, :self.NOb, :self.NOa, self.NOb:], vector['bbbb'])
         if self.RHF != True:
-
             self.BBBB -= contract('cjak,ijab->ikcb', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
             self.BBBB += contract('bjak,ijac->ikcb', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
             self.BBBB += contract('cjai,kjab->ikcb', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
@@ -318,12 +319,12 @@ def vec_dot(A, B):
 
 if __name__ == '__main__':
     geometry = """
-        0 1
-        Ar 0 0 0
-        Ar 0 0 1
+        0 2
+        H 0 0 0 
+        H 0 0 1 
+        H 0 0 2 
         symmetry c1  
     """
-
-    basis = 'aug-cc-pvtz'
-    mol = Molecule(geometry, basis, RHF = True, UNS = True)
+    basis = 'sto-3g'
+    mol = Molecule(geometry, basis, RHF = False, UNS = True)
     mol.conj_grad()
