@@ -8,4 +8,4 @@ def test_1():
     """
     basis = 'cc-pvdz'
     mol = Molecule(geometry, basis)
-    assert(abs(mol.conj_grad()+460.1711971769602201)<1e-15)
+    assert abs(mol.conj_grad()+460.1711971769602201)<1e-8
