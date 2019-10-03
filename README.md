@@ -3,7 +3,7 @@
 <img src = "https://travis-ci.com/hrgrimsl/STEAMS.svg?token=y5H9g77PxszWJHZmEWzC&branch=master">
 
 Module to use as a python API- e.g.
-'''python
+```python
 import STEAMS
 geometry = """
     symmetry c1
@@ -14,4 +14,4 @@ geometry = """
 basis = 'aug-cc-pvdz'
 mol = STEAMS.Molecule(geometry, basis, RHF = True, UNS = False
 print(mol.conj_grad())
-'''
+```
