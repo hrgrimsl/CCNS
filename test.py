@@ -6,5 +6,6 @@ def test_1():
         Cl 0 0 1
         symmetry c1
     """
+    basis = 'cc-pvdz'
     mol = Molecule(geometry, basis)
     assert(abs(mol.conj_grad()+460.1711971769602201)<1e-15)
