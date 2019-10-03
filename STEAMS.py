@@ -239,7 +239,8 @@ class Molecule:
         print('{}'.format(k).ljust(5) + '|' + '%20.16f' % (r_k_norm))
         E = vec_dot(gradient, x)+.5*vec_dot(x,self.Hessian_Action(x))
         print('Converged energy:'.ljust(20) + '%20.16f Eh\n' % (E + self.hf_energy))
-        return E + self.hf_energy
+        energy = E + self.hf_energy
+        return energy
 
 def vec_lc(scalar_1,tensor_1,scalar_2,tensor_2):
      vec = {}
