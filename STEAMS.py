@@ -10,10 +10,9 @@ import psi4
 class Molecule:
     def __init__(self, geometry, basis):
         #compute and store all 1- and 2- electron integrals; currently memory-limiting
-        #needs to be implemented with on-the-fly calculations or with density fitting
         molecule = psi4.geometry(geometry)
         psi4.core.set_output_file('output.dat', False)
-        psi4.set_options({'basis': str(basis), 'scf_type': 'pk', 'reference': 'rhf'})
+        psi4.set_options({'basis': str(basis), 'scf_type': 'pk', 'reference': 'rhf', 'd_convergence': 1e-12})
         if molecule.multiplicity != 1:
             psi4.set_options({'reference': 'rohf'})
         self.hf_energy, wfn = psi4.energy('scf', return_wfn=True)
@@ -33,6 +32,7 @@ class Molecule:
         self.Jbaba = np.array(mints.mo_eri(Cb, Cb, Ca, Ca))
         self.Jbbbb = np.array(mints.mo_eri(Cb, Cb, Cb, Cb))
         self.fa.transform(Ca)
+        self.fb.transform(Cb)
         self.fa = np.array(self.fa)
         self.fb = np.array(self.fb)
         self.Jaaaa = self.Jaaaa.swapaxes(1, 2)
@@ -40,16 +40,10 @@ class Molecule:
         self.Jbaba = self.Jbaba.swapaxes(1, 2)
         self.Jbbbb = self.Jbbbb.swapaxes(1, 2)
         Kaaaa = copy.copy(self.Jaaaa)
-        Kabab = copy.copy(self.Jabab)
-        Kbaba = copy.copy(self.Jbaba)
         Kbbbb = copy.copy(self.Jbbbb)
-        Kaaaa = Kabab.swapaxes(2, 3)
-        Kabab = Kabab.swapaxes(2, 3)
-        Kbaba = Kbaba.swapaxes(2, 3)
+        Kaaaa = Kaaaa.swapaxes(2, 3)
         Kbbbb = Kbbbb.swapaxes(2, 3)
         self.Laaaa = self.Jaaaa - Kaaaa
-        self.Labab = self.Jabab - Kabab
-        self.Lbaba = self.Jbaba - Kbaba
         self.Lbbbb = self.Jbbbb - Kbbbb
         #Number_Occupied/Virtual_alpha/beta:
         self.NOa = wfn.Ca_subset("AO", "ACTIVE_OCC").shape[1]
@@ -63,7 +57,6 @@ class Molecule:
         self.BB = self.tbb
         self.AAAA = self.taaaa
         self.ABAB = self.tabab
-        self.BABA = self.tbaba
         self.BBBB = self.tbbbb
 
     def Build_Trial(self):
@@ -77,196 +70,200 @@ class Molecule:
     def Build_Gradient(self):
         self.gaa = np.zeros((self.NOa, self.NVa))
         self.gbb = np.zeros((self.NOb, self.NVb))
-        AAOO = np.triu_indices(self.NOa, k = 1)
-        AAVV = np.triu_indices(self.NVa, k = 1)
         self.gaaaa = 2**.5*self.Laaaa[:self.NOa,:self.NOa,self.NOa:,self.NOa:]
-        BBOO = np.triu_indices(self.NOb, k = 1)
-        BBVV = np.triu_indices(self.NVb, k = 1)
         self.gbbbb = 2**.5*self.Lbbbb[:self.NOb,:self.NOb,self.NOb:,self.NOb:]
-        AO = np.arange(self.NOa)
-        BO = np.arange(self.NOb)
-        AV = np.arange(self.NOa,self.NVa+self.NOa)
-        BV = np.arange(self.NOb,self.NVb+self.NOb)
-        self.gabab = 2**.5*self.Jabab[AO,:,:,:][:,BO,:,:][:,:,AV,:][:,:,:,BV]
-        self.gbaba = 2**.5*self.Jbaba[BO,:,:,:][:,AO,:,:][:,:,BV,:][:,:,:,AV]
+        self.gabab = 2**.5*self.Jabab[:self.NOa,:self.NOb,self.NOa:,self.NOb:]
 
     def Hessian_Action(self, vector):
         self.AA = np.zeros(self.taa.shape)
         self.BB = np.zeros(self.tbb.shape)
         self.AAAA = np.zeros(self.taaaa.shape)
         self.ABAB = np.zeros(self.tabab.shape)
-        self.BABA = np.zeros(self.tbaba.shape)
         self.BBBB = np.zeros(self.tbbbb.shape)
         self.SS(vector)
         self.SD(vector)
         self.DS(vector)
         self.DD(vector)
-        print(self.AAAA)
-        print(self.ABAB)
-        print(self.BABA)
-        print(self.BBBB)
-        return {'aa': self.AA, 'bb': self.BB, 'aaaa': self.AAAA, 'abab': self.ABAB, 'baba': self.BABA, 'bbbb': self.BBBB}
+        return {'aa': self.AA, 'bb': self.BB, 'aaaa': self.AAAA, 'abab': self.ABAB, 'bbbb': self.BBBB}
 
     def SS(self, vector):
+        #HBA
+        #Particle Fock Hamiltonian
+        self.AA += contract('ba,ia->ib', self.fa[self.NOa:, self.NOa:], vector['aa'])
+        self.BB += contract('ba,ia->ib', self.fb[self.NOb:, self.NOb:], vector['bb'])
+
+        #Hole Fock Hamiltonian
+        self.AA -= contract('ij,ia->ja', self.fa[:self.NOa, :self.NOa], vector['aa'])
+        self.BB -= contract('ij,ia->ja', self.fb[:self.NOb, :self.NOb], vector['bb'])
+
+        #Ring Potential Hamiltonian
+        self.AA += contract('ibaj,ia->jb', self.Laaaa[:self.NOa, self.NOa:, self.NOa:, :self.NOa], vector['aa'])
+        self.BB += contract('ibaj,ia->jb', self.Jabab[:self.NOa, self.NOb:, self.NOa:, :self.NOb], vector['bb'])
+        self.AA += contract('bija,ia->jb', self.Jabab[self.NOa:, :self.NOb, :self.NOa, self.NOb:], vector['aa'])
+        self.BB += contract('ibaj,ia->jb', self.Lbbbb[:self.NOb, self.NOb:, self.NOb:, :self.NOb], vector['bb'])
+
+
         #HAB
-        self.AA += .5*contract('ijab,ia->jb',self.Jaaaa[:self.NOa,:self.NOa,self.NOa:,self.NOa:], vector['aa'])
-        self.BB += .5*contract('ijab,ia->jb',self.Labab[:self.NOa,:self.NOb,self.NOa:,self.NOb:], vector['aa'])
-        self.BB += .5*contract('ijab,ia->jb',self.Jaaaa[:self.NOb,:self.NOb,self.NOb:,self.NOb:], vector['bb'])
-        self.AA += .5*contract('ijab,ia->jb',self.Labab[:self.NOb,:self.NOa,self.NOb:,self.NOa:], vector['bb'])
+        #Double Ring Hamiltonian
+        #self.AA += contract('ijab,ia->jb', self.Laaaa[:self.NOa, :self.NOa, self.NOa:, self.NOa:], vector['aa'])
+        #self.BB += contract('ijab,ia->jb', self.Jabab[:self.NOa, :self.NOb, self.NOa:, self.NOb:], vector['aa'])
+        #self.AA += contract('jiba,ia->jb', self.Jabab[:self.NOa, :self.NOb, self.NOa:, self.NOb:], vector['bb'])
+        #self.BB += contract('ijab,ia->jb', self.Lbbbb[:self.NOb, :self.NOb, self.NOb:, self.NOb:], vector['bb'])
 
-        #BHA
-        self.AA += contract('ba,ia->ib',self.fa[self.NOa:,self.NOa:], vector['aa'])
-        self.BB += contract('ba,ia->ib',self.fa[self.NOb:,self.NOb:], vector['bb'])
-        self.AA -= contract('ij,ia->ja',self.fa[:self.NOa,:self.NOa], vector['aa'])
-        self.BB -= contract('ij,ia->ja',self.fa[:self.NOb,:self.NOb], vector['bb'])
-
-        self.AA += contract('ibaj,ia->jb',self.Laaaa[:self.NOa,self.NOa:,self.NOa:,:self.NOa], vector['aa'])
-        self.BB += contract('ibaj,ia->jb',self.Jabab[:self.NOa,self.NOb:,self.NOa:,:self.NOb], vector['aa'])
-        self.BB += contract('ibaj,ia->jb',self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,:self.NOb], vector['bb'])
-        self.AA += contract('ibaj,ia->jb',self.Jbaba[:self.NOb,self.NOa:,self.NOb:,:self.NOa], vector['bb'])
 
     def SD(self, vector):
-        #(Doubles Amplitude)
-        self.AA -= .5*contract('ijak,ijab->kb',self.Laaaa[:self.NOa,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
-        self.AA += .5*contract('ijka,ijba->kb',self.Jabab[:self.NOa,:self.NOb,:self.NOa,self.NOb:], vector['abab'])
-        self.AA -= .5*contract('ijak,ijab->kb',self.Jbaba[:self.NOb,:self.NOa,self.NOb:,:self.NOa], vector['aaaa'])
-        self.BB -= .5*contract('ijak,ijab->kb',self.Lbbbb[:self.NOb,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
-        self.BB += .5*contract('ijka,ijba->kb',self.Jbaba[:self.NOb,:self.NOa,:self.NOb,self.NOa:], vector['baba'])
-        self.BB -= .5*contract('ijak,ijab->kb',self.Jabab[:self.NOa,:self.NOb,self.NOa:,:self.NOb], vector['bbbb'])
+        #Particle Potential Hamiltonian
+        self.AA += .5 * contract('icab,ijab->jc', self.Laaaa[:self.NOa, self.NOa:, self.NOa:, self.NOa:], vector['aaaa'])
+        self.AA += .5 * contract('ciab,jiab->jc', self.Jabab[self.NOa:, :self.NOb, self.NOa:, self.NOb:], vector['abab'])
+        self.AA += .5 * contract('ciba,jiba->jc', self.Jabab[self.NOa:, :self.NOb, self.NOa:, self.NOb:], vector['abab'])
+        self.BB += .5 * contract('icba,ijba->jc', self.Jabab[:self.NOa, self.NOb:, self.NOa:, self.NOb:], vector['abab'])
+        self.BB += .5 * contract('icab,ijab->jc', self.Jabab[:self.NOa, self.NOb:, self.NOa:, self.NOb:], vector['abab'])
+        self.BB += .5 * contract('icab,ijab->jc', self.Lbbbb[:self.NOb, self.NOb:, self.NOb:, self.NOb:], vector['bbbb'])
 
-        self.AA += .5*contract('icab,ijab->jc',self.Laaaa[:self.NOa,self.NOa:,self.NOa:,self.NOb:], vector['aaaa'])
-        self.AA += .5*contract('icab,ijab->jc',self.Jbaba[:self.NOb,self.NOa:,self.NOb:,self.NOb:], vector['baba'])
-        self.AA -= .5*contract('icba,ijba->jc',self.Jbaba[:self.NOb,self.NOa:,self.NOb:,self.NOb:], vector['baba'])
-        self.BB += .5*contract('icab,ijab->jc',self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,self.NOa:], vector['bbbb'])
-        self.BB += .5*contract('icab,ijab->jc',self.Jabab[:self.NOa,self.NOb:,self.NOa:,self.NOa:], vector['abab'])
-        self.BB -= .5*contract('icba,ijba->jc',self.Jabab[:self.NOa,self.NOb:,self.NOa:,self.NOa:], vector['abab'])
+        #Hole Potential Hamiltonian
+        self.AA -= .5 * contract('ijak,ijab->kb', self.Laaaa[:self.NOa, :self.NOa, self.NOa:, :self.NOa], vector['aaaa'])
+        self.AA -= .5 * contract('jika,jiba->kb', self.Jabab[:self.NOa, :self.NOb, :self.NOa, self.NOb:], vector['abab'])
+        self.AA -= .5 * contract('ijka,ijba->kb', self.Jabab[:self.NOa, :self.NOb, :self.NOa, self.NOb:], vector['abab'])
+        self.BB -= .5 * contract('jiak,jiab->kb', self.Jabab[:self.NOa, :self.NOb, self.NOa:, :self.NOb], vector['abab'])
+        self.BB -= .5 * contract('ijak,ijab->kb', self.Jabab[:self.NOa, :self.NOb, self.NOa:, :self.NOb], vector['abab'])
+        self.BB -= .5 * contract('ijak,ijab->kb', self.Lbbbb[:self.NOb, :self.NOb, self.NOb:, :self.NOb], vector['bbbb'])
 
     def DS(self, vector):
-        self.AAAA -= contract('ibkj,ia->kjab',self.Laaaa[:self.NOa,self.NOa:,:self.NOa,:self.NOa], vector['aa'])
-        self.BABA -= contract('ibjk,ia->kjba',self.Jabab[:self.NOa,self.NOb:,:self.NOa,:self.NOb], vector['aa'])
-        self.ABAB -= contract('ibkj,ia->kjab',self.Jabab[:self.NOa,self.NOb:,:self.NOa,:self.NOb], vector['aa'])
-        self.AAAA += contract('iakj,ib->kjab',self.Laaaa[:self.NOa,self.NOa:,:self.NOa,:self.NOa], vector['aa'])
-        self.BBBB -= contract('ibkj,ia->kjab',self.Lbbbb[:self.NOb,self.NOb:,:self.NOb,:self.NOb], vector['bb'])
-        self.ABAB -= contract('ibjk,ia->kjba',self.Jbaba[:self.NOb,self.NOa:,:self.NOb,:self.NOa], vector['bb'])
-        self.BABA -= contract('ibkj,ia->kjab',self.Jbaba[:self.NOb,self.NOa:,:self.NOb,:self.NOa], vector['bb'])
-        self.BBBB += contract('iakj,ib->kjab',self.Lbbbb[:self.NOb,self.NOb:,:self.NOb,:self.NOb], vector['bb'])
-
-        self.AAAA += contract('cbaj,ia->ijcb',self.Laaaa[self.NOa:,self.NOa:,self.NOa:,:self.NOa], vector['aa'])
-        self.AAAA -= contract('cbai,ja->ijcb', self.Laaaa[self.NOa:, self.NOa:, self.NOa:, :self.NOa], vector['aa'])
+        #One of the AAAA terms here is the problem
+        #Particle Potential Hamiltonian
+        self.AAAA += contract('cbaj,ia->ijcb', self.Laaaa[self.NOa:, self.NOa:, self.NOa:, :self.NOa], vector['aa'])
         self.ABAB += contract('cbaj,ia->ijcb', self.Jabab[self.NOa:, self.NOb:, self.NOa:, :self.NOb], vector['aa'])
-        self.ABAB += contract('bcaj,ia->ijbc', self.Jabab[self.NOa:, self.NOb:, self.NOa:, :self.NOb], vector['aa'])
-        self.BBBB += contract('cbaj,ia->ijcb',self.Lbbbb[self.NOb:,self.NOb:,self.NOb:,:self.NOb], vector['bb'])
+        self.ABAB += contract('bcja,ia->jibc', self.Jabab[self.NOa:, self.NOb:, :self.NOa, self.NOb:], vector['bb'])
+        self.BBBB += contract('cbaj,ia->ijcb', self.Lbbbb[self.NOb:, self.NOb:, self.NOb:, :self.NOb], vector['bb'])
+        self.AAAA -= contract('cbai,ja->ijcb', self.Laaaa[self.NOa:, self.NOa:, self.NOa:, :self.NOa], vector['aa'])
         self.BBBB -= contract('cbai,ja->ijcb', self.Lbbbb[self.NOb:, self.NOb:, self.NOb:, :self.NOb], vector['bb'])
-        self.BABA += contract('cbaj,ia->ijcb', self.Jbaba[self.NOb:, self.NOa:, self.NOb:, :self.NOa], vector['bb'])
-        self.BABA += contract('bcaj,ia->ijbc', self.Jbaba[self.NOb:, self.NOa:, self.NOb:, :self.NOa], vector['bb'])
+
+        #Hole Potential Hamiltonian
+        self.AAAA -= contract('ibkj,ia->kjab', self.Laaaa[:self.NOa, self.NOa:, :self.NOa, :self.NOa], vector['aa'])
+        self.ABAB -= contract('ibkj,ia->kjab', self.Jabab[:self.NOa, self.NOb:, :self.NOa, :self.NOb], vector['aa'])
+        self.ABAB -= contract('bijk,ia->jkba', self.Jabab[self.NOa:, :self.NOb, :self.NOa, :self.NOb], vector['bb'])
+        self.BBBB -= contract('ibkj,ia->kjab', self.Lbbbb[:self.NOb, self.NOb:, :self.NOb, :self.NOb], vector['bb'])
+        self.AAAA += contract('iakj,ib->kjab', self.Laaaa[:self.NOa, self.NOa:, :self.NOa, :self.NOa], vector['aa'])
+        self.BBBB += contract('iakj,ib->kjab', self.Lbbbb[:self.NOb, self.NOb:, :self.NOb, :self.NOb], vector['bb'])
+
+
 
     def DD(self,vector):
-        self.AAAA += contract('ca,ijab->ijcb',self.fa[self.NOa:,self.NOa:],vector['aaaa'])
-        self.AAAA -= contract('ba,ijba->ijcb',self.fa[self.NOa:,self.NOa:],vector['aaaa'])
-        self.ABAB += contract('ca,jiab->jicb',self.fa[self.NOa:,self.NOa:],vector['abab'])
-        self.ABAB += contract('ca,ijab->ijcb',self.fa[self.NOa:,self.NOa:],vector['abab'])
+        #Particle/Particle Potential Hamiltonian
+        self.AAAA += .5*contract('cdab,ijab->ijcd', self.Laaaa[self.NOa:,self.NOa:,self.NOa:,self.NOa:], vector['aaaa'])
+        self.ABAB += .5*contract('dcba,jiba->jidc', self.Jabab[self.NOa:,self.NOb:,self.NOa:,self.NOb:], vector['abab'])
+        self.ABAB += .5*contract('dcab,ijab->ijdc', self.Jabab[self.NOa:,self.NOb:,self.NOa:,self.NOb:], vector['abab'])
+        self.BBBB += .5*contract('cdab,ijab->ijcd', self.Lbbbb[self.NOb:,self.NOb:,self.NOb:,self.NOb:], vector['bbbb'])
 
-        self.AAAA += .5*contract('cdab,ijab->ijcd',self.Laaaa[self.NOa:,self.NOa:,self.NOa:,self.NOa:], vector['aaaa'])
-        self.ABAB += .5*contract('cdab,ijab->ijcd',self.Jabab[self.NOa:,self.NOb:,self.NOa:,self.NOb:], vector['abab'])
-        self.ABAB += .5*contract('cdba,ijba->ijcd',self.Jabab[self.NOa:,self.NOb:,self.NOa:,self.NOb:], vector['abab'])
-        self.ABAB += .5*contract('dcab,ijab->ijdc',self.Jabab[self.NOa:,self.NOb:,self.NOa:,self.NOb:], vector['abab'])
-        self.ABAB += .5*contract('dcba,ijba->ijdc',self.Jabab[self.NOa:,self.NOb:,self.NOa:,self.NOb:], vector['abab'])
-        self.BBBB += .5*contract('cdab,ijab->ijcd',self.Lbbbb[self.NOb:,self.NOb:,self.NOb:,self.NOb:], vector['bbbb'])
-        self.BABA += .5*contract('cdab,ijab->ijcd',self.Jbaba[self.NOb:,self.NOa:,self.NOb:,self.NOa:], vector['baba'])
-        self.BABA += .5*contract('cdba,ijba->ijcd',self.Jbaba[self.NOb:,self.NOa:,self.NOb:,self.NOa:], vector['baba'])
-        self.BABA += .5*contract('dcab,ijab->ijdc',self.Jbaba[self.NOb:,self.NOa:,self.NOb:,self.NOa:], vector['baba'])
-        self.BABA += .5*contract('dcba,ijba->ijdc',self.Jbaba[self.NOb:,self.NOa:,self.NOb:,self.NOa:], vector['baba'])
+        #Hole/Hole Potential Hamiltonian
+        self.AAAA += .5*contract('ijkl,ijab->klab', self.Laaaa[:self.NOa,:self.NOa,:self.NOa,:self.NOa], vector['aaaa'])
+        self.ABAB += .5*contract('ijlk,ijab->lkab', self.Jabab[:self.NOa,:self.NOb,:self.NOa,:self.NOb], vector['abab'])
+        self.ABAB += .5*contract('jilk,jiab->lkab', self.Jabab[:self.NOa,:self.NOb,:self.NOa,:self.NOb], vector['abab'])
+        self.BBBB += .5*contract('ijkl,ijab->klab', self.Lbbbb[:self.NOb,:self.NOb,:self.NOb,:self.NOb], vector['bbbb'])
 
-        self.AAAA += .5*contract('ijkl,ijab->klab',self.Laaaa[:self.NOa,:self.NOa,:self.NOa,:self.NOa], vector['aaaa'])
-        self.ABAB += .5*contract('ijkl,ijab->klab',self.Jabab[:self.NOa,:self.NOb,:self.NOa,:self.NOb], vector['abab'])
-        self.ABAB += .5*contract('jikl,jiab->klab',self.Jabab[:self.NOa,:self.NOb,:self.NOa,:self.NOb], vector['abab'])
-        self.ABAB += .5*contract('jilk,jiab->lkab',self.Jabab[:self.NOa,:self.NOb,:self.NOa,:self.NOb], vector['abab'])
-        self.ABAB += .5*contract('ijlk,ijab->lkab',self.Jabab[:self.NOa,:self.NOb,:self.NOa,:self.NOb], vector['abab'])
-        self.BBBB += .5*contract('ijkl,ijab->klab',self.Lbbbb[:self.NOb,:self.NOb,:self.NOb,:self.NOb], vector['bbbb'])
-        self.BABA += .5*contract('ijkl,ijab->klab',self.Jbaba[:self.NOb,:self.NOa,:self.NOb,:self.NOa], vector['baba'])
-        self.BABA += .5*contract('jikl,jiab->klab',self.Jbaba[:self.NOb,:self.NOa,:self.NOb,:self.NOa], vector['baba'])
-        self.BABA += .5*contract('jilk,jiab->lkab',self.Jbaba[:self.NOb,:self.NOa,:self.NOb,:self.NOa], vector['baba'])
-        self.BABA += .5*contract('ijlk,ijab->lkab',self.Jbaba[:self.NOb,:self.NOa,:self.NOb,:self.NOa], vector['baba'])
 
-        self.AAAA -= contract('cjak,ijab->ikab',self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
-        self.AAAA += contract('ciak,kjab->ikab',self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
-        self.AAAA += contract('bjak,ijac->ikab',self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
-        self.AAAA -= contract('biak,kjac->ikab',self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
-        self.ABAB -= contract('cjak,ijab->ikab',self.Jabab[self.NOa:,:self.NOb,self.NOa:,:self.NOb], vector['abab'])
-        self.BBBB -= contract('cjak,ijab->ikab',self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
-        self.BBBB += contract('ciak,kjab->ikab',self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
-        self.BBBB += contract('bjak,ijac->ikab',self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
-        self.BBBB -= contract('biak,kjac->ikab',self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
-        self.BABA -= contract('cjak,ijab->ikab',self.Jbaba[self.NOb:,:self.NOa,self.NOb:,:self.NOa], vector['baba'])
+        #Particle/Hole Potential Hamiltonian
+        self.AAAA -= contract('cjak,ijab->ikcb', self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
+        self.AAAA += contract('bjak,ijac->ikcb', self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
+        self.AAAA += contract('cjai,kjab->ikcb', self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
+        self.AAAA -= contract('bjai,kjac->ikcb', self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
+        self.AAAA -= contract('cjka,ijba->ikcb', self.Jabab[self.NOa:,:self.NOb,:self.NOa,self.NOb:], vector['abab'])
+        self.AAAA += contract('cjia,kjba->ikcb', self.Jabab[self.NOa:,:self.NOb,:self.NOa,self.NOb:], vector['abab'])
+        self.AAAA += contract('bjka,ijca->ikcb', self.Jabab[self.NOa:,:self.NOb,:self.NOa,self.NOb:], vector['abab'])
+        self.AAAA -= contract('bjia,kjca->ikcb', self.Jabab[self.NOa:,:self.NOb,:self.NOa,self.NOb:], vector['abab'])
 
-        self.AAAA += contract('icak,ijab->kjcb',self.Laaaa[:self.NOa,self.NOa:,self.NOa:,:self.NOa], vector['aaaa'])
-        self.AAAA -= contract('ibak,ijac->kjcb',self.Laaaa[:self.NOa,self.NOa:,self.NOa:,:self.NOa], vector['aaaa'])
-        self.AAAA -= contract('icaj,ikab->kjcb',self.Laaaa[:self.NOa,self.NOa:,self.NOa:,:self.NOa], vector['aaaa'])
-        self.AAAA += contract('ibaj,ikac->kjcb',self.Laaaa[:self.NOa,self.NOa:,self.NOa:,:self.NOa], vector['aaaa'])
-        self.ABAB -= contract('ciak,jiab->jkcb',self.Jabab[self.NOa:,:self.NOb,self.NOa:,:self.NOb], vector['abab'])
-        self.BBBB += contract('icak,ijab->kjcb',self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,:self.NOb], vector['bbbb'])
-        self.BBBB -= contract('ibak,ijac->kjcb',self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,:self.NOb], vector['bbbb'])
-        self.BBBB -= contract('icaj,ikab->kjcb',self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,:self.NOb], vector['bbbb'])
-        self.BBBB += contract('ibaj,ikac->kjcb',self.Lbbbb[:self.NOb,self.NOb:,self.NOb:,:self.NOb], vector['bbbb'])
-        self.BABA -= contract('ciak,jiab->jkcb',self.Jbaba[self.NOb:,:self.NOa,self.NOb:,:self.NOa], vector['baba'])
+        self.ABAB -= contract('jcka,jiba->kibc', self.Jabab[:self.NOa,self.NOb:,:self.NOa,self.NOb:], vector['abab'])
+        self.ABAB -= contract('jcak,ijab->ikbc', self.Jabab[:self.NOa,self.NOb:,self.NOa:,:self.NOb], vector['aaaa'])
+        self.ABAB -= contract('cjka,ijab->kicb', self.Jabab[self.NOa:,:self.NOb,:self.NOa,self.NOb:], vector['bbbb'])
+        self.ABAB -= contract('cjak,ijab->ikcb', self.Jabab[self.NOa:,:self.NOb,self.NOa:,:self.NOb], vector['abab'])
+        self.ABAB -= contract('cjak,jiab->kicb', self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['abab'])
+        self.ABAB -= contract('cjak,ijba->ikbc', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['abab'])
 
-    def CG(self):
-        b = {'aa': self.gaa, 'bb': self.gbb, 'aaaa': self.gaaaa, 'abab': self.gabab, 'baba': self.gbaba, 'bbbb': self.gbbbb}
-        trial = {'aa': self.taa, 'bb': self.tbb, 'aaaa': self.taaaa, 'abab':self.tabab, 'baba': self.tbaba, 'bbbb': self.gbbbb}
+        self.BBBB -= contract('cjak,ijab->ikcb', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BBBB += contract('bjak,ijac->ikcb', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BBBB += contract('cjai,kjab->ikcb', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BBBB -= contract('bjai,kjac->ikcb', self.Lbbbb[self.NOb:,:self.NOb,self.NOb:,:self.NOb], vector['bbbb'])
+        self.BBBB -= contract('jcak,jiab->ikcb', self.Jabab[:self.NOa,self.NOb:,self.NOa:,:self.NOb], vector['abab'])
+        self.BBBB += contract('jcai,jkab->ikcb', self.Jabab[:self.NOa,self.NOb:,self.NOa:,:self.NOb], vector['abab'])
+        self.BBBB += contract('jbak,jiac->ikcb', self.Jabab[:self.NOa,self.NOb:,self.NOa:,:self.NOb], vector['abab'])
+        self.BBBB -= contract('jbai,jkac->ikcb', self.Jabab[:self.NOa,self.NOb:,self.NOa:,:self.NOb], vector['abab'])
+        #Particle Fock Hamiltonian
+
+        self.AAAA += contract('ca,ijab->ijcb', self.fa[self.NOa:,self.NOa:], vector['aaaa'])
+        self.AAAA -= contract('ba,ijac->ijcb', self.fa[self.NOa:,self.NOa:], vector['aaaa'])
+
+        self.ABAB += contract('ca,ijab->ijcb', self.fa[self.NOa:,self.NOa:], vector['abab'])
+        self.ABAB += contract('ca,jiba->jibc', self.fb[self.NOb:,self.NOb:], vector['abab'])
+
+        self.BBBB += contract('ca,ijab->ijcb', self.fb[self.NOb:,self.NOb:], vector['bbbb'])
+        self.BBBB -= contract('ba,ijac->ijcb', self.fb[self.NOb:,self.NOb:], vector['bbbb'])
+
+        #Hole Fock Hamiltonian
+
+        self.AAAA -= contract('ik,ijab->kjab', self.fa[:self.NOa,:self.NOa], vector['aaaa'])
+        self.AAAA += contract('ij,ikab->kjab', self.fa[:self.NOa,:self.NOa], vector['aaaa'])
+
+        self.ABAB -= contract('ik,ijab->kjab', self.fa[:self.NOa,:self.NOa], vector['abab'])
+        self.ABAB -= contract('ik,jiba->jkba', self.fb[:self.NOb,:self.NOb], vector['abab'])
+
+        self.BBBB -= contract('ik,ijab->kjab', self.fb[:self.NOb,:self.NOb], vector['bbbb'])
+        self.BBBB += contract('ij,ikab->kjab', self.fb[:self.NOb,:self.NOb], vector['bbbb'])
+
+
+    def conj_grad(self):
+        b = {'aa': -self.gaa, 'bb': -self.gbb, 'aaaa': -self.gaaaa, 'abab': -self.gabab, 'bbbb': -self.gbbbb}
+        gradient = vec_lc(-1,b,0,b)
+        trial = {'aa': self.taa, 'bb': self.tbb, 'aaaa': self.taaaa, 'abab':self.tabab, 'bbbb': self.tbbbb}
         x = trial
-        Ax0 = self.Hessian_Action(x)
-        r = TLAdd(Ax0,TLMult(b,-1))
-        p = TLMult(r,-1)
-        r_k_norm = TLDot(r,r)
+        ax0 = self.Hessian_Action(x)
+        r = vec_lc(1,ax0,1,gradient)
+        p = vec_lc(-1,r,0,r)
+        r_k_norm = vec_dot(r,r)
         k = 0
         print('%5s|%20.16s' % (('Iter.', 'Residual Norm')))
         while r_k_norm > 1e-16:
-            Ap = self.Hessian_Action(p)
-            alpha = r_k_norm/TLDot(p,Ap)
-            x = TLAdd(x, TLMult(p, alpha))
-            r = TLAdd(r, TLMult(Ap, alpha))
-            r_kplus1_norm = TLDot(r,r)
+            print('-'*30)
+            print('{}'.format(k).ljust(5) + '|' + '%20.16f' % (r_k_norm))
+            ap = self.Hessian_Action(p)
+            alpha = r_k_norm/vec_dot(p,ap)
+            palpha = vec_lc(alpha, p, 0, p)
+            x = vec_lc(1, x, 1, palpha)
+            apalpha = vec_lc(alpha, ap, 0, ap)
+            r = vec_lc(1, r, 1, apalpha)
+            r_kplus1_norm = vec_dot(r,r)
             beta = r_kplus1_norm/r_k_norm
             r_k_norm = r_kplus1_norm
-            p = TLAdd(TLMult(p,beta),TLMult(r,-1))
-            print('-'*30)
+            p = vec_lc(beta,p,-1,r)
             k += 1
-            print('{}'.format(k).ljust(5) + '|' + '%20.16f' % (r_k_norm))
-        E = TLDot(b, x)+.5*TLDot(x, self.Hessian_Action(x))
+        print('-' * 30)
+        print('{}'.format(k).ljust(5) + '|' + '%20.16f' % (r_k_norm))
+        E = vec_dot(gradient, x)+.5*vec_dot(x,self.Hessian_Action(x))
         print('Converged energy:'.ljust(20) + '%20.16f Eh\n' % (E + self.hf_energy))
+        return E + self.hf_energy
 
+def vec_lc(scalar_1,tensor_1,scalar_2,tensor_2):
+     vec = {}
+     for key in tensor_1:
+         vec[key] = tensor_1[key]*scalar_1+tensor_2[key]*scalar_2
+     return vec
 
-def TLDot(A,B):
-    v = 0
-    v += contract('ia,ia', A['aa'], B['aa'])
-    v += contract('ia,ia', A['bb'], B['bb'])
-    v += contract('ijab,ijab', A['aaaa'], B['aaaa'])
-    v += contract('ijab,ijab', A['abab'], B['abab'])
-    v += contract('ijab,ijab', A['baba'], B['baba'])
-    v += contract('ijab,ijab', A['bbbb'], B['bbbb'])
-    return v
-
-def TLAdd(A,B):
-    C = copy.copy(A)
-    for c in C.keys():
-        C[c]+=B[c]
-    return C
-
-def TLMult(A,a):
-    C = copy.copy(A)
-    for c in C.keys():
-        C[c]*=a
-    return C
+def vec_dot(A, B):
+    dot = 0
+    dot += contract('ij,ij', A['aa'],(B['aa']))
+    dot += contract('ij,ij', A['bb'],(B['bb']))
+    dot += contract('ijab,ijab', A['abab'],(B['abab']))
+    dot += .25*contract('ijab,ijab', A['aaaa'],(B['aaaa']))
+    dot += .25*contract('ijab,ijab', A['bbbb'],(B['bbbb']))
+    return dot
 
 if __name__ == '__main__':
     geometry = """
         0 1
         H 0 0 0
-        H 0 0 1
-        
-    symmetry c1
+        Cl 0 0 1
+        symmetry c1  
     """
-    basis = 'STO-3G'
+
+    basis = 'cc-pvdz'
     mol = Molecule(geometry, basis)
-    trial = {'aa': mol.taa, 'bb': mol.tbb, 'aaaa': mol.taaaa, 'abab': mol.tabab, 'baba': mol.tbaba, 'bbbb': mol.tbbbb}
-    mol.CG()
+    mol.conj_grad()
