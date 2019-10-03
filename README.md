@@ -1,5 +1,7 @@
 Second-Order Taylor Expansion About Mean-field Solution
+
 <img src = "https://travis-ci.com/hrgrimsl/STEAMS.svg?token=y5H9g77PxszWJHZmEWzC&branch=master">
+
 Module to use as a python API- e.g.
 ```python
 import STEAMS
