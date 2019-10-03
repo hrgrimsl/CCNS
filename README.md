@@ -12,7 +12,7 @@ geometry = """
     Cl 0 0 0
 """
 basis = 'aug-cc-pvdz'
-mol = STEAMS.Molecule(geometry, basis, RHF = True, UNS = False
+mol = STEAMS.Molecule(geometry, basis, RHF = True, UNS = False)
 print(mol.conj_grad())
 ```
 Program uses a Psi4 backend to compute electron integrals, etc.  Note that if the UNS flag is turned off, one obtains the CEPA(0) energy with single and double excitations included.     
