@@ -8,7 +8,9 @@ import copy
 import psi4
 
 class Molecule:
-    def __init__(self, geometry, basis):
+    def __init__(self, geometry, basis, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
         #compute and store all 1- and 2- electron integrals; currently memory-limiting
         molecule = psi4.geometry(geometry)
         psi4.core.set_output_file('output.dat', False)
@@ -102,7 +104,6 @@ class Molecule:
         self.AA += contract('bija,ia->jb', self.Jabab[self.NOa:, :self.NOb, :self.NOa, self.NOb:], vector['aa'])
         self.BB += contract('ibaj,ia->jb', self.Lbbbb[:self.NOb, self.NOb:, self.NOb:, :self.NOb], vector['bb'])
 
-
         #HAB
         #Double Ring Hamiltonian
         #self.AA += contract('ijab,ia->jb', self.Laaaa[:self.NOa, :self.NOa, self.NOa:, self.NOa:], vector['aa'])
@@ -150,10 +151,10 @@ class Molecule:
 
     def DD(self,vector):
         #Particle/Particle Potential Hamiltonian
-        self.AAAA += .5*contract('cdab,ijab->ijcd', self.Laaaa[self.NOa:,self.NOa:,self.NOa:,self.NOa:], vector['aaaa'])
+        #self.AAAA += .5*contract('cdab,ijab->ijcd', self.Laaaa[self.NOa:,self.NOa:,self.NOa:,self.NOa:], vector['aaaa'])
         self.ABAB += .5*contract('dcba,jiba->jidc', self.Jabab[self.NOa:,self.NOb:,self.NOa:,self.NOb:], vector['abab'])
         self.ABAB += .5*contract('dcab,ijab->ijdc', self.Jabab[self.NOa:,self.NOb:,self.NOa:,self.NOb:], vector['abab'])
-        self.BBBB += .5*contract('cdab,ijab->ijcd', self.Lbbbb[self.NOb:,self.NOb:,self.NOb:,self.NOb:], vector['bbbb'])
+        #self.BBBB += .5*contract('cdab,ijab->ijcd', self.Lbbbb[self.NOb:,self.NOb:,self.NOb:,self.NOb:], vector['bbbb'])
 
         #Hole/Hole Potential Hamiltonian
         self.AAAA += .5*contract('ijkl,ijab->klab', self.Laaaa[:self.NOa,:self.NOa,:self.NOa,:self.NOa], vector['aaaa'])
@@ -161,6 +162,28 @@ class Molecule:
         self.ABAB += .5*contract('jilk,jiab->lkab', self.Jabab[:self.NOa,:self.NOb,:self.NOa,:self.NOb], vector['abab'])
         self.BBBB += .5*contract('ijkl,ijab->klab', self.Lbbbb[:self.NOb,:self.NOb,:self.NOb,:self.NOb], vector['bbbb'])
 
+        Oa = np.triu_indices(self.NOa, k = 1)
+        Ob = np.triu_indices(self.NOb, k = 1)
+        Va = np.triu_indices(self.NVa, k = 1)
+        Vb = np.triu_indices(self.NVb, k = 1)
+        taaaa = vector['aaaa'][Oa][(slice(None),) + Va]
+        tbbbb = vector['bbbb'][Ob][(slice(None),) + Vb]
+        Va = tuple([np.array(Va[0])+self.NOa, np.array(Va[1])+self.NOa])
+        Vb = tuple([np.array(Vb[0])+self.NOb, np.array(Vb[1])+self.NOb])
+        laaaa = self.Laaaa[Va][(slice(None),) + Va]
+        lbbbb = self.Lbbbb[Vb][(slice(None),) + Vb]
+        raaaa = contract('ab, ib -> ia', laaaa, taaaa)
+        rbbbb = contract('ab, ib -> ia', lbbbb, tbbbb)
+        Va = np.triu_indices(self.NVa, k = 1)
+        Vb = np.triu_indices(self.NVb, k = 1)
+        self.AAAA[Oa[0][:, None], Oa[1][:, None], Va[0], Va[1]] += raaaa
+        self.AAAA[Oa[0][:, None], Oa[1][:, None], Va[1], Va[0]] += -raaaa
+        self.AAAA[Oa[1][:, None], Oa[0][:, None], Va[0], Va[1]] += -raaaa
+        self.AAAA[Oa[1][:, None], Oa[0][:, None], Va[1], Va[0]] += raaaa
+        self.BBBB[Ob[0][:, None], Ob[1][:, None], Vb[0], Vb[1]] += rbbbb
+        self.BBBB[Ob[0][:, None], Ob[1][:, None], Vb[1], Vb[0]] += -rbbbb
+        self.BBBB[Ob[1][:, None], Ob[0][:, None], Vb[0], Vb[1]] += -rbbbb
+        self.BBBB[Ob[1][:, None], Ob[0][:, None], Vb[1], Vb[0]] += rbbbb
 
         #Particle/Hole Potential Hamiltonian
         self.AAAA -= contract('cjak,ijab->ikcb', self.Laaaa[self.NOa:,:self.NOa,self.NOa:,:self.NOa], vector['aaaa'])
@@ -187,8 +210,8 @@ class Molecule:
         self.BBBB += contract('jcai,jkab->ikcb', self.Jabab[:self.NOa,self.NOb:,self.NOa:,:self.NOb], vector['abab'])
         self.BBBB += contract('jbak,jiac->ikcb', self.Jabab[:self.NOa,self.NOb:,self.NOa:,:self.NOb], vector['abab'])
         self.BBBB -= contract('jbai,jkac->ikcb', self.Jabab[:self.NOa,self.NOb:,self.NOa:,:self.NOb], vector['abab'])
-        #Particle Fock Hamiltonian
 
+        #Particle Fock Hamiltonian
         self.AAAA += contract('ca,ijab->ijcb', self.fa[self.NOa:,self.NOa:], vector['aaaa'])
         self.AAAA -= contract('ba,ijac->ijcb', self.fa[self.NOa:,self.NOa:], vector['aaaa'])
 
