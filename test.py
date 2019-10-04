@@ -1,5 +1,4 @@
 from STEAMS import *
-
 def test_1():
     geometry = """
         0 1
@@ -8,7 +7,7 @@ def test_1():
         symmetry c1
     """
     basis = 'cc-pvdz'
-    mol = Molecule(geometry, basis, RHF = True, UNS = False)
+    mol = molecule(geometry, basis, rhf = True, uns = False)
     assert abs(mol.conj_grad()+460.17119717)<1e-7
 
 
