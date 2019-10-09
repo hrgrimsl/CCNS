@@ -12,33 +12,42 @@ class molecule:
         :geometry: Matrix for which sqare root is computed
         :basis: Basis for Psi4 to use
         :uns: Optional, defaults to False.  Whether to include ring diagram from T_1^2
-        :rhf: Optional, defaults to True.  Whether to assume closed-shell, restricted symmetry of orbitals
+        :reference: Optional, defaults to rhf.  Reference for SCF calculation
     """
+
     def __init__(self, geometry, basis, **kwargs):
+        import psi4
+        psi4.core.clean()
         self.uns = False
-        self.rhf = True
+        self.reference = 'rhf'
         for key, value in kwargs.items():
             setattr(self, key, value)
+        if self.reference == 'rhf':
+            self.rhf = True
+        else:
+            self.rhf = False
         molecule = psi4.geometry(geometry)
         psi4.core.set_output_file('output.dat', False)
-        psi4.set_options({'basis': str(basis), 'scf_type': 'pk', 'reference': 'rhf', 'd_convergence': 1e-12})
-        if molecule.multiplicity != 1:
-            psi4.set_options({'reference': 'rohf'})
+        #psi4.set_options({'reference': 'rhf', 'scf_type': 'pk', 'd_convergence': 1e-12})
+        print('Optimizing geometry...')
+        #psi4.optimize('b3lyp/6-31G(d,p)')
+
+        psi4.set_options({'basis': str(basis), 'scf_type': 'pk', 'reference': self.reference, 'd_convergence': 1e-12})
         self.hf_energy, wfn = psi4.energy('scf', return_wfn=True)
+        print("HF energy:".ljust(30)+("{0:20.16f}".format(self.hf_energy)))
         mints = psi4.core.MintsHelper(wfn.basisset())
         ca = wfn.Ca()
         cb = wfn.Cb()
-        self.multiplicity = molecule.multiplicity
-        if molecule.multiplicity == 1:
-            cb = ca
         self.fa = wfn.Fa()
         self.fb = wfn.Fb()
         self.j_aaaa = np.array(mints.mo_eri(ca, ca, ca, ca))
         self.j_abab = np.array(mints.mo_eri(ca, ca, cb, cb))
         self.j_baba = np.array(mints.mo_eri(cb, cb, ca, ca))
         self.j_bbbb = np.array(mints.mo_eri(cb, cb, cb, cb))
+
         self.fa.transform(ca)
-        self.fb.transform(cb)
+        if self.rhf == False:
+            self.fb.transform(cb)
         self.fa = np.array(self.fa)
         self.fb = np.array(self.fb)
         self.j_aaaa = self.j_aaaa.swapaxes(1, 2)
@@ -55,7 +64,6 @@ class molecule:
         self.nob = wfn.Cb_subset("AO", "ACTIVE_OCC").shape[1]
         self.nva = wfn.Ca_subset("AO", "ACTIVE_VIR").shape[1]
         self.nvb = wfn.Cb_subset("AO", "ACTIVE_VIR").shape[1]
-
         self.build_trial()
         self.build_gradient()
         self.r_aa = self.taa
@@ -63,6 +71,16 @@ class molecule:
         self.r_abab = self.tabab
         self.r_bb = self.tbb
         self.r_bbbb = self.tbbbb
+
+        print("MP2 energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('mp2'))))
+
+        print("CEPA(0) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(0)'))))
+
+        print("CEPA(1) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(1)'))))
+
+        print("CCSD energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd'))))
+
+        print("CCSD(T) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd(t)'))))
 
     def build_trial(self):
         """
@@ -317,10 +335,7 @@ class molecule:
         p = vec_lc(-1,r,0,r)
         r_k_norm = vec_dot(r,r)
         k = 0
-        print('%5s|%20.16s' % (('Iter.', 'Residual norm')))
         while r_k_norm > 1e-16:
-            print('-'*30)
-            print('{}'.format(k).ljust(5) + '|' + '%20.16f' % (r_k_norm))
             ap = self.hessian_action(p)
             alpha = r_k_norm/vec_dot(p,ap)
             palpha = vec_lc(alpha, p, 0, p)
@@ -332,10 +347,8 @@ class molecule:
             r_k_norm = r_kplus1_norm
             p = vec_lc(beta,p,-1,r)
             k += 1
-        print('-' * 30)
-        print('{}'.format(k).ljust(5) + '|' + '%20.16f' % (r_k_norm))
         energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,self.hessian_action(x))
-        print('Converged energy:'.ljust(20) + '%20.16f Eh\n' % energy)
+        print("UNS energy:".ljust(30) + ("{0:20.16f}".format(energy)))
         return energy
 
 def vec_lc(scalar_1,tensor_1,scalar_2,tensor_2):
@@ -374,12 +387,12 @@ def vec_dot(v1, v2):
 
 if __name__ == '__main__':
     geometry = """
-        0 2
-        H 0 0 0 
-        H 0 0 1 
-        H 0 0 2 
-        symmetry c1  
+        0 1
+        H 0 0 0
+        O 0 0 1 
+        H 0 1 1
+        symmetry c1
     """
-    basis = 'sto-3g'
-    mol = molecule(geometry, basis, rhf = False, uns = True)
+    basis = 'cc-pvtz'
+    mol = molecule(geometry, basis, reference = 'rhf', uns = True)
     mol.conj_grad()
