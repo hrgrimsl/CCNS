@@ -27,11 +27,18 @@ class molecule:
         else:
             self.rhf = False
         molecule = psi4.geometry(geometry)
-        psi4.core.set_output_file('output.dat', False)
-        #psi4.set_options({'reference': 'rhf', 'scf_type': 'pk', 'd_convergence': 1e-12})
-        print('Optimizing geometry...')
-        #psi4.optimize('b3lyp/6-31G(d,p)')
-
+        psi4.core.be_quiet()
+        psi4.set_memory('126 GB')
+        psi4.set_options({'reference': 'rhf', 'scf_type': 'pk', 'g_convergence': 'GAU_TIGHT', 'd_convergence': 1e-12})
+        #some cases required the commented each block
+        #print('Optimizing geometry...')
+        #try:    
+        psi4.set_options({'geom_maxiter': 200})
+        psi4.optimize('b3lyp/6-311G(d,p)')
+        #except:
+        #    psi4.set_options({'opt_coordinates': 'both', 'geom_maxiter': 200})
+        #    psi4.optimize('b3lyp/6-311G(d,p)')
+        psi4.core.clean()
         psi4.set_options({'basis': str(basis), 'scf_type': 'pk', 'reference': self.reference, 'd_convergence': 1e-12})
         self.hf_energy, wfn = psi4.energy('scf', return_wfn=True)
         print("HF energy:".ljust(30)+("{0:20.16f}".format(self.hf_energy)))
@@ -44,7 +51,7 @@ class molecule:
         self.j_abab = np.array(mints.mo_eri(ca, ca, cb, cb))
         self.j_baba = np.array(mints.mo_eri(cb, cb, ca, ca))
         self.j_bbbb = np.array(mints.mo_eri(cb, cb, cb, cb))
-
+        
         self.fa.transform(ca)
         if self.rhf == False:
             self.fb.transform(cb)
@@ -72,15 +79,39 @@ class molecule:
         self.r_bb = self.tbb
         self.r_bbbb = self.tbbbb
 
-        print("MP2 energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('mp2'))))
+        try:
+            print("MP2 energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('mp2'))))
+        except:
+            print("MP2 energy missing.")
+        psi4.core.clean()
+        try:
+            print("CEPA(0) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(0)'))))
+        except:
+            print("CEPA(0) energy missing.")
+        psi4.core.clean()
+        try:
+            print("CEPA(0) (no singles) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('lccd'))))
+        except:
+            print("CEPA(0) (no singles) energy missing.")
+        psi4.core.clean()
+        try:
+            print("CEPA(1) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(1)'))))
+        except:
+            print("CEPA(1) energy missing")
+        psi4.core.clean()
 
-        print("CEPA(0) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(0)'))))
+        try:
+            print("CCSD energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd'))))
+        except:
+            print("CCSD energy missing")
+        psi4.core.clean()
 
-        print("CEPA(1) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(1)'))))
+        try:
+            print("CCSD(T) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd(t)'))))
+        except:
+            print("CCSD(T) energy missing")
+        psi4.core.clean()
 
-        print("CCSD energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd'))))
-
-        print("CCSD(T) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd(t)'))))
 
     def build_trial(self):
         """
@@ -335,7 +366,9 @@ class molecule:
         p = vec_lc(-1,r,0,r)
         r_k_norm = vec_dot(r,r)
         k = 0
+        print('Conjugate Gradient Tracking:')
         while r_k_norm > 1e-16:
+            print('Iter. '+str(k)+': '+str(r_k_norm)) 
             ap = self.hessian_action(p)
             alpha = r_k_norm/vec_dot(p,ap)
             palpha = vec_lc(alpha, p, 0, p)
