@@ -1,4 +1,4 @@
-Second-Order Taylor Expansion About Mean-field Solution
+Coupled Cluster Newton Step
 
 <img src = "https://travis-ci.com/hrgrimsl/STEAMS.svg?token=y5H9g77PxszWJHZmEWzC&branch=master">
 
@@ -15,6 +15,14 @@ basis = 'aug-cc-pvdz'
 mol = STEAMS.molecule(geometry, basis, rhf = True, uns = False)
 print(mol.conj_grad())
 ```
-Program uses a Psi4 backend to compute electron integrals, etc.  Note that if the UNS flag is turned off, one obtains the CEPA(0) energy with single and double excitations included.
+Program uses a Psi4 backend to compute electron integrals, etc.  Note that if the UNS flag is set to False, one obtains the CEPA(0) energy with single and double excitations included.  See 
+
+https://doi.org/10.1063/1.454125
+
+and 
+
+https://doi.org/10.1063/1.455824
+
+for discussion on this topic.
 
 See also the documentation at https://htmlpreview.github.com/?https://github.com/hrgrimsl/STEAMS/master/build/index.html
