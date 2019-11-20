@@ -28,6 +28,7 @@ class molecule:
             self.rhf = False
         molecule = psi4.geometry(geometry)
         psi4.core.be_quiet()
+        psi4.set_options({'basis': basis})
         self.hf_energy, wfn = psi4.energy('scf', return_wfn=True)
         print("HF energy:".ljust(30)+("{0:20.16f}".format(self.hf_energy)))
         mints = psi4.core.MintsHelper(wfn.basisset())
