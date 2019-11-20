@@ -28,18 +28,6 @@ class molecule:
             self.rhf = False
         molecule = psi4.geometry(geometry)
         psi4.core.be_quiet()
-        psi4.set_memory('126 GB')
-        psi4.set_options({'reference': 'rhf', 'scf_type': 'pk', 'g_convergence': 'GAU_TIGHT', 'd_convergence': 1e-12})
-        #some cases required the commented each block
-        #print('Optimizing geometry...')
-        #try:    
-        psi4.set_options({'geom_maxiter': 200})
-        psi4.optimize('b3lyp/6-311G(d,p)')
-        #except:
-        #    psi4.set_options({'opt_coordinates': 'both', 'geom_maxiter': 200})
-        #    psi4.optimize('b3lyp/6-311G(d,p)')
-        psi4.core.clean()
-        psi4.set_options({'basis': str(basis), 'scf_type': 'pk', 'reference': self.reference, 'd_convergence': 1e-12})
         self.hf_energy, wfn = psi4.energy('scf', return_wfn=True)
         print("HF energy:".ljust(30)+("{0:20.16f}".format(self.hf_energy)))
         mints = psi4.core.MintsHelper(wfn.basisset())
@@ -78,40 +66,6 @@ class molecule:
         self.r_abab = self.tabab
         self.r_bb = self.tbb
         self.r_bbbb = self.tbbbb
-
-        try:
-            print("MP2 energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('mp2'))))
-        except:
-            print("MP2 energy missing.")
-        psi4.core.clean()
-        try:
-            print("CEPA(0) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(0)'))))
-        except:
-            print("CEPA(0) energy missing.")
-        psi4.core.clean()
-        try:
-            print("CEPA(0) (no singles) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('lccd'))))
-        except:
-            print("CEPA(0) (no singles) energy missing.")
-        psi4.core.clean()
-        try:
-            print("CEPA(1) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(1)'))))
-        except:
-            print("CEPA(1) energy missing")
-        psi4.core.clean()
-
-        try:
-            print("CCSD energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd'))))
-        except:
-            print("CCSD energy missing")
-        psi4.core.clean()
-
-        try:
-            print("CCSD(T) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd(t)'))))
-        except:
-            print("CCSD(T) energy missing")
-        psi4.core.clean()
-
 
     def build_trial(self):
         """
@@ -361,15 +315,19 @@ class molecule:
         trial = {'aa': self.taa, 'bb': self.tbb, 'aaaa': self.taaaa, 'abab':self.tabab, 'bbbb': self.tbbbb}
         gradient = vec_lc(-1,b,0,b)
         x = trial
+        N = self.noa+self.nob
+        Ec = 0
+        shift = (2/N)*Ec
         ax0 = self.hessian_action(x)
+        ax0 = vec_lc(1, ax0, shift, x)
         r = vec_lc(1,ax0,1,gradient)
         p = vec_lc(-1,r,0,r)
         r_k_norm = vec_dot(r,r)
         k = 0
         print('Conjugate Gradient Tracking:')
         while r_k_norm > 1e-16:
-            print('Iter. '+str(k)+': '+str(r_k_norm)) 
             ap = self.hessian_action(p)
+            ap = vec_lc(1, ap, shift, p)
             alpha = r_k_norm/vec_dot(p,ap)
             palpha = vec_lc(alpha, p, 0, p)
             x = vec_lc(1, x, 1, palpha)
@@ -380,7 +338,11 @@ class molecule:
             r_k_norm = r_kplus1_norm
             p = vec_lc(beta,p,-1,r)
             k += 1
-        energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,self.hessian_action(x))
+            energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,vec_lc(1, self.hessian_action(x), shift, x))
+            Ec = energy-self.hf_energy
+            shift = (2/N)*Ec
+            print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
+
         print("UNS energy:".ljust(30) + ("{0:20.16f}".format(energy)))
         return energy
 
@@ -422,10 +384,9 @@ if __name__ == '__main__':
     geometry = """
         0 1
         H 0 0 0
-        O 0 0 1 
-        H 0 1 1
+        Cl 0 0 1
         symmetry c1
     """
-    basis = 'cc-pvtz'
-    mol = molecule(geometry, basis, reference = 'rhf', uns = True)
+    basis = 'cc-pvdz'
+    mol = molecule(geometry, basis, reference = 'rhf', uns = False)
     mol.conj_grad()
