@@ -1,3 +1,6 @@
+import os
+import sys
+sys.path.insert(0, os.path.abspath('./STEAMS'))
 from STEAMS import *
 def test_1():
     geometry = """
