@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to CCNS’s documentation! &#8212; CCNS  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-ccns-s-documentation">
+<h1>Welcome to CCNS’s documentation!<a class="headerlink" href="#welcome-to-ccns-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<span class="target" id="module-STEAMS"></span><dl class="class">
+<dt id="STEAMS.molecule">
+<em class="property">class </em><code class="sig-prename descclassname">STEAMS.</code><code class="sig-name descname">molecule</code><span class="sig-paren">(</span><em class="sig-param">geometry</em>, <em class="sig-param">basis</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#STEAMS.molecule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns molecule object.</p>
+<p>Contains tools for computing Newton step approximations to the energy of a chemical system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Geometry</dt>
+<dd class="field-odd"><p>Matrix for which sqare root is computed</p>
+</dd>
+<dt class="field-even">Basis</dt>
+<dd class="field-even"><p>Basis for Psi4 to use</p>
+</dd>
+<dt class="field-odd">Uns</dt>
+<dd class="field-odd"><p>Optional, defaults to False.  Whether to include ring diagram from T_1^2</p>
+</dd>
+<dt class="field-even">Reference</dt>
+<dd class="field-even"><p>Optional, defaults to rhf.  Reference for SCF calculation</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="STEAMS.molecule.build_gradient">
+<code class="sig-name descname">build_gradient</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#STEAMS.molecule.build_gradient" title="Permalink to this definition">¶</a></dt>
+<dd><p>No return value.</p>
+<p>Computes gradient vector for CG solver</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="STEAMS.molecule.build_trial">
+<code class="sig-name descname">build_trial</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#STEAMS.molecule.build_trial" title="Permalink to this definition">¶</a></dt>
+<dd><p>No return value.</p>
+<p>Initializes trial vector for CG solver</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="STEAMS.molecule.conj_grad">
+<code class="sig-name descname">conj_grad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#STEAMS.molecule.conj_grad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns energy of the system.</p>
+<p>Uses a conjugate gradient approach to iteratively solve the second-order Taylor energy expansion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Vector</dt>
+<dd class="field-odd"><p>Dictionary of tensors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="STEAMS.molecule.dd">
+<code class="sig-name descname">dd</code><span class="sig-paren">(</span><em class="sig-param">vector</em><span class="sig-paren">)</span><a class="headerlink" href="#STEAMS.molecule.dd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns nothing.</p>
+<p>Computes effect of doubles on T_2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Vector</dt>
+<dd class="field-odd"><p>Dictionary of tensors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="STEAMS.molecule.ds">
+<code class="sig-name descname">ds</code><span class="sig-paren">(</span><em class="sig-param">vector</em><span class="sig-paren">)</span><a class="headerlink" href="#STEAMS.molecule.ds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns nothing.</p>
+<p>Computes effect of doubles on T_1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Vector</dt>
+<dd class="field-odd"><p>Dictionary of tensors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="STEAMS.molecule.hessian_action">
+<code class="sig-name descname">hessian_action</code><span class="sig-paren">(</span><em class="sig-param">vector</em><span class="sig-paren">)</span><a class="headerlink" href="#STEAMS.molecule.hessian_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Hessian action on an arbitrary vector.</p>
+<p>Computes Hessian action r required for CG solver</p>
+<dl class="field-list simple">
+<dt class="field-odd">Vector</dt>
+<dd class="field-odd"><p>Dictionary of tensors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="STEAMS.molecule.sd">
+<code class="sig-name descname">sd</code><span class="sig-paren">(</span><em class="sig-param">vector</em><span class="sig-paren">)</span><a class="headerlink" href="#STEAMS.molecule.sd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns nothing.</p>
+<p>Computes effect of singles on T_2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Vector</dt>
+<dd class="field-odd"><p>Dictionary of tensors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="STEAMS.molecule.ss">
+<code class="sig-name descname">ss</code><span class="sig-paren">(</span><em class="sig-param">vector</em><span class="sig-paren">)</span><a class="headerlink" href="#STEAMS.molecule.ss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns nothing.</p>
+<p>Computes effect of singles on T_1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Vector</dt>
+<dd class="field-odd"><p>Dictionary of tensors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="STEAMS.vec_dot">
+<code class="sig-prename descclassname">STEAMS.</code><code class="sig-name descname">vec_dot</code><span class="sig-paren">(</span><em class="sig-param">v1</em>, <em class="sig-param">v2</em><span class="sig-paren">)</span><a class="headerlink" href="#STEAMS.vec_dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns dot product of v1, v2..</p>
+<p>QOL function for manipulating dictionaries of tensors</p>
+<dl class="field-list simple">
+<dt class="field-odd">V1</dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">V2</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="STEAMS.vec_lc">
+<code class="sig-prename descclassname">STEAMS.</code><code class="sig-name descname">vec_lc</code><span class="sig-paren">(</span><em class="sig-param">scalar_1</em>, <em class="sig-param">tensor_1</em>, <em class="sig-param">scalar_2</em>, <em class="sig-param">tensor_2</em><span class="sig-paren">)</span><a class="headerlink" href="#STEAMS.vec_lc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns scalar_1*tensor_1+scalar_2*tensor_2.</p>
+<p>QOL function for manipulating dictionaries of tensors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Scalar_1</dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">Scalar_2</dt>
+<dd class="field-even"><p></p></dd>
+<dt class="field-odd">Tensor_1</dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">Tensor_2</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">CCNS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Harper Grimsley.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
