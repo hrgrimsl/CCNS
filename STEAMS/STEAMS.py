@@ -22,6 +22,7 @@ class molecule:
         self.reference = 'rhf'
         self.shift = 'cepa(0)'
         self.optimize = False
+        self.verbose = True
         for key, value in kwargs.items():
             setattr(self, key, value)
         if self.reference == 'rhf':
@@ -337,6 +338,8 @@ class molecule:
             N = self.noa+self.nob
             if self.shift == 'acpf':
                 shift = 2/N*Ec
+            if self.shift == 'aqcc':
+                shift = (1-(N-3)*(N-2)/(N*(N-1)))*Ec
             if self.shift == 'cepa(0)':
                 shift = 0
             if self.shift == 'cisd':
@@ -348,9 +351,7 @@ class molecule:
             r_k_norm = vec_dot(r,r)
             k = 0
             old_energy = energy
-            j = 1
-            print('NS Number '+str(j)+':')
-            
+            j += 1            
             while r_k_norm > 1e-16:
                 ap = self.hessian_action(p)
                 ap = vec_lc(1, ap, -shift, p)
@@ -365,10 +366,11 @@ class molecule:
                 p = vec_lc(beta,p,-1,r)
                 k += 1
                 energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,vec_lc(1, self.hessian_action(x), -shift, x))
-                print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
+                if self.verbose == True:
+                    print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
             Ec = energy-self.hf_energy
             delta = abs(energy - old_energy)
-            print("UNS energy:".ljust(30) + ("{0:20.16f}".format(energy)))
+            print("UNS energy "+str(j)+":".ljust(30) + ("{0:20.16f}".format(energy)))
         print("Final energy:".ljust(30) + ("{0:20.16f}".format(energy)))
         return energy
 
