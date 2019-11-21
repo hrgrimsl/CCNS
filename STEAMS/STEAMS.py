@@ -318,9 +318,9 @@ class molecule:
         x = trial
         N = self.noa+self.nob
         Ec = -460.161660029127-self.hf_energy
-        shift = -Ec*2/N
+        shift = 0
         ax0 = self.hessian_action(x)
-        ax0 = vec_lc(1, ax0, shift, x)
+        ax0 = vec_lc(1, ax0, -shift, x)
         r = vec_lc(1,ax0,1,gradient)
         p = vec_lc(-1,r,0,r)
         r_k_norm = vec_dot(r,r)
@@ -328,7 +328,7 @@ class molecule:
         print('Conjugate Gradient Tracking:')
         while r_k_norm > 1e-16:
             ap = self.hessian_action(p)
-            ap = vec_lc(1, ap, shift, p)
+            ap = vec_lc(1, ap, -shift, p)
             alpha = r_k_norm/vec_dot(p,ap)
             palpha = vec_lc(alpha, p, 0, p)
             x = vec_lc(1, x, 1, palpha)
@@ -339,9 +339,9 @@ class molecule:
             r_k_norm = r_kplus1_norm
             p = vec_lc(beta,p,-1,r)
             k += 1
-            energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,vec_lc(1, self.hessian_action(x), shift, x))
+            energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,vec_lc(1, self.hessian_action(x), -shift, x))
             Ec = -460.170016593182-self.hf_energy
-            shift = -Ec*2/N
+            shift = 0
             print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
 
         print("UNS energy:".ljust(30) + ("{0:20.16f}".format(energy)))
