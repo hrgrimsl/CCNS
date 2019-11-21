@@ -10,7 +10,7 @@ def test_1():
         symmetry c1
     """
     basis = 'cc-pvdz'
-    mol = molecule(geometry, basis, reference = 'rhf', uns = False)
+    mol = molecule(geometry, basis, reference = 'rhf', uns = False, optimize = False, shift = 'cepa(0)')
     assert abs(mol.conj_grad()+460.17119717690)<1e-7
 
 

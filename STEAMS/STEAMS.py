@@ -20,6 +20,8 @@ class molecule:
         psi4.core.clean()
         self.uns = False
         self.reference = 'rhf'
+        self.shift = 'cepa(0)'
+        self.optimize = False
         for key, value in kwargs.items():
             setattr(self, key, value)
         if self.reference == 'rhf':
@@ -29,6 +31,15 @@ class molecule:
         molecule = psi4.geometry(geometry)
         psi4.core.be_quiet()
         psi4.set_options({'basis': basis, 'd_convergence': 1e-12, 'scf_type': 'pk'})
+        if self.optimize:
+            psi4.set_options({'reference': self.reference, 'scf_type': 'pk', 'g_convergence': 'GAU_TIGHT', 'd_convergence': 1e-12})
+            try:
+                psi4.set_options({'geom_maxiter': 300})
+                psi4.optimize('b3lyp/6-311G(d,p)')
+            except:
+                psi4.set_options({'opt_coordinates': 'both', 'geom_maxiter': 300})
+                psi4.optimize('b3lyp/6-311G(d,p)')
+
         self.hf_energy, wfn = psi4.energy('scf', return_wfn=True)
         print("HF energy:".ljust(30)+("{0:20.16f}".format(self.hf_energy)))
         mints = psi4.core.MintsHelper(wfn.basisset())
@@ -307,44 +318,58 @@ class molecule:
     def conj_grad(self):
         """
             Returns energy of the system.
-
+    
             Uses a conjugate gradient approach to iteratively solve the second-order Taylor energy expansion.
-
+  
             :vector:  Dictionary of tensors.
         """
-        b = {'aa': -self.gaa, 'bb': -self.gbb, 'aaaa': -self.gaaaa, 'abab': -self.gabab, 'bbbb': -self.gbbbb}
-        trial = {'aa': self.taa, 'bb': self.tbb, 'aaaa': self.taaaa, 'abab':self.tabab, 'bbbb': self.tbbbb}
-        gradient = vec_lc(-1,b,0,b)
-        x = trial
-        N = self.noa+self.nob
-        Ec = -460.161660029127-self.hf_energy
-        shift = 0
-        ax0 = self.hessian_action(x)
-        ax0 = vec_lc(1, ax0, -shift, x)
-        r = vec_lc(1,ax0,1,gradient)
-        p = vec_lc(-1,r,0,r)
-        r_k_norm = vec_dot(r,r)
-        k = 0
-        print('Conjugate Gradient Tracking:')
-        while r_k_norm > 1e-16:
-            ap = self.hessian_action(p)
-            ap = vec_lc(1, ap, -shift, p)
-            alpha = r_k_norm/vec_dot(p,ap)
-            palpha = vec_lc(alpha, p, 0, p)
-            x = vec_lc(1, x, 1, palpha)
-            apalpha = vec_lc(alpha, ap, 0, ap)
-            r = vec_lc(1, r, 1, apalpha)
-            r_kplus1_norm = vec_dot(r,r)
-            beta = r_kplus1_norm/r_k_norm
-            r_k_norm = r_kplus1_norm
-            p = vec_lc(beta,p,-1,r)
-            k += 1
-            energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,vec_lc(1, self.hessian_action(x), -shift, x))
-            Ec = -460.170016593182-self.hf_energy
-            shift = 0
-            print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
-
-        print("UNS energy:".ljust(30) + ("{0:20.16f}".format(energy)))
+        delta = None
+        Ec = 0
+        energy = 0
+        j = 0
+        while delta == None or delta>1e-16:
+            if self.shift == 'cepa(0)' and delta != None:
+                break
+            b = {'aa': -self.gaa, 'bb': -self.gbb, 'aaaa': -self.gaaaa, 'abab': -self.gabab, 'bbbb': -self.gbbbb}
+            trial = {'aa': self.taa, 'bb': self.tbb, 'aaaa': self.taaaa, 'abab':self.tabab, 'bbbb': self.tbbbb}
+            gradient = vec_lc(-1,b,0,b)
+            x = trial
+            N = self.noa+self.nob
+            if self.shift == 'acpf':
+                shift = 2/N*Ec
+            if self.shift == 'cepa(0)':
+                shift = 0
+            if self.shift == 'cisd':
+                shift = Ec
+            ax0 = self.hessian_action(x)
+            ax0 = vec_lc(1, ax0, -shift, x)
+            r = vec_lc(1,ax0,1,gradient)
+            p = vec_lc(-1,r,0,r)
+            r_k_norm = vec_dot(r,r)
+            k = 0
+            old_energy = energy
+            j = 1
+            print('NS Number '+str(j)+':')
+            
+            while r_k_norm > 1e-16:
+                ap = self.hessian_action(p)
+                ap = vec_lc(1, ap, -shift, p)
+                alpha = r_k_norm/vec_dot(p,ap)
+                palpha = vec_lc(alpha, p, 0, p)
+                x = vec_lc(1, x, 1, palpha)
+                apalpha = vec_lc(alpha, ap, 0, ap)
+                r = vec_lc(1, r, 1, apalpha)
+                r_kplus1_norm = vec_dot(r,r)
+                beta = r_kplus1_norm/r_k_norm
+                r_k_norm = r_kplus1_norm
+                p = vec_lc(beta,p,-1,r)
+                k += 1
+                energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,vec_lc(1, self.hessian_action(x), -shift, x))
+                print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
+            Ec = energy-self.hf_energy
+            delta = abs(energy - old_energy)
+            print("UNS energy:".ljust(30) + ("{0:20.16f}".format(energy)))
+        print("Final energy:".ljust(30) + ("{0:20.16f}".format(energy)))
         return energy
 
 def vec_lc(scalar_1,tensor_1,scalar_2,tensor_2):
@@ -384,10 +409,15 @@ def vec_dot(v1, v2):
 if __name__ == '__main__':
     geometry = """
         0 1
-        H 0 0 0
-        Cl 0 0 1
+        C           -1.688295947202     0.413352595887     0.085044144662
+        O           -0.269011578840     0.622207957287     0.111225803874
+        H           -1.995810937046    -0.275783567578     0.874736402260
+        H           -2.008818488206     0.033534392597    -0.887627966847
+        H           -2.129343272848     1.392936555907     0.260229531655
+        N            0.406321913108    -0.615136061565    -0.111003068755
+        O            1.566409362584    -0.466291332835    -0.093433832940
         symmetry c1
     """
     basis = 'cc-pvdz'
-    mol = molecule(geometry, basis, reference = 'rhf', uns = False)
+    mol = molecule(geometry, basis, reference = 'rhf', uns = True, shift = 'cepa(0)', optimize = True)
     mol.conj_grad()
