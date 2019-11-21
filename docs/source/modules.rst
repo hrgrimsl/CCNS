@@ -5,4 +5,3 @@ STEAMS
    :maxdepth: 4
 
    STEAMS
-   test

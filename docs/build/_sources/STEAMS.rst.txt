@@ -1,7 +1,7 @@
-test module
-===========
+STEAMS module
+=============
 
-.. automodule:: test
+.. automodule:: STEAMS
    :members:
    :undoc-members:
    :show-inheritance:
