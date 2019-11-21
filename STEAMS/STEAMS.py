@@ -317,8 +317,8 @@ class molecule:
         gradient = vec_lc(-1,b,0,b)
         x = trial
         N = self.noa+self.nob
-        Ec = 0
-        shift = 0
+        Ec = -460.161660029127-self.hf_energy
+        shift = -Ec*2/N
         ax0 = self.hessian_action(x)
         ax0 = vec_lc(1, ax0, shift, x)
         r = vec_lc(1,ax0,1,gradient)
@@ -340,8 +340,8 @@ class molecule:
             p = vec_lc(beta,p,-1,r)
             k += 1
             energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,vec_lc(1, self.hessian_action(x), shift, x))
-            Ec = energy-self.hf_energy
-            shift = 0
+            Ec = -460.170016593182-self.hf_energy
+            shift = -Ec*2/N
             print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
 
         print("UNS energy:".ljust(30) + ("{0:20.16f}".format(energy)))
