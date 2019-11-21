@@ -25,4 +25,4 @@ https://doi.org/10.1063/1.455824
 
 for discussion on this topic.
 
-See also the documentation at https://htmlpreview.github.io/?github.com/hrgrimsl/CCNS/blob/master/docs/build/index.html
+See also the documentation at http://htmlpreview.github.io/?https://github.com/hrgrimsl/CCNS/blob/master/docs/build/index.html
