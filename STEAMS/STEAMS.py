@@ -22,7 +22,7 @@ class molecule:
         self.reference = 'rhf'
         self.shift = 'cepa(0)'
         self.optimize = False
-        self.verbose = True
+        self.verbose = False
         for key, value in kwargs.items():
             setattr(self, key, value)
         if self.reference == 'rhf':
@@ -31,7 +31,7 @@ class molecule:
             self.rhf = False
         molecule = psi4.geometry(geometry)
         psi4.core.be_quiet()
-        psi4.set_options({'basis': basis, 'd_convergence': 1e-12, 'scf_type': 'pk'})
+
         if self.optimize:
             psi4.set_options({'reference': self.reference, 'scf_type': 'pk', 'g_convergence': 'GAU_TIGHT', 'd_convergence': 1e-12})
             try:
@@ -41,8 +41,17 @@ class molecule:
                 psi4.set_options({'opt_coordinates': 'both', 'geom_maxiter': 300})
                 psi4.optimize('b3lyp/6-311G(d,p)')
 
+        psi4.set_options({'basis': basis, 'd_convergence': 1e-12, 'scf_type': 'pk'})
         self.hf_energy, wfn = psi4.energy('scf', return_wfn=True)
         print("HF energy:".ljust(30)+("{0:20.16f}".format(self.hf_energy)))
+        print("MP2 energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('mp2'))))
+        print("CCSD energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd'))))
+        print("CEPA(0) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(0)'))))
+        print("CEPA(1) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(1)'))))
+        print("CCSD(T) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd(t)'))))
+        print("ACPF energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('acpf'))))
+        print("AQCC energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('aqcc'))))
+        print("CEPA(0)(D) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('lccd')))) 
         mints = psi4.core.MintsHelper(wfn.basisset())
         ca = wfn.Ca()
         cb = wfn.Cb()
@@ -328,7 +337,7 @@ class molecule:
         Ec = 0
         energy = 0
         j = 0
-        while delta == None or delta>1e-16:
+        while delta == None or delta>1e-13 or j<20:
             if self.shift == 'cepa(0)' and delta != None:
                 break
             b = {'aa': -self.gaa, 'bb': -self.gbb, 'aaaa': -self.gaaaa, 'abab': -self.gabab, 'bbbb': -self.gbbbb}
@@ -339,7 +348,7 @@ class molecule:
             if self.shift == 'acpf':
                 shift = 2/N*Ec
             if self.shift == 'aqcc':
-                shift = (1-(N-3)*(N-2)/(N*(N-1)))*Ec
+                shift = (1.0-(N-2.0)*(N-3.0)/(N*(N-1.0)))*Ec
             if self.shift == 'cepa(0)':
                 shift = 0
             if self.shift == 'cisd':
@@ -370,8 +379,10 @@ class molecule:
                     print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
             Ec = energy-self.hf_energy
             delta = abs(energy - old_energy)
-            print("UNS energy "+str(j)+":".ljust(30) + ("{0:20.16f}".format(energy)))
+            print("UNS energy:".ljust(30) + ("{0:20.16f}".format(energy)))
         print("Final energy:".ljust(30) + ("{0:20.16f}".format(energy)))
+        if j==20:
+            print('Failed to converge in 20 iterations.  dE = '+str(delta))
         return energy
 
 def vec_lc(scalar_1,tensor_1,scalar_2,tensor_2):
