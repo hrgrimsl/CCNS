@@ -337,11 +337,11 @@ class molecule:
         Ec = 0
         energy = 0
         j = 0
-        while delta == None or delta>1e-13 or j<20:
+        b = {'aa': -self.gaa, 'bb': -self.gbb, 'aaaa': -self.gaaaa, 'abab': -self.gabab, 'bbbb': -self.gbbbb}
+        trial = {'aa': self.taa, 'bb': self.tbb, 'aaaa': self.taaaa, 'abab':self.tabab, 'bbbb': self.tbbbb}
+        while (delta == None or abs(delta)>1e-13) and j<20:
             if self.shift == 'cepa(0)' and delta != None:
                 break
-            b = {'aa': -self.gaa, 'bb': -self.gbb, 'aaaa': -self.gaaaa, 'abab': -self.gabab, 'bbbb': -self.gbbbb}
-            trial = {'aa': self.taa, 'bb': self.tbb, 'aaaa': self.taaaa, 'abab':self.tabab, 'bbbb': self.tbbbb}
             gradient = vec_lc(-1,b,0,b)
             x = trial
             N = self.noa+self.nob
@@ -378,7 +378,9 @@ class molecule:
                 if self.verbose == True:
                     print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
             Ec = energy-self.hf_energy
+            trial = x
             delta = abs(energy - old_energy)
+
             print("UNS energy:".ljust(30) + ("{0:20.16f}".format(energy)))
         print("Final energy:".ljust(30) + ("{0:20.16f}".format(energy)))
         if j==20:
@@ -422,15 +424,10 @@ def vec_dot(v1, v2):
 if __name__ == '__main__':
     geometry = """
         0 1
-        C           -1.688295947202     0.413352595887     0.085044144662
-        O           -0.269011578840     0.622207957287     0.111225803874
-        H           -1.995810937046    -0.275783567578     0.874736402260
-        H           -2.008818488206     0.033534392597    -0.887627966847
-        H           -2.129343272848     1.392936555907     0.260229531655
-        N            0.406321913108    -0.615136061565    -0.111003068755
-        O            1.566409362584    -0.466291332835    -0.093433832940
+        H 0 0 0
+        Cl 0 0 1
         symmetry c1
     """
     basis = 'cc-pvdz'
-    mol = molecule(geometry, basis, reference = 'rhf', uns = True, shift = 'cepa(0)', optimize = True)
+    mol = molecule(geometry, basis, reference = 'rhf', uns = False, shift = 'acpf', optimize = True)
     mol.conj_grad()
