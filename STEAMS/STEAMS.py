@@ -14,7 +14,7 @@ class molecule:
         :uns: Optional, defaults to False.  Whether to include ring diagram from T_1^2
         :reference: Optional, defaults to rhf.  Reference for SCF calculation
     """
-
+  
     def __init__(self, geometry, basis, **kwargs):
         import psi4
         psi4.core.clean()
@@ -23,8 +23,11 @@ class molecule:
         self.shift = 'cepa(0)'
         self.optimize = False
         self.verbose = False
+        selfnewton_cc = False
         for key, value in kwargs.items():
             setattr(self, key, value)
+            print(key, value)
+        print(self.reference)
         if self.reference == 'rhf':
             self.rhf = True
         else:
@@ -41,11 +44,12 @@ class molecule:
                 psi4.set_options({'opt_coordinates': 'both', 'geom_maxiter': 300})
                 psi4.optimize('b3lyp/6-311G(d,p)')
 
-        psi4.set_options({'basis': basis, 'd_convergence': 1e-12, 'scf_type': 'pk'})
+        psi4.set_options({'reference': self.reference, 'basis': basis, 'd_convergence': 1e-12, 'scf_type': 'pk'})
         self.hf_energy, wfn = psi4.energy('scf', return_wfn=True)
         print("HF energy:".ljust(30)+("{0:20.16f}".format(self.hf_energy)))
         print("MP2 energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('mp2'))))
         print("CCSD energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd'))))
+        print("CISD energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cisd'))))
         print("CEPA(0) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(0)'))))
         print("CEPA(1) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(1)'))))
         print("CCSD(T) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd(t)'))))
@@ -71,8 +75,8 @@ class molecule:
         self.j_abab = self.j_abab.swapaxes(1, 2)
         self.j_baba = self.j_baba.swapaxes(1, 2)
         self.j_bbbb = self.j_bbbb.swapaxes(1, 2)
-        k_aaaa = copy.copy(self.j_aaaa)
-        k_bbbb = copy.copy(self.j_bbbb)
+        k_aaaa = copy.deepcopy(self.j_aaaa)
+        k_bbbb = copy.deepcopy(self.j_bbbb)
         k_aaaa = k_aaaa.swapaxes(2, 3)
         k_bbbb = k_bbbb.swapaxes(2, 3)
         self.l_aaaa = self.j_aaaa - k_aaaa
@@ -113,6 +117,7 @@ class molecule:
         self.gbb = np.zeros((self.nob, self.nvb))
         self.gbbbb = 2**.5*self.l_bbbb[:self.nob,:self.nob,self.nob:,self.nob:]
 
+
     def hessian_action(self, vector):
         """
             Returns Hessian action on an arbitrary vector.
@@ -140,7 +145,7 @@ class molecule:
 
             :vector:  Dictionary of tensors.
         """
-        #HBA
+
         #Particle Fock Hamiltonian
         self.r_aa += contract('ba,ia->ib', self.fa[self.noa:, self.noa:], vector['aa'])
         if self.rhf == True:
@@ -333,13 +338,14 @@ class molecule:
   
             :vector:  Dictionary of tensors.
         """
+
         delta = None
         Ec = 0
         energy = 0
         j = 0
         b = {'aa': -self.gaa, 'bb': -self.gbb, 'aaaa': -self.gaaaa, 'abab': -self.gabab, 'bbbb': -self.gbbbb}
         trial = {'aa': self.taa, 'bb': self.tbb, 'aaaa': self.taaaa, 'abab':self.tabab, 'bbbb': self.tbbbb}
-        while (delta == None or abs(delta)>1e-13) and j<20:
+        while (delta == None or abs(delta)>1e-16) and j<20:
             if self.shift == 'cepa(0)' and delta != None:
                 break
             gradient = vec_lc(-1,b,0,b)
@@ -354,6 +360,10 @@ class molecule:
             if self.shift == 'cisd':
                 shift = Ec
             ax0 = self.hessian_action(x)
+            xdels = copy.deepcopy(x)
+            if self.shift_singles == False:
+                xdels['aa']*=0
+                xdels['bb']*=0
             ax0 = vec_lc(1, ax0, -shift, x)
             r = vec_lc(1,ax0,1,gradient)
             p = vec_lc(-1,r,0,r)
@@ -363,7 +373,11 @@ class molecule:
             j += 1            
             while r_k_norm > 1e-16:
                 ap = self.hessian_action(p)
-                ap = vec_lc(1, ap, -shift, p)
+                pdels = copy.deepcopy(p)
+                if self.shift_singles == False:
+                    pdels['aa']*=0
+                    pdels['bb']*=0
+                ap = vec_lc(1, ap, -shift, pdels)
                 alpha = r_k_norm/vec_dot(p,ap)
                 palpha = vec_lc(alpha, p, 0, p)
                 x = vec_lc(1, x, 1, palpha)
@@ -374,7 +388,11 @@ class molecule:
                 r_k_norm = r_kplus1_norm
                 p = vec_lc(beta,p,-1,r)
                 k += 1
-                energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,vec_lc(1, self.hessian_action(x), -shift, x))
+                xdels = copy.deepcopy(x)
+                if self.shift_singles == False:
+                    xdels['aa']*=0
+                    xdels['bb']*=0
+                energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,vec_lc(1, self.hessian_action(x), -shift, xdels))
                 if self.verbose == True:
                     print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
             Ec = energy-self.hf_energy
@@ -424,10 +442,16 @@ def vec_dot(v1, v2):
 if __name__ == '__main__':
     geometry = """
         0 1
-        H 0 0 0
-        Cl 0 0 1
+            C           -1.698429305588    -0.348666555157    -0.150614054476
+            O           -0.284560718800    -0.584585084781    -0.222126098698
+            H           -1.988336157749     0.481308248534    -0.798729654617
+            H           -2.008270059150    -0.146240479294     0.876996215260
+            H           -2.164156009018    -1.268167408143    -0.500507881270
+            N            0.421749889699     0.574056973031     0.220155388691
+            O            1.577742184910     0.402392024659     0.168988073620
+
         symmetry c1
     """
-    basis = 'cc-pvdz'
-    mol = molecule(geometry, basis, reference = 'rhf', uns = False, shift = 'acpf', optimize = True)
+    basis = 'cc-pvtz'
+    mol = molecule(geometry, basis, reference = 'rhf', uns = True, shift = 'acpf', shift_singles = True, optimize = False, verbose = False)
     mol.conj_grad()
