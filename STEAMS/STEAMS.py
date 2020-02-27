@@ -31,7 +31,7 @@ class molecule:
             self.rhf = False
         molecule = psi4.geometry(geometry)
         psi4.core.be_quiet()
-
+        psi4.set_memory('80 GB')
         if self.optimize:
             psi4.set_options({'reference': self.reference, 'scf_type': 'pk', 'g_convergence': 'GAU_TIGHT', 'd_convergence': 1e-12})
             try:
@@ -46,12 +46,12 @@ class molecule:
         print("HF energy:".ljust(30)+("{0:20.16f}".format(self.hf_energy)))
         print("MP2 energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('mp2'))))
         print("CCSD energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd'))))
-        print("CEPA(0) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(0)'))))
-        print("CEPA(1) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(1)'))))
+        #print("CEPA(0) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(0)'))))
+        #print("CEPA(1) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('cepa(1)'))))
         print("CCSD(T) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('ccsd(t)'))))
-        print("ACPF energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('acpf'))))
-        print("AQCC energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('aqcc'))))
-        print("CEPA(0)(D) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('lccd')))) 
+        #print("ACPF energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('acpf'))))
+        #print("AQCC energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('aqcc'))))
+        #print("CEPA(0)(D) energy:".ljust(30)+("{0:20.16f}".format(psi4.energy('lccd')))) 
         mints = psi4.core.MintsHelper(wfn.basisset())
         ca = wfn.Ca()
         cb = wfn.Cb()
@@ -360,7 +360,7 @@ class molecule:
             r_k_norm = vec_dot(r,r)
             k = 0
             old_energy = energy
-            j += 1            
+            j += 1
             while r_k_norm > 1e-16:
                 ap = self.hessian_action(p)
                 ap = vec_lc(1, ap, -shift, p)
@@ -381,6 +381,26 @@ class molecule:
             delta = abs(energy - old_energy)
             print("UNS energy:".ljust(30) + ("{0:20.16f}".format(energy)))
         print("Final energy:".ljust(30) + ("{0:20.16f}".format(energy)))
+        print('Unnormalized amplitudes')
+        yaa = abs(x['aa']).flatten()
+        yaaaa = abs(x['aaaa']).flatten()
+        yabab = abs(x['abab']).flatten()
+        print('Singles')
+        print(sorted(yaa)[-10:])
+        print('aa Doubles')
+        print(sorted(yaaaa)[-10:])
+        print('ab Doubles')
+        print(sorted(yabab)[-10:])
+        yaa = abs(x['aa']/np.linalg.norm(x['aa'])).flatten()
+        yaaaa = abs(x['aaaa']/np.linalg.norm(x['aaaa'])).flatten()
+        yabab = abs(x['abab']/np.linalg.norm(x['abab'])).flatten()
+        print('Normalized amplitudes')
+        print('Singles')
+        print(sorted(yaa)[-10:])
+        print('aa Doubles')
+        print(sorted(yaaaa)[-10:])
+        print('ab Doubles')
+        print(sorted(yabab)[-10:])
         if j==20:
             print('Failed to converge in 20 iterations.  dE = '+str(delta))
         return energy
@@ -422,15 +442,15 @@ def vec_dot(v1, v2):
 if __name__ == '__main__':
     geometry = """
         0 1
-        C           -1.688295947202     0.413352595887     0.085044144662
-        O           -0.269011578840     0.622207957287     0.111225803874
-        H           -1.995810937046    -0.275783567578     0.874736402260
-        H           -2.008818488206     0.033534392597    -0.887627966847
-        H           -2.129343272848     1.392936555907     0.260229531655
-        N            0.406321913108    -0.615136061565    -0.111003068755
-        O            1.566409362584    -0.466291332835    -0.093433832940
+        C -2.01155261  1.83182698  0.34990168
+        O  0.69071471  1.52071378  0.31471009
+        H -2.86448035  0.6611563   1.82022913
+        H -2.83063937  1.32797878 -1.4763109 
+        H -2.29645918  3.82646959  0.75045216
+        N 1.56258965 -0.93341955 -0.17277645
+        O -0.04602943 -2.44427562 -0.4949144
         symmetry c1
     """
-    basis = 'cc-pvdz'
-    mol = molecule(geometry, basis, reference = 'rhf', uns = True, shift = 'cepa(0)', optimize = True)
+    basis = 'cc-pvtz'
+    mol = molecule(geometry, basis, verbose = True, reference = 'rhf', uns = True, shift = 'cepa(0)', optimize = False)
     mol.conj_grad()
