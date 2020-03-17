@@ -17,12 +17,14 @@ class molecule:
 
     def __init__(self, geometry, basis, **kwargs):
         import psi4
+        psi4.set_memory('10 GB')
         psi4.core.clean()
         self.uns = False
         self.reference = 'rhf'
         self.shift = 'cepa(0)'
         self.optimize = False
         self.verbose = False
+        self.c3epa = False
         for key, value in kwargs.items():
             setattr(self, key, value)
         if self.reference == 'rhf':
@@ -140,6 +142,15 @@ class molecule:
 
             :vector:  Dictionary of tensors.
         """
+        if self.c3epa == True:
+            lam = 0
+            lam += .5*np.linalg.norm(vector['aa'])**2
+            lam += .5*np.linalg.norm(vector['bb'])**2
+            lam += 1/8*np.linalg.norm(vector['aaaa'])**2
+            lam += 1/8*np.linalg.norm(vector['abab'])**2
+            lam += 1/8*np.linalg.norm(vector['bbbb'])**2
+        else:
+            lam = 1
         #HBA
         #Particle Fock Hamiltonian
         self.r_aa += contract('ba,ia->ib', self.fa[self.noa:, self.noa:], vector['aa'])
@@ -166,11 +177,11 @@ class molecule:
 
         if self.uns == True:
             #Double Ring Hamiltonian
-            self.r_aa += contract('ijab,ia->jb', self.l_aaaa[:self.noa, :self.noa, self.noa:, self.noa:], vector['aa'])
-            self.r_aa += contract('jiba,ia->jb', self.j_abab[:self.noa, :self.nob, self.noa:, self.nob:], vector['bb'])
+            self.r_aa += lam*contract('ijab,ia->jb', self.l_aaaa[:self.noa, :self.noa, self.noa:, self.noa:], vector['aa'])
+            self.r_aa += lam*contract('jiba,ia->jb', self.j_abab[:self.noa, :self.nob, self.noa:, self.nob:], vector['bb'])
             if self.rhf != True:
-                self.r_bb += contract('ijab,ia->jb', self.j_abab[:self.noa, :self.nob, self.noa:, self.nob:], vector['aa'])
-                self.r_bb += contract('ijab,ia->jb', self.l_bbbb[:self.nob, :self.nob, self.nob:, self.nob:], vector['bb'])
+                self.r_bb += lam*contract('ijab,ia->jb', self.j_abab[:self.noa, :self.nob, self.noa:, self.nob:], vector['aa'])
+                self.r_bb += lam*contract('ijab,ia->jb', self.l_bbbb[:self.nob, :self.nob, self.nob:, self.nob:], vector['bb'])
             else:
                 self.r_bb = self.r_aa
 
@@ -338,7 +349,7 @@ class molecule:
         energy = 0
         j = 0
         while delta == None or delta>1e-13 or j<20:
-            if self.shift == 'cepa(0)' and delta != None:
+            if delta != None:
                 break
             b = {'aa': -self.gaa, 'bb': -self.gbb, 'aaaa': -self.gaaaa, 'abab': -self.gabab, 'bbbb': -self.gbbbb}
             trial = {'aa': self.taa, 'bb': self.tbb, 'aaaa': self.taaaa, 'abab':self.tabab, 'bbbb': self.tbbbb}
@@ -379,6 +390,7 @@ class molecule:
                     print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
             Ec = energy-self.hf_energy
             delta = abs(energy - old_energy)
+
             print("UNS energy:".ljust(30) + ("{0:20.16f}".format(energy)))
         print("Final energy:".ljust(30) + ("{0:20.16f}".format(energy)))
         if j==20:
@@ -422,15 +434,10 @@ def vec_dot(v1, v2):
 if __name__ == '__main__':
     geometry = """
         0 1
-        C           -1.688295947202     0.413352595887     0.085044144662
-        O           -0.269011578840     0.622207957287     0.111225803874
-        H           -1.995810937046    -0.275783567578     0.874736402260
-        H           -2.008818488206     0.033534392597    -0.887627966847
-        H           -2.129343272848     1.392936555907     0.260229531655
-        N            0.406321913108    -0.615136061565    -0.111003068755
-        O            1.566409362584    -0.466291332835    -0.093433832940
+        N 0 0 0
+        N 0 0 1.76
         symmetry c1
     """
-    basis = 'cc-pvdz'
-    mol = molecule(geometry, basis, reference = 'rhf', uns = True, shift = 'cepa(0)', optimize = True)
+    basis = 'cc-pvtz'
+    mol = molecule(geometry, basis, reference = 'rhf', c3epa = True, uns = True, shift = 'cepa(0)', optimize = False, verbose = True)
     mol.conj_grad()
