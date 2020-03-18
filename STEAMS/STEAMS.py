@@ -133,6 +133,31 @@ class molecule:
         self.ds(vector)
         self.dd(vector)
         return {'aa': self.r_aa, 'bb': self.r_bb, 'aaaa': self.r_aaaa, 'abab': self.r_abab, 'bbbb': self.r_bbbb}
+    def compute_lambda(self, vector):
+        lam = 0
+        for arr in ['aa', 'bb']:
+           cur = vector[arr]
+           for i in range(0, cur.shape[0]):
+               for a in range(0, cur.shape[1]):
+                   lam += cur[i,a]**2
+
+        for arr in ['aaaa', 'bbbb']:
+           cur = vector[arr]
+           for i in range(0, cur.shape[0]):
+               for j in range(i+1, cur.shape[1]):
+                   for a in range(0, cur.shape[2]):
+                       for b in range(a+1, cur.shape[3]):
+                           lam += cur[i,j,a,b]**2
+
+        for arr in ['abab']:
+           cur = vector[arr]
+           for i in range(0, cur.shape[0]):
+               for j in range(0, cur.shape[1]):
+                   for a in range(0, cur.shape[2]):
+                       for b in range(0, cur.shape[3]):
+                           lam += cur[i,j,a,b]**2
+        print(lam)
+        return .5*lam
 
     def ss(self, vector):
         """
@@ -143,12 +168,16 @@ class molecule:
             :vector:  Dictionary of tensors.
         """
         if self.c3epa == True:
-            lam = 0
-            lam += .5*np.linalg.norm(vector['aa'])**2
-            lam += .5*np.linalg.norm(vector['bb'])**2
-            lam += 1/8*np.linalg.norm(vector['aaaa'])**2
-            lam += 1/8*np.linalg.norm(vector['abab'])**2
-            lam += 1/8*np.linalg.norm(vector['bbbb'])**2
+            #lam = 0
+            #lam += .5*(np.linalg.norm(vector['aa'])**2)
+            #lam += .5*(np.linalg.norm(vector['bb'])**2)
+            #lam += 1/8*(np.linalg.norm(vector['aaaa'])**2)
+            #lam += .5*(np.linalg.norm(vector['abab'])**2)
+            #lam += 1/8*(np.linalg.norm(vector['bbbb'])**2)
+            lam = self.compute_lambda(vector)
+            #print(lam)
+        elif self.lam != None:
+            lam = self.lam
         else:
             lam = 1
         #HBA
@@ -388,8 +417,9 @@ class molecule:
                 energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,vec_lc(1, self.hessian_action(x), -shift, x))
                 if self.verbose == True:
                     print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
-                if k>250:
+                if k==500:
                     print('Failed to converge.')
+                    exit()
             Ec = energy-self.hf_energy
             delta = abs(energy - old_energy)
 
@@ -437,9 +467,10 @@ if __name__ == '__main__':
     geometry = """
         0 1
         N 0 0 0
-        N 0 0 1.76
+        N 0 0 1.5
+
         symmetry c1
     """
-    basis = 'cc-pvtz'
-    mol = molecule(geometry, basis, reference = 'rhf', c3epa = True, uns = True, shift = 'cepa(0)', optimize = False, verbose = True)
+    basis = '3-21G'
+    mol = molecule(geometry, basis, reference = 'rhf', c3epa = True, uns = True, shift = 'cepa(0)', optimize = False, verbose = False, lam = None)
     mol.conj_grad()
