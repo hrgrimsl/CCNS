@@ -388,6 +388,8 @@ class molecule:
                 energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,vec_lc(1, self.hessian_action(x), -shift, x))
                 if self.verbose == True:
                     print('Iter. '+str(k)+': '+str(r_k_norm)+'|E: '+str(energy))
+                if k>250:
+                    print('Failed to converge.')
             Ec = energy-self.hf_energy
             delta = abs(energy - old_energy)
 
