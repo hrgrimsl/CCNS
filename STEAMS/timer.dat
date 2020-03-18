@@ -2176,3 +2176,167 @@ DFMP2 Energy                :      0.000u      0.000s      0.001w      1 calls
 | DFMP2 Qia Read            :      0.000u      0.000s      0.000w      2 calls
 
 ***********************************************************
+
+Host: hrgrimsl-XPS-13-9370
+
+Timers On : Wed Mar 18 14:42:01 2020
+Timers Off: Wed Mar 18 14:45:06 2020
+
+Wall Time:      185.69 seconds
+
+Total PK formation time     :      2.533u      0.017s      1.534w      9 calls
+HF: Form H                  :      0.000u      0.000s      0.009w      9 calls
+HF: Form S/X                :      0.000u      0.017s      0.005w      9 calls
+HF: Guess                   :      0.450u      0.067s      0.291w      9 calls
+SAD Guess                   :      0.450u      0.033s      0.276w      9 calls
+HF: Form G                  :      0.367u      0.000s      0.210w    117 calls
+JK: D                       :      0.000u      0.000s      0.001w    117 calls
+JK: USO2AO                  :      0.000u      0.000s      0.001w    117 calls
+JK: JK                      :      0.367u      0.000s      0.206w    117 calls
+PK computes JK              :      0.350u      0.000s      0.206w    117 calls
+JK: AO2USO                  :      0.000u      0.000s      0.000w    117 calls
+HF: Form F                  :      0.000u      0.000s      0.001w    117 calls
+HF: DIIS                    :      0.033u      0.000s      0.030w    117 calls
+DIISManager::add_entry      :      0.000u      0.000s      0.007w    108 calls
+DIISManager::extrapolate    :      0.017u      0.000s      0.015w     99 calls
+bMatrix setup               :      0.000u      0.000s      0.006w     99 calls
+bMatrix pseudoinverse       :      0.017u      0.000s      0.003w     99 calls
+New vector                  :      0.000u      0.000s      0.005w     99 calls
+HF: Form C                  :      0.067u      0.000s      0.045w    117 calls
+HF: Form D                  :      0.000u      0.000s      0.001w    117 calls
+DFMP2 Singles               :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Aia                   :      0.050u      0.000s      0.032w      1 calls
+DFMP2 (A|mn)                :      0.017u      0.000s      0.013w      1 calls
+DFMP2 (A|mn)C_mi            :      0.000u      0.000s      0.001w      1 calls
+DFMP2 (A|mi)C_na            :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Aia Write             :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Qia                   :      0.017u      0.000s      0.012w      1 calls
+DFMP2 Metric                :      0.017u      0.000s      0.011w      1 calls
+DFMP2 Aia Read              :      0.000u      0.000s      0.000w      1 calls
+DFMP2 (Q|A)(A|ia)           :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Qia Write             :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Energy                :      0.000u      0.000s      0.001w      1 calls
+DFMP2 Qia Read              :      0.000u      0.000s      0.000w      2 calls
+CCtriples                   :      1.450u      0.050s      0.899w      1 calls
+ET_RHF                      :      1.450u      0.050s      0.899w      1 calls
+
+-----------------------------------------------------------
+Total PK formation time     :      2.533u      0.017s      1.534w      9 calls
+HF: Form H                  :      0.000u      0.000s      0.009w      9 calls
+HF: Form S/X                :      0.000u      0.017s      0.005w      9 calls
+HF: Guess                   :      0.450u      0.067s      0.291w      9 calls
+| SAD Guess                 :      0.450u      0.033s      0.276w      9 calls
+HF: Form G                  :      0.367u      0.000s      0.210w    117 calls
+| JK: D                     :      0.000u      0.000s      0.001w    117 calls
+| JK: USO2AO                :      0.000u      0.000s      0.001w    117 calls
+| JK: JK                    :      0.367u      0.000s      0.206w    117 calls
+| | PK computes JK          :      0.350u      0.000s      0.206w    117 calls
+| JK: AO2USO                :      0.000u      0.000s      0.000w    117 calls
+HF: Form F                  :      0.000u      0.000s      0.001w    117 calls
+HF: DIIS                    :      0.033u      0.000s      0.030w    117 calls
+| DIISManager::add_entry    :      0.000u      0.000s      0.007w    108 calls
+| DIISManager::extrapolate  :      0.017u      0.000s      0.015w     99 calls
+| | bMatrix setup           :      0.000u      0.000s      0.006w     99 calls
+| | bMatrix pseudoinverse   :      0.017u      0.000s      0.003w     99 calls
+| | New vector              :      0.000u      0.000s      0.005w     99 calls
+HF: Form C                  :      0.067u      0.000s      0.045w    117 calls
+HF: Form D                  :      0.000u      0.000s      0.001w    117 calls
+DFMP2 Singles               :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Aia                   :      0.050u      0.000s      0.032w      1 calls
+| DFMP2 (A|mn)              :      0.017u      0.000s      0.013w      1 calls
+| DFMP2 (A|mn)C_mi          :      0.000u      0.000s      0.001w      1 calls
+| DFMP2 (A|mi)C_na          :      0.000u      0.000s      0.000w      1 calls
+| DFMP2 Aia Write           :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Qia                   :      0.017u      0.000s      0.012w      1 calls
+| DFMP2 Metric              :      0.017u      0.000s      0.011w      1 calls
+| DFMP2 Aia Read            :      0.000u      0.000s      0.000w      1 calls
+| DFMP2 (Q|A)(A|ia)         :      0.000u      0.000s      0.000w      1 calls
+| DFMP2 Qia Write           :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Energy                :      0.000u      0.000s      0.001w      1 calls
+| DFMP2 Qia Read            :      0.000u      0.000s      0.000w      2 calls
+CCtriples                   :      1.450u      0.050s      0.899w      1 calls
+| ET_RHF                    :      1.450u      0.050s      0.899w      1 calls
+
+***********************************************************
+
+Host: hrgrimsl-XPS-13-9370
+
+Timers On : Wed Mar 18 14:46:14 2020
+Timers Off: Wed Mar 18 14:49:26 2020
+
+Wall Time:      191.79 seconds
+
+Total PK formation time     :      2.433u      0.017s      1.475w      9 calls
+HF: Form H                  :      0.000u      0.000s      0.009w      9 calls
+HF: Form S/X                :      0.017u      0.000s      0.004w      9 calls
+HF: Guess                   :      0.450u      0.017s      0.288w      9 calls
+SAD Guess                   :      0.450u      0.017s      0.274w      9 calls
+HF: Form G                  :      0.283u      0.000s      0.200w    117 calls
+JK: D                       :      0.000u      0.000s      0.001w    117 calls
+JK: USO2AO                  :      0.000u      0.000s      0.000w    117 calls
+JK: JK                      :      0.283u      0.000s      0.196w    117 calls
+PK computes JK              :      0.283u      0.000s      0.196w    117 calls
+JK: AO2USO                  :      0.000u      0.000s      0.000w    117 calls
+HF: Form F                  :      0.000u      0.000s      0.001w    117 calls
+HF: DIIS                    :      0.067u      0.000s      0.027w    117 calls
+DIISManager::add_entry      :      0.000u      0.000s      0.007w    108 calls
+DIISManager::extrapolate    :      0.033u      0.000s      0.013w     99 calls
+bMatrix setup               :      0.033u      0.000s      0.005w     99 calls
+bMatrix pseudoinverse       :      0.000u      0.000s      0.002w     99 calls
+New vector                  :      0.000u      0.000s      0.005w     99 calls
+HF: Form C                  :      0.083u      0.000s      0.042w    117 calls
+HF: Form D                  :      0.000u      0.000s      0.001w    117 calls
+DFMP2 Singles               :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Aia                   :      0.050u      0.000s      0.033w      1 calls
+DFMP2 (A|mn)                :      0.017u      0.000s      0.012w      1 calls
+DFMP2 (A|mn)C_mi            :      0.000u      0.000s      0.000w      1 calls
+DFMP2 (A|mi)C_na            :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Aia Write             :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Qia                   :      0.033u      0.000s      0.013w      1 calls
+DFMP2 Metric                :      0.033u      0.000s      0.011w      1 calls
+DFMP2 Aia Read              :      0.000u      0.000s      0.000w      1 calls
+DFMP2 (Q|A)(A|ia)           :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Qia Write             :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Energy                :      0.000u      0.000s      0.001w      1 calls
+DFMP2 Qia Read              :      0.000u      0.000s      0.000w      2 calls
+CCtriples                   :      1.383u      0.183s      0.935w      1 calls
+ET_RHF                      :      1.383u      0.183s      0.935w      1 calls
+
+-----------------------------------------------------------
+Total PK formation time     :      2.433u      0.017s      1.475w      9 calls
+HF: Form H                  :      0.000u      0.000s      0.009w      9 calls
+HF: Form S/X                :      0.017u      0.000s      0.004w      9 calls
+HF: Guess                   :      0.450u      0.017s      0.288w      9 calls
+| SAD Guess                 :      0.450u      0.017s      0.274w      9 calls
+HF: Form G                  :      0.283u      0.000s      0.200w    117 calls
+| JK: D                     :      0.000u      0.000s      0.001w    117 calls
+| JK: USO2AO                :      0.000u      0.000s      0.000w    117 calls
+| JK: JK                    :      0.283u      0.000s      0.196w    117 calls
+| | PK computes JK          :      0.283u      0.000s      0.196w    117 calls
+| JK: AO2USO                :      0.000u      0.000s      0.000w    117 calls
+HF: Form F                  :      0.000u      0.000s      0.001w    117 calls
+HF: DIIS                    :      0.067u      0.000s      0.027w    117 calls
+| DIISManager::add_entry    :      0.000u      0.000s      0.007w    108 calls
+| DIISManager::extrapolate  :      0.033u      0.000s      0.013w     99 calls
+| | bMatrix setup           :      0.033u      0.000s      0.005w     99 calls
+| | bMatrix pseudoinverse   :      0.000u      0.000s      0.002w     99 calls
+| | New vector              :      0.000u      0.000s      0.005w     99 calls
+HF: Form C                  :      0.083u      0.000s      0.042w    117 calls
+HF: Form D                  :      0.000u      0.000s      0.001w    117 calls
+DFMP2 Singles               :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Aia                   :      0.050u      0.000s      0.033w      1 calls
+| DFMP2 (A|mn)              :      0.017u      0.000s      0.012w      1 calls
+| DFMP2 (A|mn)C_mi          :      0.000u      0.000s      0.000w      1 calls
+| DFMP2 (A|mi)C_na          :      0.000u      0.000s      0.000w      1 calls
+| DFMP2 Aia Write           :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Qia                   :      0.033u      0.000s      0.013w      1 calls
+| DFMP2 Metric              :      0.033u      0.000s      0.011w      1 calls
+| DFMP2 Aia Read            :      0.000u      0.000s      0.000w      1 calls
+| DFMP2 (Q|A)(A|ia)         :      0.000u      0.000s      0.000w      1 calls
+| DFMP2 Qia Write           :      0.000u      0.000s      0.000w      1 calls
+DFMP2 Energy                :      0.000u      0.000s      0.001w      1 calls
+| DFMP2 Qia Read            :      0.000u      0.000s      0.000w      2 calls
+CCtriples                   :      1.383u      0.183s      0.935w      1 calls
+| ET_RHF                    :      1.383u      0.183s      0.935w      1 calls
+
+***********************************************************

@@ -134,6 +134,29 @@ class molecule:
         self.dd(vector)
         return {'aa': self.r_aa, 'bb': self.r_bb, 'aaaa': self.r_aaaa, 'abab': self.r_abab, 'bbbb': self.r_bbbb}
 
+    def compute_lambda(self, vector):
+        lam = 0
+        for dkey in ['aa', 'bb']:
+            arr = vector[dkey]
+            for i in range(0, arr.shape[0]):
+                for a in range(0, arr.shape[1]):
+                    lam += arr[i][a]**2 
+        for dkey in ['aaaa', 'bbbb']:
+            arr = vector[dkey]
+            for i in range(0, arr.shape[0]):
+                for j in range(i+1, arr.shape[1]):
+                    for a in range(0, arr.shape[2]):
+                        for b in range(a+1, arr.shape[3]):
+                            lam += arr[i][j][a][b]**2
+        for dkey in ['abab']:
+            arr = vector[dkey]
+            for i in range(0, arr.shape[0]):
+                for j in range(0, arr.shape[1]):
+                    for a in range(0, arr.shape[2]):
+                        for b in range(0, arr.shape[3]):
+                            lam += arr[i][j][a][b]**2
+        return .5*lam
+
     def ss(self, vector):
         """
             Returns nothing.
@@ -143,12 +166,7 @@ class molecule:
             :vector:  Dictionary of tensors.
         """
         if self.c3epa == True:
-            lam = 0
-            lam += .5*np.linalg.norm(vector['aa'])**2
-            lam += .5*np.linalg.norm(vector['bb'])**2
-            lam += 1/8*np.linalg.norm(vector['aaaa'])**2
-            lam += 1/8*np.linalg.norm(vector['abab'])**2
-            lam += 1/8*np.linalg.norm(vector['bbbb'])**2
+            lam = self.compute_lambda(vector)
         else:
             lam = 1
         #HBA
@@ -437,7 +455,7 @@ if __name__ == '__main__':
     geometry = """
         0 1
         N 0 0 0
-        N 0 0 1.76
+        N 0 0 1.5
         symmetry c1
     """
     basis = 'cc-pvtz'
