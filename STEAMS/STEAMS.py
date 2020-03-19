@@ -165,9 +165,11 @@ class molecule:
 
             :vector:  Dictionary of tensors.
         """
-        if self.c3epa == True:
+        if self.c3epa == True and self.lam_corr == True:
             lam = self.compute_lambda(vector)
-        else:
+        elif self.c3epa == True and self.lam_corr == False:
+            lam = 0
+        elif self.uns == True:
             lam = 1
         #HBA
         #Particle Fock Hamiltonian
@@ -411,7 +413,9 @@ class molecule:
             Ec = energy-self.hf_energy
             delta = abs(energy - old_energy)
 
-            print("UNS energy:".ljust(30) + ("{0:20.16f}".format(energy)))
+            print("Conjugate gradient energy:".ljust(30) + ("{0:20.16f}".format(energy)))
+            self.lam_corr = True
+            energy = self.hf_energy + vec_dot(gradient, x)+.5*vec_dot(x,vec_lc(1, self.hessian_action(x), -shift, x))
         print("Final energy:".ljust(30) + ("{0:20.16f}".format(energy)))
         if j==20:
             print('Failed to converge in 20 iterations.  dE = '+str(delta))
@@ -454,10 +458,12 @@ def vec_dot(v1, v2):
 if __name__ == '__main__':
     geometry = """
         0 1
-        N 0 0 0
-        N 0 0 1.5
+        H 0 0 0
+        H 0 0 1
+        H 0 0 2
+        H 0 0 3
         symmetry c1
     """
-    basis = 'cc-pvtz'
-    mol = molecule(geometry, basis, reference = 'rhf', c3epa = True, uns = True, shift = 'cepa(0)', optimize = False, verbose = True)
+    basis = 'cc-pvdz'
+    mol = molecule(geometry, basis, reference = 'rhf', c3epa = True, uns = True, shift = 'cepa(0)', optimize = False, verbose = False, lam_corr = False)
     mol.conj_grad()
